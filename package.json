@@ -29,5 +29,11 @@
     "prettier-plugin-organize-imports": "^3.2.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.2"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "npx eslint --fix"
+    ]
   }
 }
