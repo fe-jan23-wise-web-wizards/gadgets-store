@@ -1,3 +1,4 @@
+//* Colors
 $color-dark: #0f1121;
 $color-surface-1: #161827;
 $color-surface-2: #323542;
@@ -8,3 +9,15 @@ $color-white: #f1f2f9;
 $color-accent: #905bff;
 $color-green: #27ae60;
 $color-red: #eb5757;
+
+//* Breakpoints sizes
+//Medium smartphones
+$bp-480: 480px;
+// Small tablets and large smartphones (landscape view)
+$bp-640: 640px;
+// Small tablets (portrait view)
+$bp-768: 768px;
+// Tablets and small desktops
+$bp-1024: 1024px;
+// Large tablets and desktops
+$bp-1200: 1200px;
