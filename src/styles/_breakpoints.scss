@@ -1,23 +1,25 @@
+@import './variables'; 
+
 @mixin bp-small-up {
-  @media (min-width: #{$bp-480}) {
+  @media (min-width: $bp-480) {
     @content;
   }
 }
 
 @mixin bp-medium-up {
-  @media (min-width: #{$bp-768}) {
+  @media (min-width: $bp-768) {
     @content;
   }
 }
 
 @mixin bp-large-up {
-  @media (min-width: #{$bp-1024}) {
+  @media (min-width: $bp-1024) {
     @content;
   }
 }
 
 @mixin bp-x-large-up {
-  @media (min-width: #{$bp-1200}) {
+  @media (min-width: $bp-1200) {
     @content;
   }
 }

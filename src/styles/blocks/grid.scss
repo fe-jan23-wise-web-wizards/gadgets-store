@@ -1,11 +1,11 @@
-@import '@/breakpoints';
+@import '../breakpoints';
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 16px;
 
-  @include bp-medium-up {
+  @include bp-custom-up (640px) {
     grid-template-columns: repeat(12, 1fr);
   }
 
@@ -13,23 +13,11 @@
     grid-template-columns: repeat(24, 1fr);
   }
 
-  &--tablet {
-    display: block;
-
-    @include bp-medium-up {
-      display: grid;
-    }
-
-    @include bp-x-large-up {
-      display: grid;
-    }
-  }
-
   &__item {
     @for $start from 1 through 12 {
       @for $end from $start through 12 {
         &-tablet--#{$start}-#{$end} {
-          @include bp-medium-up {
+          @include bp-custom-up (640px) {
             grid-column: #{$start} / #{$end + 1};
           }
         }
@@ -41,7 +29,7 @@
     @for $start from 1 through 24 {
       @for $end from $start through 24 {
         &-tablet--#{$start}-#{$end} {
-          @include onDesktop {
+          @include bp-x-large-up {
             grid-column: #{$start} / #{$end + 1};
           }
         }

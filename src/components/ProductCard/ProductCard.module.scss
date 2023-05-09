@@ -1,4 +1,5 @@
 @import '@/styles/variables';
+@import '@/styles/breakpoints';
 
 .product_card {
   display: flex;
@@ -11,8 +12,12 @@
   border: 1px solid #161827;
 
   &_image {
-    width: 208px;
+    height: 130px;
     margin: 0 auto 24px;
+
+    @include bp-custom-up (640px) {
+      height: 196px;
+    }
   }
 
   &_title {
