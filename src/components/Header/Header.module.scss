@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 @import '../../styles/typography';
 @import '../../styles/mixins';
-@import '../../styles/__breakpoints';
+@import '../../styles/breakpoints';
 
 .logo {
   height: 48px;
@@ -17,7 +17,7 @@
   background-color: $color-dark;
   width: 100%;
 
-  &__container {
+  &_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,10 +28,10 @@
     }
   }
 
-  &__menu {
+  &_menu {
     width: 100%;
 
-    &__mobile {
+    &_mobile {
       display: flex;
       justify-content: end;
       align-items: center;
@@ -40,13 +40,13 @@
         display: none;
       }
 
-      &__icon {
+      &_icon {
         height: 8.5px;
         width: 14px;
         fill: $color-white;
       }
 
-      &__link {
+      &_link {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,7 +57,7 @@
       }
     }
 
-    &__desktop {
+    &_desktop {
       display: none;
 
       @include bp-medium-up {
@@ -67,14 +67,14 @@
         width: 100%;
       }
 
-      &__left {
+      &_left {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
       }
 
-      &__list {
+      &_list {
         display: flex;
         justify-content: start;
         align-items: center;
@@ -88,11 +88,11 @@
         }
       }
 
-      &__item {
+      &_item {
         cursor: pointer;
       }
 
-      &__link {
+      &_link {
         color: $color-secondary;
         font-weight: 800;
         padding: 16px 0;
@@ -112,12 +112,12 @@
         }
       }
 
-      &__right {
+      &_right {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        &__item {
+        &_item {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -132,7 +132,7 @@
           }
         }
 
-        &__link {
+        &_link {
           padding: 16px;
         }
       }

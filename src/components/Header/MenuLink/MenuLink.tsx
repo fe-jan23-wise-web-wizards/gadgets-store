@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './Header.module.scss';
+import styles from '../Header.module.scss';
 
 interface Props {
   to: string;
@@ -9,8 +9,8 @@ interface Props {
 
 export const MenuLink: React.FC<Props> = ({ to, content }) => {
   return (
-    <li className={styles.navbar__menu__desktop__item}>
-      <NavLink to={to} className={styles.navbar__menu__desktop__link}>
+    <li className={styles.navbar_menu_desktop_item}>
+      <NavLink to={`/${to}`} className={styles.navbar_menu_desktop_link}>
         {content}
       </NavLink>
     </li>

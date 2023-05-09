@@ -1,19 +1,19 @@
 import { FC } from 'react';
 
-import { IconLink } from '@/components/Header/IconLink';
-import { Logo } from '@/components/Header/Logo';
-import { MenuLink } from '@/components/Header/MenuLink';
+import { IconLink } from '@/components/Header/IconLink/IconLink';
+import { Logo } from '@/components/Header/Logo/Logo';
+import { MenuLink } from '@/components/Header/MenuLink/MenuLink';
 import styles from './Header.module.scss';
 
 export const Header: FC = () => {
   return (
     <div className={styles.header}>
       <nav className={styles.navbar}>
-        <div className={styles.navbar__container}>
+        <div className={styles.navbar_container}>
           <Logo />
 
-          <div className={styles.navbar__menu}>
-            <div className={styles.navbar__menu__mobile}>
+          <div className={styles.navbar_menu}>
+            <div className={styles.navbar_menu_mobile}>
               <IconLink
                 to={''}
                 src={'./src/assets/menu.svg'}
@@ -21,9 +21,9 @@ export const Header: FC = () => {
               />
             </div>
 
-            <div className={styles.navbar__menu__desktop}>
-              <div className={styles.navbar__menu__desktop__left}>
-                <ul className={styles.navbar__menu__desktop__list}>
+            <div className={styles.navbar_menu_desktop}>
+              <div className={styles.navbar_menu_desktop_left}>
+                <ul className={styles.navbar_menu_desktop_list}>
                   <MenuLink to={'home'} content={'Home'} />
 
                   <MenuLink to={'phones'} content={'Phones'} />
@@ -33,7 +33,7 @@ export const Header: FC = () => {
                   <MenuLink to={'accessories'} content={'Accessories'} />
                 </ul>
               </div>
-              <div className={styles.navbar__menu__desktop__right}>
+              <div className={styles.navbar_menu_desktop_right}>
                 <IconLink
                   to={'favorites'}
                   src={'./src/assets/Icon-favorites.svg'}

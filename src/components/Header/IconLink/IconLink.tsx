@@ -10,8 +10,8 @@ interface Props {
 
 export const IconLink: FC<Props> = ({ to, src, alt }) => {
   return (
-    <div className={styles.navbar__menu__desktop__right__item}>
-      <Link to={to} className={styles.navbar__menu__desktop__right__link}>
+    <div className={styles.navbar_menu_desktop_right_item}>
+      <Link to={`/${to}`} className={styles.navbar_menu_desktop_right_link}>
         <img src={src} alt={alt} />
       </Link>
     </div>
