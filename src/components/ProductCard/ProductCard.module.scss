@@ -1,0 +1,127 @@
+@import '@/styles/variables';
+
+.product_card {
+  display: flex;
+  flex-direction: column;
+
+  padding: 32px;
+  max-width: 272px;
+
+  background-color: $color-surface-1;
+  border: 1px solid #161827;
+
+  &_image {
+    width: 208px;
+    margin: 0 auto 24px;
+  }
+
+  &_title {
+    color: $color-white;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 150%;
+    margin-bottom: 8px;
+  }
+
+  &_price {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    font-weight: 700;
+
+    &_actual {
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 140%;
+      color: $color-white;
+      margin-right: 8px;
+    }
+
+    &_default {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 28px;
+      color: $color-secondary;
+      text-decoration: line-through;
+    }
+  }
+
+  &_separator {
+    height: 1px;
+    background-color: $color-elements;
+    margin-bottom: 16px;
+  }
+
+  &_properties:last-child {
+    margin-bottom: 16px;
+  }
+
+  &_property {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+
+    &:last-child {
+      margin-bottom: 16px;
+    }
+
+    &_title {
+      color: $color-secondary;
+    }
+
+    &_value {
+      color: $color-white;
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &_button_cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 9.5px 0;
+
+    color: #f1f2f9;
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 700;
+    background-color: #905bff;
+    text-decoration: none;
+    flex-grow: 1;
+
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #A378FF;
+    }
+  }
+
+  &_button_like {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+    background-color: $color-surface-2;
+
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $color-icons;
+    }
+  }
+}
