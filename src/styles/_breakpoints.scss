@@ -1,36 +1,36 @@
 @mixin bp-small-up {
-  @media (min-width: #{$bp-480}) {
+  @media only screen and (min-width: $bp-480) {
     @content;
   }
 }
 
 @mixin bp-medium-up {
-  @media (min-width: #{$bp-768}) {
+  @media only screen and (min-width: $bp-768) {
     @content;
   }
 }
 
 @mixin bp-large-up {
-  @media (min-width: #{$bp-1024}) {
+  @media only screen and (min-width: $bp-1024) {
     @content;
   }
 }
 
 @mixin bp-x-large-up {
-  @media (min-width: #{$bp-1200}) {
+  @media only screen and (min-width: $bp-1200) {
     @content;
   }
 }
 
-// Custom devices
+// Custom breakpoints
 @mixin bp-custom-up($size) {
-  @media (min-width: $size) {
+  @media only screen and (min-width: $size) {
     @content;
   }
 }
 
 @mixin bp-custom-down($size) {
-  @media (max-width: $size) {
+  @media only screen and (max-width: $size) {
     @content;
   }
 }

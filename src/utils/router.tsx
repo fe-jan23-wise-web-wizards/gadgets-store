@@ -1,24 +1,24 @@
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Navigate,
-  Route,
+createBrowserRouter,
+createRoutesFromElements,
+Navigate,
+Route,
 } from 'react-router-dom';
 
-import { MainLayout } from '../layouts/MainLayout';
-import { HomePage } from '../pages/HomePage';
-import { PhonesPage } from '../pages/PhonesPage';
-import { TabletsPage } from '../pages/TabletsPage';
-import { AccessoriesPage } from '../pages/AccessoriesPage';
-import { FavoritesPage } from '../pages/FavoritesPage';
-import { CartPage } from '../pages/CartPage';
-import { ProductPage } from '../pages/ProductPage';
-import { NotFound } from '../pages/NotFound';
+import { MainLayout } from '@/layouts/MainLayout';
+import { AccessoriesPage } from '@/pages/AccessoriesPage';
+import { CartPage } from '@/pages/CartPage';
+import { FavoritesPage } from '@/pages/FavoritesPage';
+import { HomePage } from '@/pages/HomePage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
+import { PhonesPage } from '@/pages/PhonesPage';
+import { ProductPage } from '@/pages/ProductPage';
+import { TabletsPage } from '@/pages/TabletsPage';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route index element={<HomePage /> }/>
+      <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="/" replace />} />
 
       <Route path="phones">
@@ -39,7 +39,7 @@ export const router = createBrowserRouter(
       <Route path="favorites" element={<FavoritesPage />} />
       <Route path="cart" element={<CartPage />} />
 
-      <Route path="*" element = { <NotFound />} />
-    </Route>
-  )
+      <Route path="*" element={<NotFoundPage />} />
+    </Route>,
+  ),
 );
