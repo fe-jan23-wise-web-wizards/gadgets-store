@@ -1,0 +1,141 @@
+@import '../../styles/variables';
+@import '../../styles/typography';
+@import '../../styles/mixins';
+@import '../../styles/__breakpoints';
+
+.logo {
+  height: 48px;
+  width: 96px;
+
+  @include bp-large-up {
+    height: 64px;
+    width: 128px;
+  }
+}
+
+.navbar {
+  background-color: $color-dark;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+
+    @include bp-large-up {
+      height: 64px;
+    }
+  }
+
+  &__menu {
+    width: 100%;
+
+    &__mobile {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      @include bp-medium-up {
+        display: none;
+      }
+
+      &__icon {
+        height: 8.5px;
+        width: 14px;
+        fill: $color-white;
+      }
+
+      &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        width: 48px;
+        cursor: pointer;
+        border: 1px solid $color-elements;
+      }
+    }
+
+    &__desktop {
+      display: none;
+
+      @include bp-medium-up {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      &__left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      &__list {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        list-style: none;
+        gap: 32px;
+        margin-left: 16px;
+
+        @include bp-large-up {
+          gap: 64px;
+          margin-left: 24px;
+        }
+      }
+
+      &__item {
+        cursor: pointer;
+      }
+
+      &__link {
+        color: $color-secondary;
+        font-weight: 800;
+        padding: 16px 0;
+        line-height: 48px;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-white;
+
+          &::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: $color-white;
+          }
+        }
+      }
+
+      &__right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 48px;
+          height: 48px;
+          border-left: 1px solid $color-elements;
+          cursor: pointer;
+
+          @include bp-large-up {
+            width: 64px;
+            height: 64px;
+          }
+        }
+
+        &__link {
+          padding: 16px;
+        }
+      }
+    }
+  }
+}

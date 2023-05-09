@@ -1,0 +1,38 @@
+@import './variables';
+
+@mixin bp-small-up {
+  @media (min-width: #{$bp-480}) {
+    @content;
+  }
+}
+
+@mixin bp-medium-up {
+  @media (min-width: #{$bp-768}) {
+    @content;
+  }
+}
+
+@mixin bp-large-up {
+  @media (min-width: #{$bp-1024}) {
+    @content;
+  }
+}
+
+@mixin bp-x-large-up {
+  @media (min-width: #{$bp-1200}) {
+    @content;
+  }
+}
+
+// Custom devices
+@mixin bp-custom-up($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin bp-custom-down($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
