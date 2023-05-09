@@ -1,36 +1,36 @@
 @mixin bp-small-up {
   @media (min-width: #{$bp-480}) {
-      @content;
+    @content;
   }
 }
 
 @mixin bp-medium-up {
   @media (min-width: #{$bp-768}) {
-      @content;
+    @content;
   }
 }
 
 @mixin bp-large-up {
   @media (min-width: #{$bp-1024}) {
-      @content;
+    @content;
   }
 }
 
 @mixin bp-x-large-up {
   @media (min-width: #{$bp-1200}) {
-      @content;
+    @content;
   }
 }
 
 // Custom devices
 @mixin bp-custom-up($size) {
   @media (min-width: $size) {
-      @content;
+    @content;
   }
 }
 
 @mixin bp-custom-down($size) {
   @media (max-width: $size) {
-      @content;
+    @content;
   }
 }
