@@ -1,0 +1,46 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+@import '@/styles/extends';
+
+.card {
+  &_title {
+    margin-bottom: $margin-bottom / 6;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: $color-white;
+    text-decoration: none;
+    transition-property: color;
+
+    @extend %transitionDetails;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+  }
+
+  &_numberOfModels {
+    margin-bottom: $margin-bottom / 1.5;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: $color-secondary;
+
+    @include bp-custom-up(640px) {
+      margin-bottom: 0;
+    }
+  }
+
+  &_link {
+    margin-bottom: $margin-bottom;
+  }
+
+  &_img {
+    max-width: 100%;
+    transition-property: transform;
+
+    @extend %transitionDetails;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

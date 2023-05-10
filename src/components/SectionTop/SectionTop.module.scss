@@ -1,0 +1,19 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+
+.section_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  &_title {
+    margin-bottom: $margin-bottom;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01rem;
+
+    @include bp-medium-up {
+      font-size: 2rem;
+    }
+  }
+}
