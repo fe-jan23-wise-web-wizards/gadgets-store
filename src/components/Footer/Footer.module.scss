@@ -1,0 +1,107 @@
+@import '@/styles/variables.scss';
+@import '@/styles/breakpoints.scss';
+
+.footer {
+  width: 100%;
+
+  padding: $footer-first-indent 0;
+
+  border-top: 1px solid $color-elements;
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_logo {
+    margin-bottom: $footer-first-indent;
+  }
+
+  &_links_list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $footer-first-indent;
+
+    & > *:not(:last-child) {
+      margin-bottom: calc($footer-first-indent / 2);
+    }
+
+    &_link {
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 11px;
+
+      padding: 40px 0;
+
+      color: $color-secondary;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $color-white;
+      }
+    }
+  }
+
+  &_nav {
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: calc($footer-first-indent / 2);
+
+    cursor: pointer;
+
+    &_text {
+      color: $color-secondary;
+
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    &_icon_container {
+      width: 32px;
+      height: 32px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: $color-surface-2;
+
+      &_active {
+        background-color: $color-icons;
+      }
+    }
+  }
+
+  @include bp-medium-up {
+    padding: $footer-first-indent 0;
+
+    &_container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &_logo {
+      margin-bottom: 0;
+    }
+
+    &_links_list {
+      flex-direction: row;
+      margin-bottom: 0;
+
+      & > *:not(:last-child) {
+        margin-bottom: 0;
+        margin-right: 7vw;
+      }
+    }
+
+    &_nav {
+      align-self: auto;
+      gap: $footer-first-indent;
+    }
+  }
+}

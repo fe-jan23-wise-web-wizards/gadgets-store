@@ -12,7 +12,11 @@ export const IconLink: FC<Props> = ({ to, src, alt }) => {
   return (
     <div className={styles.navbar_menu_desktop_right_item}>
       <Link to={`/${to}`} className={styles.navbar_menu_desktop_right_link}>
-        <img src={src} alt={alt} />
+        <img
+          src={src}
+          alt={alt}
+          className={styles.navbar_menu_desktop_right_icon}
+        />
       </Link>
     </div>
   );
