@@ -1,0 +1,59 @@
+@import '../../styles/variables';
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sliderItem {
+  height: 400px;
+  background-image: url('@/assets/banner-phones.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sliderContent {
+  display: flex;
+  gap: 16px;
+
+  width: 100%;
+  height: 400px;
+  margin-bottom: 18px;
+  
+  :global(.swiper-pagination-bullet) {
+    background-color: $color-elements;
+    width: 14px;
+    height: 4px;
+    border-radius: 0;
+    opacity: 1;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background-color: $color-white;
+  }
+
+  :global(.swiper-pagination) {
+    bottom: 0px;
+  }
+}
+
+.swiper_wrapper {
+  width: calc(100% - 96px);
+}
+
+.myPagination {
+  display: flex;
+  gap: 16px;
+}
+
+.myPaginationBullet {
+  width: 14px;
+  height: 4px;
+  background-color: $color-elements;
+}
+
+.myPaginationBulletActive {
+  background-color: $color-white;
+}
