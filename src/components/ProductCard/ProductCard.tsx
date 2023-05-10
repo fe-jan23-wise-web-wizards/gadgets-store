@@ -1,17 +1,20 @@
 import React from 'react';
 
+import buttonIcon from "@/assets/icons/like-icon.svg";
 import styles from './ProductCard.module.scss';
 
 export const ProductCard: React.FC = () => (
   <div className="grid__item">
     <div className={styles.product_card}>
       <img
-        src="src/assets/phones/apple-iphone-xs/spacegray/00.jpg"
+        src={`${import.meta.env.VITE_API_URL}img/phones/apple-iphone-xs/spacegray/01.jpg`}
         className={styles.product_card_image}
         alt="IPhone-Xs"
       />
 
-      <h2 className={styles.product_card_title}>Apple iPhone Xs 64GB Space Gray (iMT9G2FS/A)</h2>
+      <h2 className={styles.product_card_title}>
+        Apple iPhone Xs 64GB Space Gray (iMT9G2FS/A)
+      </h2>
 
       <div className={styles.product_card_price}>
         <span className={styles.product_card_price_actual}>$799</span>
@@ -25,12 +28,11 @@ export const ProductCard: React.FC = () => (
           <span className={styles.product_card_property_title}>Screen</span>
           <span className={styles.product_card_property_value}>5.8” OLED</span>
         </div>
-    
+
         <div className={styles.product_card_property}>
           <span className={styles.product_card_property_title}>Capacity</span>
           <span className={styles.product_card_property_value}>64 GB</span>
         </div>
-
 
         <div className={styles.product_card_property}>
           <span className={styles.product_card_property_title}>RAM</span>
@@ -39,9 +41,11 @@ export const ProductCard: React.FC = () => (
       </div>
 
       <div className={styles.product_card_buttons}>
-        <a href="#" className={styles.product_card_button_cart}>Add to cart</a>
+        <a href="#" className={styles.product_card_button_cart}>
+          Add to cart
+        </a>
         <a href="#" className={styles.product_card_button_like}>
-          <img src="src/assets/icons/like-icon.svg" alt="icon" />
+          <img src={buttonIcon} alt="icon" />
         </a>
       </div>
     </div>

@@ -1,0 +1,1 @@
+VITE_API_URL='https://gadgets-store-api.up.railway.app/static'

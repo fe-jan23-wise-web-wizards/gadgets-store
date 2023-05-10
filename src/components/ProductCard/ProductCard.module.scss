@@ -23,7 +23,6 @@
   &_title {
     color: $color-white;
     font-size: 14px;
-    font-weight: 600;
     line-height: 150%;
     margin-bottom: 8px;
   }
@@ -44,8 +43,8 @@
     }
 
     &_default {
+      font-weight: 400;
       font-size: 22px;
-      font-weight: 600;
       line-height: 28px;
       color: $color-secondary;
       text-decoration: line-through;
@@ -70,7 +69,7 @@
     margin-bottom: 8px;
 
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 15px;
 
     &:last-child {
@@ -102,7 +101,7 @@
     color: #f1f2f9;
     font-size: 14px;
     line-height: 150%;
-    font-weight: 700;
+    font-weight: 600;
     background-color: #905bff;
     text-decoration: none;
     flex-grow: 1;
