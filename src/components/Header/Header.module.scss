@@ -6,6 +6,7 @@
 .navbar {
   background-color: $color-dark;
   width: 100%;
+  border-bottom: 1px solid $color-elements;
 
   &_container {
     display: flex;
@@ -80,6 +81,7 @@
 
       &_item {
         cursor: pointer;
+        position: relative;
       }
 
       &_link {
@@ -93,11 +95,17 @@
           color: $color-white;
 
           &::after {
+            position: absolute;
+            bottom: -1px;
             content: '';
             display: block;
             height: 2px;
             width: 100%;
             background-color: $color-white;
+
+            @include bp-large-up {
+              bottom: -9px;
+            }
           }
         }
       }
