@@ -27,12 +27,12 @@ $bp-1200: 1200px;
 $tabletColumns: 12;
 $desktopColumns: 24;
 
-//* Primary used indentations
-$margin-bottom: 24px;
-
-//* Container
+// * Container
 $container-padding: 15px;
 
-//* NotFoundPage
+// * NotFoundPage
 $margin-primary: 30px;
 $error-image-size: 200px;
+
+// * Footer sizes
+$footer-first-indent: 32px;

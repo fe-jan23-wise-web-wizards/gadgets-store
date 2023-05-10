@@ -7,7 +7,7 @@
   padding: 0 $container-padding;
   max-width: 1135px;
   height: 100%;
-  
+
   @include bp-custom-up(640px) {
     padding: 0 1.5 * $container-padding;
   }
@@ -26,5 +26,10 @@
 
   &_content {
     flex-grow: 1;
+    padding-bottom: $footer-first-indent * 2;
+
+    @include bp-medium-up {
+      padding-bottom: $footer-first-indent * 3;
+    }
   }
 }

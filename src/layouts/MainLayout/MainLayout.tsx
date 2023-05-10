@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header/Header';
 import { Outlet } from 'react-router-dom';
 
+import { Footer } from '@/components/Footer/Footer';
 import styles from './MainLayout.module.scss';
 
 export const MainLayout = () => {
@@ -14,11 +15,7 @@ export const MainLayout = () => {
         </div>
       </main>
 
-      <footer>
-        <div className={styles.container}>
-          footer
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
