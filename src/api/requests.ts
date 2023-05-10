@@ -1,3 +1,4 @@
+import { Category } from '@/types/Category';
 import { type Phone } from '@/types/Phone';
 import { type Product } from '@/types/Product';
 import { SortBy } from '@/types/SortBy';
@@ -35,6 +36,6 @@ export const getPhones = (page?: number, limit?: number, sort?: SortBy) => {
   );
 };
 
-export const getPhoneDetails = (id: string) => {
-  return get<Phone>(`${BASE_URL}/phones/${id}`);
+export const getProductDetails = (category: Category, id: string) => {
+  return get<Phone>(`${BASE_URL}/${category}/${id}`);
 };
