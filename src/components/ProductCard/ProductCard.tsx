@@ -1,24 +1,29 @@
-import React from 'react';
-
-import buttonIcon from "@/assets/icons/like-icon.svg";
+import buttonIcon from '@/assets/icons/like-icon.svg';
+import { Product } from '@/types/Product';
 import styles from './ProductCard.module.scss';
 
-export const ProductCard: React.FC = () => (
+interface ProductCardProps {
+  product: Product;
+}
+
+export const ProductCard = ({ product }: ProductCardProps) => (
   <div className="grid__item">
     <div className={styles.product_card}>
       <img
-        src={`${import.meta.env.VITE_API_URL}img/phones/apple-iphone-xs/spacegray/01.jpg`}
+        src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
         className={styles.product_card_image}
-        alt="IPhone-Xs"
+        alt={product.name}
       />
 
-      <h2 className={styles.product_card_title}>
-        Apple iPhone Xs 64GB Space Gray (iMT9G2FS/A)
-      </h2>
+      <h2 className={styles.product_card_title}>{product.name}</h2>
 
       <div className={styles.product_card_price}>
-        <span className={styles.product_card_price_actual}>$799</span>
-        <span className={styles.product_card_price_default}>$899</span>
+        <span className={styles.product_card_price_actual}>
+          {product.price}
+        </span>
+        <span className={styles.product_card_price_default}>
+          {product.fullPrice}
+        </span>
       </div>
 
       <div className={styles.product_card_separator}></div>
@@ -26,17 +31,23 @@ export const ProductCard: React.FC = () => (
       <div className={styles.product_card_properties}>
         <div className={styles.product_card_property}>
           <span className={styles.product_card_property_title}>Screen</span>
-          <span className={styles.product_card_property_value}>5.8” OLED</span>
+          <span className={styles.product_card_property_value}>
+            {product.screen}
+          </span>
         </div>
 
         <div className={styles.product_card_property}>
           <span className={styles.product_card_property_title}>Capacity</span>
-          <span className={styles.product_card_property_value}>64 GB</span>
+          <span className={styles.product_card_property_value}>
+            {product.capacity}
+          </span>
         </div>
 
         <div className={styles.product_card_property}>
           <span className={styles.product_card_property_title}>RAM</span>
-          <span className={styles.product_card_property_value}>4 GB</span>
+          <span className={styles.product_card_property_value}>
+            {product.ram}
+          </span>
         </div>
       </div>
 

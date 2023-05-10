@@ -1,40 +1,19 @@
-import React from 'react';
-
-import styles from './ProductList.module.scss';
+import { Product } from '@/types/Product';
 import { ProductCard } from '../ProductCard';
+import styles from './ProductList.module.scss';
 
-export const ProductList: React.FC = () => {
+interface ProductListProps {
+  products: Product[];
+}
+
+export const ProductList = ({ products }: ProductListProps) => {
   return (
-    <>
-      <div className={styles.product_list}>
-        <div className={styles.product_list_item}>
-          <ProductCard />
+    <div className={styles.product_list}>
+      {products.map(product => (
+        <div key={product.itemId} className={styles.product_list_item}>
+          <ProductCard product={product} />
         </div>
-
-        <div className={styles.product_list_item}>
-          <ProductCard />
-        </div>
-
-        <div className={styles.product_list_item}>
-          <ProductCard />
-        </div>
-
-        <div className={styles.product_list_item}>
-          <ProductCard />
-        </div>
-
-        <div className={styles.product_list_item}>
-          <ProductCard />
-        </div>
-
-        <div className={styles.product_list_item}>
-          <ProductCard />
-        </div>
-
-        <div className={styles.product_list_item}>
-          <ProductCard />
-        </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 };
