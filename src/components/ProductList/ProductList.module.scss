@@ -1,0 +1,35 @@
+@import '@/styles/breakpoints';
+
+$card-width-desctop: 272px;
+$card-width-tablet-mobile: 288px;
+$column-gap: 16px;
+
+.product_list {
+  margin: 0 auto;
+  display: grid;
+  max-width: 288px;
+  grid-template-columns: 1fr;
+  column-gap: $column-gap;
+  row-gap: 40px;
+
+  @include bp-custom-up (640px) {
+    max-width: $card-width-tablet-mobile * 2 + $column-gap;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include bp-custom-up (900px) {
+    max-width: $card-width-tablet-mobile * 3 + $column-gap * 2;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include bp-x-large-up {
+    max-width: $card-width-tablet-mobile * 4 + $column-gap * 3;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  &_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

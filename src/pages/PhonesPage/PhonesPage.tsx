@@ -1,7 +1,12 @@
-export const PhonesPage = () => {
+import React from 'react';
+import styles from './PhonesPage.module.scss';
+import { ProductList } from '../../components/ProductList';
+
+export const PhonesPage: React.FC = () => {
   return (
-    <div>
-      <h1>Phones</h1>
-    </div>
+    <>
+      <h1 className={styles.title}>Mobile phones</h1>
+      <ProductList />
+    </>
   );
 };
