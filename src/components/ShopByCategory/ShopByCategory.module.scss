@@ -1,0 +1,12 @@
+@import '@/styles/breakpoints';
+
+.category_cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  @include bp-custom-up(640px) {
+    flex-direction: row;
+  }
+}
