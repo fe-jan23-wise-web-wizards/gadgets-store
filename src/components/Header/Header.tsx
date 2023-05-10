@@ -1,14 +1,12 @@
-import { FC } from 'react';
-
 import iconCart from '@/assets/icons/icon-cart.svg';
 import iconMenu from '@/assets/icons/icon-menu.svg';
 import iconFavorites from '@/assets/icons/like-icon.svg';
-import { IconLink } from '@/components/Header/IconLink/IconLink';
-import { MenuLink } from '@/components/Header/MenuLink/MenuLink';
-import { Logo } from '@/components/Logo/Logo';
+import { Logo } from '@/components/Logo';
 import styles from './Header.module.scss';
+import { IconLink } from './IconLink';
+import { MenuLink } from './MenuLink';
 
-export const Header: FC = () => {
+export const Header = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar_container}>

@@ -1,9 +1,9 @@
 import backToTop from '@/assets/icons/icon-backToTop.svg';
-import styles from '@/components/Footer/Footer.module.scss';
-import * as classNames from 'classnames';
-import { FC, useState } from 'react';
+import classNames from 'classnames';
+import { useState } from 'react';
+import styles from '../Footer.module.scss';
 
-export const BackToTopLink: FC = () => {
+export const BackToTopButton = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {

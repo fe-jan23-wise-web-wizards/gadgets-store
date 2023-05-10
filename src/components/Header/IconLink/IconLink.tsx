@@ -1,6 +1,5 @@
-import styles from '@/components/Header/Header.module.scss';
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import styles from '../Header.module.scss';
 
 interface Props {
   to: string;
@@ -8,7 +7,7 @@ interface Props {
   alt: string;
 }
 
-export const IconLink: FC<Props> = ({ to, src, alt }) => {
+export const IconLink = ({ to, src, alt }: Props) => {
   return (
     <div className={styles.navbar_menu_desktop_right_item}>
       <Link to={`/${to}`} className={styles.navbar_menu_desktop_right_link}>

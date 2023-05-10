@@ -1,14 +1,13 @@
-import { BackToTopLink } from '@/components/Footer/BackToTopLink/BackToTopLink';
-import { FooterLink } from '@/components/Footer/FooterLink/FooterLink';
-import { Logo } from '@/components/Logo/Logo';
-import mainLayoutStyles from '@/layouts/MainLayout/MainLayout.module.scss';
-import { FC } from 'react';
+import { Logo } from '@/components/Logo';
+import '@/styles/blocks/container.scss';
+import { BackToTopButton } from './BackToTopButton';
 import styles from './Footer.module.scss';
+import { FooterLink } from './FooterLink';
 
-export const Footer: FC = () => {
+export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={mainLayoutStyles.container}>
+      <div className="container">
         <div className={styles.footer_container}>
           <div className={styles.footer_logo}>
             <Logo position={'footer'} />
@@ -31,7 +30,7 @@ export const Footer: FC = () => {
             />
           </ul>
 
-          <BackToTopLink />
+          <BackToTopButton />
         </div>
       </div>
     </footer>

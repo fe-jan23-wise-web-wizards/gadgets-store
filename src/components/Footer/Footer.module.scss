@@ -3,9 +3,7 @@
 
 .footer {
   width: 100%;
-
   padding: $footer-first-indent 0;
-
   border-top: 1px solid $color-elements;
 
   &_container {
@@ -30,9 +28,6 @@
       font-weight: 800;
       font-size: 12px;
       line-height: 11px;
-
-      padding: 40px 0;
-
       color: $color-secondary;
       text-decoration: none;
       text-transform: uppercase;
