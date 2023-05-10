@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import cart from '@/assets/icons/icon-cart.svg';
-import menu from '@/assets/icons/icon-menu.svg';
-import favorites from '@/assets/icons/like-icon.svg';
+import iconCart from '@/assets/icons/icon-cart.svg';
+import iconMenu from '@/assets/icons/icon-menu.svg';
+import iconFavorites from '@/assets/icons/like-icon.svg';
 import { IconLink } from '@/components/Header/IconLink/IconLink';
 import { MenuLink } from '@/components/Header/MenuLink/MenuLink';
 import { Logo } from '@/components/Logo/Logo';
@@ -17,7 +17,7 @@ export const Header: FC = () => {
 
           <div className={styles.navbar_menu}>
             <div className={styles.navbar_menu_mobile}>
-              <IconLink to={''} src={menu} alt={'Icon-menu'} />
+              <IconLink to={''} src={iconMenu} alt={'Icon-menu'} />
             </div>
 
             <div className={styles.navbar_menu_desktop}>
@@ -35,11 +35,11 @@ export const Header: FC = () => {
               <div className={styles.navbar_menu_desktop_right}>
                 <IconLink
                   to={'favorites'}
-                  src={favorites}
+                  src={iconFavorites}
                   alt={'IconLink-favorites'}
                 />
 
-                <IconLink to={'cart'} src={cart} alt={'IconLink-cart'} />
+                <IconLink to={'cart'} src={iconCart} alt={'IconLink-cart'} />
               </div>
             </div>
           </div>
