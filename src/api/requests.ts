@@ -11,15 +11,15 @@ const get = async <T>(path: string): Promise<T> => {
   return data;
 };
 
-export const getAllProducts = (limit: number) => {
+export const getAllProducts = (limit?: number) => {
   return get(`${BASE_URL}/products${limit ? `?limit=${limit}` : ''}`);
 };
 
-export const getProductsWithDiscount = (limit: number) => {
+export const getProductsWithDiscount = (limit?: number) => {
   return get(`${BASE_URL}/products/discount${limit ? `?limit=${limit}` : ''}`);
 };
 
-export const getNewProducts = (limit: number) => {
+export const getNewProducts = (limit?: number) => {
   return get(`${BASE_URL}/products/new${limit ? `?limit=${limit}` : ''}`);
 };
 
