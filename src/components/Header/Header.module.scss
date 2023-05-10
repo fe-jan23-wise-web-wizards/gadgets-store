@@ -1,0 +1,139 @@
+@import '@/styles/variables';
+@import '@/styles/typography';
+@import '@/styles/mixins';
+@import '@/styles/breakpoints';
+
+.navbar {
+  background-color: $color-dark;
+  width: 100%;
+  border-bottom: 1px solid $color-elements;
+
+  &_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+
+    @include bp-large-up {
+      height: 64px;
+    }
+  }
+
+  &_menu {
+    width: 100%;
+
+    &_mobile {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      @include bp-medium-up {
+        display: none;
+      }
+
+      &_icon {
+        height: 8.5px;
+        width: 14px;
+        fill: $color-white;
+      }
+
+      &_link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        width: 48px;
+        cursor: pointer;
+        border: 1px solid $color-elements;
+      }
+    }
+
+    &_desktop {
+      display: none;
+
+      @include bp-medium-up {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      &_left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      &_list {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        list-style: none;
+        gap: 32px;
+        margin-left: 16px;
+
+        @include bp-large-up {
+          gap: 64px;
+          margin-left: 24px;
+        }
+      }
+
+      &_item {
+        cursor: pointer;
+        position: relative;
+      }
+
+      &_link {
+        color: $color-secondary;
+        font-weight: 800;
+        padding: 16px 0;
+        line-height: 48px;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-white;
+
+          &::after {
+            position: absolute;
+            bottom: -1px;
+            content: '';
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: $color-white;
+
+            @include bp-large-up {
+              bottom: -9px;
+            }
+          }
+        }
+      }
+
+      &_right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 48px;
+          height: 48px;
+          border-left: 1px solid $color-elements;
+          cursor: pointer;
+
+          @include bp-large-up {
+            width: 64px;
+            height: 64px;
+          }
+        }
+
+        &_link {
+          max-height: 16px;
+        }
+      }
+    }
+  }
+}

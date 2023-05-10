@@ -15,7 +15,7 @@
     height: 130px;
     margin: 0 auto 24px;
 
-    @include bp-custom-up (640px) {
+    @include bp-custom-up(640px) {
       height: 196px;
     }
   }
@@ -109,7 +109,7 @@
     transition: all 0.3s;
 
     &:hover {
-      background-color: #A378FF;
+      background-color: #a378ff;
     }
   }
 
