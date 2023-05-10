@@ -10,7 +10,7 @@ import styles from './Header.module.scss';
 
 export const Header: FC = () => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <nav className={styles.navbar}>
         <div className={styles.navbar_container}>
           <Logo />
@@ -45,6 +45,6 @@ export const Header: FC = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
