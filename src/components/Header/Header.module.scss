@@ -3,16 +3,6 @@
 @import '../../styles/mixins';
 @import '../../styles/breakpoints';
 
-.logo {
-  height: 48px;
-  width: 96px;
-
-  @include bp-large-up {
-    height: 64px;
-    width: 128px;
-  }
-}
-
 .navbar {
   background-color: $color-dark;
   width: 100%;

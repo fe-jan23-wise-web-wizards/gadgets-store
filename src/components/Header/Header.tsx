@@ -1,8 +1,11 @@
 import { FC } from 'react';
 
+import cart from '@/assets/icons/icon-cart.svg';
+import menu from '@/assets/icons/icon-menu.svg';
+import favorites from '@/assets/icons/like-icon.svg';
 import { IconLink } from '@/components/Header/IconLink/IconLink';
-import { Logo } from '@/components/Header/Logo/Logo';
 import { MenuLink } from '@/components/Header/MenuLink/MenuLink';
+import { Logo } from '@/components/Logo/Logo';
 import styles from './Header.module.scss';
 
 export const Header: FC = () => {
@@ -14,11 +17,7 @@ export const Header: FC = () => {
 
           <div className={styles.navbar_menu}>
             <div className={styles.navbar_menu_mobile}>
-              <IconLink
-                to={''}
-                src={'./src/assets/menu.svg'}
-                alt={'Icon-menu'}
-              />
+              <IconLink to={''} src={menu} alt={'Icon-menu'} />
             </div>
 
             <div className={styles.navbar_menu_desktop}>
@@ -36,15 +35,11 @@ export const Header: FC = () => {
               <div className={styles.navbar_menu_desktop_right}>
                 <IconLink
                   to={'favorites'}
-                  src={'./src/assets/Icon-favorites.svg'}
+                  src={favorites}
                   alt={'IconLink-favorites'}
                 />
 
-                <IconLink
-                  to={'cart'}
-                  src={'./src/assets/Icon-cart.svg'}
-                  alt={'IconLink-cart'}
-                />
+                <IconLink to={'cart'} src={cart} alt={'IconLink-cart'} />
               </div>
             </div>
           </div>

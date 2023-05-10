@@ -1,0 +1,12 @@
+@import '../../styles/breakpoints';
+@import '../../styles/variables';
+
+.logo {
+  height: 48px;
+  width: 96px;
+
+  @include bp-large-up {
+    height: 64px;
+    width: 128px;
+  }
+}
