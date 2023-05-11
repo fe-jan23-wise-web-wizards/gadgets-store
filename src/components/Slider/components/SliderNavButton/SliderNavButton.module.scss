@@ -1,0 +1,42 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+
+.slider_nav_button {
+  display: none;
+
+  @include bp-small-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    
+    background-color: $color-surface-2;
+
+    transition: background-color 0.3s linear;
+
+    &:hover {
+      background-color: $color-icons;
+    }
+  }
+}
+
+.slider_nav_next_button_icon {
+  width: 10px;
+  height: 10px;
+
+  background-image: url('@/assets/icons/forward-arrow.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slider_nav_prev_button_icon {
+  width: 10px;
+  height: 10px;
+
+  background-image: url('@/assets/icons/back-arrow.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

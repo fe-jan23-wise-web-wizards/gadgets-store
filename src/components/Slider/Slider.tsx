@@ -7,12 +7,12 @@ SwiperCore.use([Autoplay]);
 
 import { SliderItem } from './components/SliderItem';
 import { SliderPagination } from './components/SliderPagination';
-import {
-  SliderNavPrevButton,
-} from './components/SliderNavButtons/SliderNavPrevButton';
-import {
-  SliderNavNextButton,
-} from './components/SliderNavButtons/SliderNavNextButton';
+import { SliderNavButtonType } from './types/SliderNavButtonType';
+import { SliderNavButton } from './components/SliderNavButton';
+
+import phonesBanner from '@/assets/banner-phones.png';
+import tabletsBanner from '@/assets/banner-tablets.png';
+import accessoriesBanner from '@/assets/banner-accessories.png';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -20,11 +20,7 @@ import 'swiper/scss/pagination';
 import "swiper/swiper-bundle.min.css";
 import styles from './Slider.module.scss';
 
-const bannersPaths = [
-  'src/assets/banner-phones.png',
-  'src/assets/banner-tablets.png',
-  'src/assets/banner-accessories.png',
-];
+const bannersPaths = [phonesBanner, tabletsBanner, accessoriesBanner];
 
 export const Slider = () => {
   const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
@@ -38,7 +34,10 @@ export const Slider = () => {
     <>
       <div className={styles.slider}>
         <div className={styles.sliderContent}>
-          <SliderNavPrevButton sliderRef={swiperRef} />
+          <SliderNavButton
+            type={SliderNavButtonType.Previous}
+            sliderRef={swiperRef}
+          />
 
           <div className={styles.swiper_wrapper}>
             <Swiper
@@ -55,7 +54,10 @@ export const Slider = () => {
             </Swiper>
           </div>
 
-          <SliderNavNextButton sliderRef={swiperRef} />
+          <SliderNavButton
+            type={SliderNavButtonType.Next}
+            sliderRef={swiperRef}
+          />
         </div>
 
         <SliderPagination

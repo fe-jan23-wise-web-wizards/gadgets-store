@@ -4,7 +4,7 @@ type Props = {
   bannerPath: string,
 };
 
-export const SliderItem: React.FC<Props> = ({ bannerPath }) => {
+export const SliderItem= ({ bannerPath }: Props) => {
   return (
     <div
       className={styles.slider_item}
