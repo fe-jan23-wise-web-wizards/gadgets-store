@@ -3,11 +3,6 @@
 @import '@styles/mixins';
 @import '@styles/breakpoints';
 
-.header {
-  position: relative;
-  z-index: 2;
-}
-
 .navbar {
   background-color: $color-dark;
   width: 100%;

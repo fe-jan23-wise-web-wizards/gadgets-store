@@ -4,7 +4,7 @@
 
 .card {
   &_title {
-    margin-bottom: calc($margin-bottom / 6);
+    margin-bottom: calc($main-indent / 6);
     font-weight: 700;
     font-size: 1.25rem;
     color: $color-white;
@@ -19,7 +19,7 @@
   }
 
   &_numberOfModels {
-    margin-bottom: calc($margin-bottom / 1.5);
+    margin-bottom: calc(main-indent/ 1.5);
     font-weight: 600;
     font-size: 0.85rem;
     color: $color-secondary;
@@ -30,7 +30,7 @@
   }
 
   &_link {
-    margin-bottom: $margin-bottom;
+    margin-bottom: $main-indent;
   }
 
   &_img {
