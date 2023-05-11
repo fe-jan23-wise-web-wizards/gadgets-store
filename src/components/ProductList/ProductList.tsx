@@ -1,9 +1,8 @@
-import { Product } from '@/types/Product';
 import { ProductCard } from '../ProductCard';
 import styles from './ProductList.module.scss';
 
 interface ProductListProps {
-  products: Product[];
+  products: any[];
 }
 
 export const ProductList = ({ products }: ProductListProps) => {

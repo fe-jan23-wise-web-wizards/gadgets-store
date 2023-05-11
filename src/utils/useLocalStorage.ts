@@ -1,87 +1,105 @@
-import { Product } from '@/types/Product';
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-type Key = 'favorites' | 'cart';
+type Favorite = {
+  id: string;
+};
 
-const useLocalStorage = (key: Key, initialValue: Product[]) => {
-  const [storedItems, setStoredItems] = useState<Product[]>(() => {
+type CartItem = {
+  id: string;
+  quantity: number;
+};
+
+type Storage = {
+  favorites: Favorite[];
+  cart: CartItem[];
+};
+
+type Key = keyof Storage;
+
+function useLocalStorage<T>(key: Key, defaultValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
+    return item ? JSON.parse(item) : defaultValue;
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(storedItems));
-  }, [key, storedItems]);
+    localStorage.setItem(key, JSON.stringify(storedValue));
+  }, [key, storedValue]);
 
-  return [storedItems, setStoredItems] as const;
-};
-export const useFavorites = () => {
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
+  return [storedValue, setStoredValue] as const;
+}
 
-  const isFavorite = useCallback(
-    (itemId: string) => {
-      return favorites.some(storedItem => storedItem.itemId === itemId);
+export function useFavorites() {
+  const [favorites, setFavorites] = useLocalStorage<Favorite[]>(
+    'favorites',
+    [],
+  );
+
+  const addFavorite = useCallback(
+    (favorite: Favorite) => {
+      setFavorites(prevFavorites => {
+        if (prevFavorites.some(f => f.id === favorite.id)) {
+          return prevFavorites;
+        }
+        return [...prevFavorites, favorite];
+      });
     },
     [favorites],
   );
 
-  const addToFavorite = (item: Product) => {
-    setFavorites(prev => {
-      if (isFavorite(item.itemId)) {
-        return prev;
-      }
+  const removeFavorite = useCallback(
+    (favorite: Favorite) => {
+      setFavorites(prevFavorites =>
+        prevFavorites.filter(f => f.id !== favorite.id),
+      );
+    },
+    [favorites],
+  );
 
-      return [...prev, item];
-    });
-  };
-
-  const removeFromFavorite = (item: Product) => {
-    if (isFavorite(item.itemId)) {
-      setFavorites(prev => prev
-        .filter(storedItem => storedItem.itemId !== item.itemId));
-    }
-  };
-
-  const favoritesCount = useMemo(() => favorites.length, [favorites]);
+  const isFavorite = useCallback(
+    (id: string) => {
+      return favorites.some(f => f.id === id);
+    },
+    [favorites],
+  );
 
   return {
-    addToFavorite,
-    removeFromFavorite,
+    favorites,
+    addFavorite,
+    removeFavorite,
     isFavorite,
-    favoritesCount,
   } as const;
-};
+}
 
-export const useCart = () => {
-  const [cart, setCart] = useLocalStorage('cart', []);
-
-  const isItemInCart = useCallback((itemId: string) => {
-    return cart.some(storedItem => storedItem.itemId === itemId);
-  }, [cart]);
-
-  const addToCart = (item: Product) => {
-    setCart(prev => {
-      if (isItemInCart(item.itemId)) {
-        return prev;
-      }
-
-      return [...prev, item];
-    });
-  };
-
-  const removeFromCart = (item: Product) => {
-    if (isItemInCart(item.itemId)) {
-      setCart(prev => prev
-        .filter(storedItem => storedItem.itemId !== item.itemId));
-    }
-  };
-
-  const cartCount = useMemo(() => cart.length, [cart]);
-
-  return {
-    addToCart,
-    removeFromCart,
-    isItemInCart,
-    cartCount,
-  } as const;
-};
+// export function useCart() {
+//   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+//     'cart',
+//     []
+//   );
+//
+//   const addItemToCart = useCallback((item: CartItem) => {
+//     setCartItems((prevCartItems) => {
+//       const index = prevCartItems.findIndex((i) => i.id === item.id);
+//       if (index === -1) {
+//         return [...prevCartItems, item];
+//       }
+//       const updatedCartItems = [...prevCartItems];
+//       updatedCartItems[index].quantity += item.quantity;
+//       return updatedCartItems;
+//     });
+//   }, [setCartItems]);
+//
+//   const removeItemFromCart = useCallback((id: string) => {
+//     setCartItems((prevCartItems) =>
+//       prevCartItems.filter((i) => i.id !== id)
+//     );
+//   }, [setCartItems]);
+//
+//   const updateItemQuantity = useCallback((id: string, quantity: number) => {
+//     setCartItems((prevCartItems) => {
+//       const index = prevCartItems.findIndex((i) => i.id === id);
+//       if (index === -1) {
+//         return prevCartItems;
+//       }
+//       const updatedCartItems = [...prevCartItems];
+//       updated
