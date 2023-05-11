@@ -4,7 +4,7 @@
 .slider_nav_button {
   display: none;
 
-  @include bp-small-up {
+  @include bp-custom-up(639px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,6 +17,7 @@
 
     &:hover {
       background-color: $color-icons;
+      cursor: pointer;
     }
   }
 }

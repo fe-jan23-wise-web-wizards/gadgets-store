@@ -11,7 +11,7 @@
   width: 100%;
   margin-bottom: 18px;
 
-  @include bp-small-up {
+  @include bp-custom-up(639px) {
     display: flex;
     gap: 16px;
   }
@@ -20,7 +20,7 @@
 .swiper_wrapper {
   width: 100%;
 
-  @include bp-small-up {
+  @include bp-custom-up(639px) {
     width: calc(100% - 96px);
   }
 }
