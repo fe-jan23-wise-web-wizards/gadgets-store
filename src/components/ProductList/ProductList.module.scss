@@ -1,4 +1,4 @@
-@import '@/styles/breakpoints';
+@import '@styles/breakpoints';
 
 $card-width-tablet-mobile: 288px;
 $column-gap: 16px;
@@ -11,12 +11,12 @@ $column-gap: 16px;
   column-gap: $column-gap;
   row-gap: 40px;
 
-  @include bp-custom-up (640px) {
+  @include bp-custom-up(640px) {
     max-width: $card-width-tablet-mobile * 2 + $column-gap;
     grid-template-columns: 1fr 1fr;
   }
 
-  @include bp-custom-up (900px) {
+  @include bp-custom-up(900px) {
     max-width: $card-width-tablet-mobile * 3 + $column-gap * 2;
     grid-template-columns: 1fr 1fr 1fr;
   }

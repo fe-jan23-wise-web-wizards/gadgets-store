@@ -1,4 +1,5 @@
 import { Product } from '@/types/Product';
+import buttonIcon from '@assets/icons/like-icon.svg';
 import styles from './ProductCard.module.scss';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
 import { LikeButton } from '../LikeButton/LikeButton';

@@ -1,12 +1,21 @@
-@import '@/styles/variables';
-@import '@/styles/typography';
-@import '@/styles/mixins';
-@import '@/styles/breakpoints';
+@import '@styles/variables';
+@import '@styles/typography';
+@import '@styles/mixins';
+@import '@styles/breakpoints';
+
+.header {
+  position: relative;
+  z-index: 2;
+}
 
 .navbar {
   background-color: $color-dark;
   width: 100%;
   border-bottom: 1px solid $color-elements;
+
+  &_logo {
+    padding: 14px 16px 13px;
+  }
 
   &_container {
     display: flex;
@@ -91,6 +100,24 @@
         line-height: 48px;
         text-decoration: none;
 
+        &_active {
+          color: $color-white;
+
+          &::after {
+            position: absolute;
+            bottom: -1px;
+            content: '';
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: $color-white;
+
+            @include bp-large-up {
+              bottom: -9px;
+            }
+          }
+        }
+
         &:hover {
           color: $color-white;
 
@@ -119,19 +146,25 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 48px;
-          height: 48px;
           border-left: 1px solid $color-elements;
           cursor: pointer;
+        }
+
+        &_link {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 48px;
+          height: 48px;
+
+          &:hover {
+            background-color: $color-icons;
+          }
 
           @include bp-large-up {
             width: 64px;
             height: 64px;
           }
-        }
-
-        &_link {
-          max-height: 16px;
         }
       }
     }

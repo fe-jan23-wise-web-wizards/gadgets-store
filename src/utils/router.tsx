@@ -1,19 +1,19 @@
 import {
-createBrowserRouter,
-createRoutesFromElements,
-Navigate,
-Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Navigate,
+  Route,
 } from 'react-router-dom';
 
-import { MainLayout } from '@/layouts/MainLayout';
-import { AccessoriesPage } from '@/pages/AccessoriesPage';
-import { CartPage } from '@/pages/CartPage';
-import { FavoritesPage } from '@/pages/FavoritesPage';
-import { HomePage } from '@/pages/HomePage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
-import { PhonesPage } from '@/pages/PhonesPage';
-import { ProductPage } from '@/pages/ProductPage';
-import { TabletsPage } from '@/pages/TabletsPage';
+import { MainLayout } from '@layouts/MainLayout';
+import { AccessoriesPage } from '@pages/AccessoriesPage';
+import { CartPage } from '@pages/CartPage';
+import { FavoritesPage } from '@pages/FavoritesPage';
+import { HomePage } from '@pages/HomePage';
+import { NotFoundPage } from '@pages/NotFoundPage';
+import { PhonesPage } from '@pages/PhonesPage';
+import { ProductPage } from '@pages/ProductPage';
+import { TabletsPage } from '@pages/TabletsPage';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
