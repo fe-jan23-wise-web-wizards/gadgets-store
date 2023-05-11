@@ -1,6 +1,6 @@
 import { Category } from '@/types/Category';
 import { type Phone } from '@/types/Phone';
-import { type Product } from '@/types/Product';
+import { Product } from '@/types/Product';
 import { SortBy } from '@/types/SortBy';
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ const get = async <T>(path: string): Promise<T> => {
   return data;
 };
 
-export const getAllProducts = (limit?: number) => {
+export const getAllProducts = (limit?: number): Promise<Product[]> => {
   return get(`${BASE_URL}/products${limit ? `?limit=${limit}` : ''}`);
 };
 
@@ -31,7 +31,7 @@ export const getPhones = (page?: number, limit?: number, sort?: SortBy) => {
   if (limit) queries.push(`limit=${limit}`);
   if (sort) queries.push(`sort=${sort}`);
 
-  return get<Product[]>(
+  return get<Phone[]>(
     `${BASE_URL}/phones${queries.length ? `?${queries.join('&')}` : ''}`,
   );
 };

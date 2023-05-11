@@ -1,9 +1,11 @@
+import { Product } from '@/types/Product';
+
 export type PhoneDescription = {
   title: string;
   text: string[];
 };
 
-export interface Phone {
+export interface Phone extends Product {
   id: string;
   namespaceId: string;
   name: string;
