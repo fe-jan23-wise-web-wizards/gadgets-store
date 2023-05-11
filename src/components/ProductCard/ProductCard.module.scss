@@ -4,9 +4,11 @@
 .product_card {
   display: flex;
   flex-direction: column;
+  width: 288px;
+
+  white-space: pre-line;
 
   padding: 32px;
-  max-width: 272px;
 
   background-color: $color-surface-1;
   border: 1px solid #161827;
@@ -89,43 +91,5 @@
     display: flex;
     justify-content: space-between;
     gap: 8px;
-  }
-
-  &_button_cart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 9.5px 0;
-
-    color: #f1f2f9;
-    font-size: 14px;
-    line-height: 150%;
-    font-weight: 600;
-    background-color: #905bff;
-    text-decoration: none;
-    flex-grow: 1;
-
-    transition: all 0.3s;
-
-    &:hover {
-      background-color: #a378ff;
-    }
-  }
-
-  &_button_like {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 40px;
-    height: 40px;
-    background-color: $color-surface-2;
-
-    transition: all 0.3s;
-
-    &:hover {
-      background-color: $color-icons;
-    }
   }
 }
