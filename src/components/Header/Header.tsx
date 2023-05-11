@@ -30,8 +30,10 @@ export const Header = () => {
               <NavBarList
                 classNameList={styles.navbar_menu_desktop_list}
                 classNameItem={styles.navbar_menu_desktop_item}
-                classNameLink={styles.navbar_menu_desktop_link}              />
+                classNameLink={styles.navbar_menu_desktop_link}
+              />
             </div>
+
             <div className={styles.navbar_menu_desktop_right}>
               <IconLink
                 to={'favorites'}
