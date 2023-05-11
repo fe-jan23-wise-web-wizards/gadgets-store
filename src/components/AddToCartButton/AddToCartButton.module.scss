@@ -1,0 +1,47 @@
+@import '@styles/variables';
+
+.product_card_button_cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 9.5px 0;
+
+  color: #f1f2f9;
+  font-size: 14px;
+  line-height: 150%;
+  font-family: inherit;
+  font-weight: 600;
+  background-color: #905bff;
+  text-decoration: none;
+  flex-grow: 1;
+
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #A378FF;
+  }
+}
+
+.product_card_button_added_to_cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 9.5px 0;
+
+  color: #f1f2f9;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 600;
+  background-color: #905bff;
+  text-decoration: none;
+  flex-grow: 1;
+
+  transition: all 0.3s;
+  background-color: $color-surface-2;
+
+  &:hover {
+    background-color: $color-icons;
+  }
+}
