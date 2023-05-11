@@ -1,12 +1,12 @@
 import { ShopByCategory } from '@components/ShopByCategory';
-import { TestLocalStorage } from "@components/TestLocalStorage/TestLocalStorage";
+import { Slider } from "@components/Slider";
+import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
   return (
-    <>
-      <TestLocalStorage />
-
+    <div className={styles.homepage}>
+      <Slider />
       <ShopByCategory />
-    </>
+    </div>
   );
 };

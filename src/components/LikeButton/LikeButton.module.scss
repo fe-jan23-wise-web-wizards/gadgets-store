@@ -1,0 +1,17 @@
+@import '@styles/variables';
+
+.like_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  background-color: $color-surface-2;
+
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-icons;
+  }
+}
