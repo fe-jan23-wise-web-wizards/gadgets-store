@@ -33,7 +33,7 @@ export const Slider = () => {
   return (
     <>
       <div className={styles.slider}>
-        <div className={styles.sliderContent}>
+        <div className={styles.slider_content}>
           <SliderNavButton
             type={SliderNavButtonType.Previous}
             sliderRef={swiperRef}
