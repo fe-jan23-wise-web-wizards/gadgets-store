@@ -1,3 +1,4 @@
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Category } from '@/types/Category';
 import { getProductDetails } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
@@ -15,6 +16,7 @@ export const ProductPage = () => {
 
   return (
     <>
+      <Breadcrumbs />
       <h1>{`category: ${JSON.stringify(category)}`}</h1>
       <br />
       <p>{`product details: ${JSON.stringify(productQuery.data, null, 2)}`}</p>

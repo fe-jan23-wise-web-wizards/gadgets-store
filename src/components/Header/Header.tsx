@@ -36,7 +36,7 @@ export const Header = () => {
 
             <div className={styles.navbar_menu_desktop_right}>
               <IconLink
-                to={'favorites'}
+                to={'favourites'}
                 src={iconFavorites}
                 alt={'IconLink-favorites'}
                 classNameIconLinkBlock={styles.navbar_menu_desktop_right_item}
