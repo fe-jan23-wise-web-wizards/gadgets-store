@@ -40,6 +40,7 @@ export const Header = () => {
                 to={'favourites'}
                 src={iconFavourites}
                 alt={'IconLink-favourites'}
+
                 classNameIconLinkBlock={styles.navbar_menu_desktop_right_item}
                 classNameIconLink={styles.navbar_menu_desktop_right_link}
               />
