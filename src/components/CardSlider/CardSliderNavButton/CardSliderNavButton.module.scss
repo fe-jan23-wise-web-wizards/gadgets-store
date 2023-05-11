@@ -1,0 +1,48 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.card_slider_nav_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include square(32px);
+
+  border: 1px solid transparent;
+  background-color: $color-surface-2;
+
+  transition: background-color 0.3s linear;
+
+  &:hover {
+    background-color: $color-icons;
+  }
+}
+
+.card_slider_nav_button_disabled {
+  border-color: $color-elements;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.card_slider_nav_button_icon_container {
+  @include square(10px);
+
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card_slider_nav_next_button_icon {
+  background-image: url('@assets/icons/forward-arrow.svg');
+}
+
+.card_slider_nav_next_button_icon_disabled {
+  background-image: url('@assets/icons/forward-arrow-disabled.svg');
+}
+
+.card_slider_nav_prev_button_icon {
+  background-image: url('@assets/icons/back-arrow.svg');
+}
+
+.card_slider_nav_prev_button_icon_disabled {
+  background-image: url('@assets/icons/back-arrow-disabled.svg');
+}

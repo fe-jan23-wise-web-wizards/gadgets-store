@@ -17,11 +17,11 @@ export const getAllProducts = (limit?: number) => {
 };
 
 export const getProductsWithDiscount = (limit?: number) => {
-  return get(`${BASE_URL}/products/discount${limit ? `?limit=${limit}` : ''}`);
+  return get<Product[]>(`${BASE_URL}/products/discount${limit ? `?limit=${limit}` : ''}`);
 };
 
 export const getNewProducts = (limit?: number) => {
-  return get(`${BASE_URL}/products/new${limit ? `?limit=${limit}` : ''}`);
+  return get<Product[]>(`${BASE_URL}/products/new${limit ? `?limit=${limit}` : ''}`);
 };
 
 export const getPhones = (page?: number, limit?: number, sort?: SortBy) => {
