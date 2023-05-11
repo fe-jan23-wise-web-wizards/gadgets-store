@@ -1,64 +1,76 @@
 import { Product } from '@/types/Product';
-import buttonIcon from '@assets/icons/like-icon.svg';
+import { AddToCartButton } from '../AddToCartButton';
+import { LikeButton } from '../LikeButton';
 import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => (
-  <div className="grid__item">
-    <div className={styles.product_card}>
-      <img
-        src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
-        className={styles.product_card_image}
-        alt={product.name}
-      />
+export const ProductCard = ({ product }: ProductCardProps) => {
+  const formatName = (name: string) => {
+    const firstLine = name.split(' ').slice(0, -1).join(' ');
 
-      <h2 className={styles.product_card_title}>{product.name}</h2>
+    const nextLine = name.split(' ').slice(-1).join(' ');
 
-      <div className={styles.product_card_price}>
-        <span className={styles.product_card_price_actual}>
-          {product.price}
-        </span>
-        <span className={styles.product_card_price_default}>
-          {product.fullPrice}
-        </span>
-      </div>
+    return `${firstLine} \n ${nextLine}`;
+  };
 
-      <div className={styles.product_card_separator}></div>
+  return (
+    <div className="grid_item">
+      <div className={styles.product_card}>
+        <img
+          src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
+          className={styles.product_card_image}
+          alt={product.name}
+        />
 
-      <div className={styles.product_card_properties}>
-        <div className={styles.product_card_property}>
-          <span className={styles.product_card_property_title}>Screen</span>
-          <span className={styles.product_card_property_value}>
-            {product.screen}
-          </span>
-        </div>
+        <a href="#">
+          <h2 className={styles.product_card_title}>
+            {formatName(product.name)}
+          </h2>
 
-        <div className={styles.product_card_property}>
-          <span className={styles.product_card_property_title}>Capacity</span>
-          <span className={styles.product_card_property_value}>
-            {product.capacity}
-          </span>
-        </div>
+          <div className={styles.product_card_price}>
+            <span className={styles.product_card_price_actual}>
+              {'$' + product.price}
+            </span>
 
-        <div className={styles.product_card_property}>
-          <span className={styles.product_card_property_title}>RAM</span>
-          <span className={styles.product_card_property_value}>
-            {product.ram}
-          </span>
-        </div>
-      </div>
-
-      <div className={styles.product_card_buttons}>
-        <a href="#" className={styles.product_card_button_cart}>
-          Add to cart
+            <span className={styles.product_card_price_default}>
+              {'$' + product.fullPrice}
+            </span>
+          </div>
         </a>
-        <a href="#" className={styles.product_card_button_like}>
-          <img src={buttonIcon} alt="icon" />
-        </a>
+
+        <div className={styles.product_card_separator}></div>
+
+        <div className={styles.product_card_properties}>
+          <div className={styles.product_card_property}>
+            <span className={styles.product_card_property_title}>Screen</span>
+            <span className={styles.product_card_property_value}>
+              {product.screen}
+            </span>
+          </div>
+
+          <div className={styles.product_card_property}>
+            <span className={styles.product_card_property_title}>Capacity</span>
+            <span className={styles.product_card_property_value}>
+              {product.capacity}
+            </span>
+          </div>
+
+          <div className={styles.product_card_property}>
+            <span className={styles.product_card_property_title}>RAM</span>
+            <span className={styles.product_card_property_value}>
+              {product.ram}
+            </span>
+          </div>
+        </div>
+        
+        <div className={styles.product_card_buttons}>
+          <AddToCartButton />
+          <LikeButton />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

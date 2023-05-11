@@ -20,6 +20,14 @@
 .swiper_wrapper {
   width: 100%;
 
+  :global(.swiper-slide) {
+    width: 100% !important;
+
+    @include bp-custom-up(639px) {
+      width: 100% !important;
+    }
+  }
+
   @include bp-custom-up(639px) {
     width: calc(100% - 96px);
   }
