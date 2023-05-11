@@ -1,50 +1,87 @@
 import { Product } from '@/types/Product';
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Key = 'favorites' | 'cart';
 
-export const useLocalStorage = (key: Key, initialValue: Product[]) => {
+const useLocalStorage = (key: Key, initialValue: Product[]) => {
   const [storedItems, setStoredItems] = useState<Product[]>(() => {
-    return JSON.parse(
-      localStorage.getItem(key) || JSON.stringify(initialValue),
-    );
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : initialValue;
   });
 
-  const isItemInStorage = (itemId: string) => {
-    return storedItems.some(storedItem => storedItem.itemId === itemId);
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(storedItems));
+  }, [key, storedItems]);
+
+  return [storedItems, setStoredItems] as const;
+};
+export const useFavorites = () => {
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
+
+  const isFavorite = useCallback(
+    (itemId: string) => {
+      return favorites.some(storedItem => storedItem.itemId === itemId);
+    },
+    [favorites],
+  );
+
+  const addToFavorite = (item: Product) => {
+    setFavorites(prev => {
+      if (isFavorite(item.itemId)) {
+        return prev;
+      }
+
+      return [...prev, item];
+    });
   };
 
-  const addItem = (item: Product) => {
-    if (isItemInStorage(item.itemId)) {
-      return;
+  const removeFromFavorite = (item: Product) => {
+    if (isFavorite(item.itemId)) {
+      setFavorites(prev => prev
+        .filter(storedItem => storedItem.itemId !== item.itemId));
     }
-
-    const newItems = [...storedItems, item];
-
-    setStoredItems(newItems);
-    localStorage.setItem(key, JSON.stringify(newItems));
   };
 
-  const removeItem = (item: Product) => {
-    if (!isItemInStorage(item.itemId)) {
-      return;
-    }
-
-    const newItems = storedItems.filter(
-      storedItem => storedItem.itemId !== item.itemId,
-    );
-
-    setStoredItems(newItems);
-    localStorage.setItem(key, JSON.stringify(newItems));
-  };
-
-  const itemsCount = storedItems.length;
+  const favoritesCount = useMemo(() => favorites.length, [favorites]);
 
   return {
-    storedItems,
-    addItem,
-    removeItem,
-    itemsCount,
-    isItemInStorage,
+    addToFavorite,
+    removeFromFavorite,
+    isFavorite,
+    favoritesCount,
+  } as const;
+};
+
+export const useCart = () => {
+  const [cart, setCart] = useLocalStorage('cart', []);
+
+  const isItemInCart = useCallback((itemId: string) => {
+    return cart.some(storedItem => storedItem.itemId === itemId);
+  }, [cart]);
+
+  const addToCart = (item: Product) => {
+    setCart(prev => {
+      if (isItemInCart(item.itemId)) {
+        return prev;
+      }
+
+      return [...prev, item];
+    });
+  };
+
+  const removeFromCart = (item: Product) => {
+    if (isItemInCart(item.itemId)) {
+      setCart(prev => prev
+        .filter(storedItem => storedItem.itemId !== item.itemId));
+    }
+  };
+
+  const cartCount = useMemo(() => cart.length, [cart]);
+
+  return {
+    addToCart,
+    removeFromCart,
+    isItemInCart,
+    cartCount,
   } as const;
 };

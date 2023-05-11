@@ -65,10 +65,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
         </div>
-        
+
         <div className={styles.product_card_buttons}>
           <AddToCartButton />
-          <LikeButton />
+          <LikeButton product={product} />
         </div>
       </div>
     </div>
