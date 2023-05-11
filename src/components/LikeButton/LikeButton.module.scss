@@ -1,12 +1,9 @@
-@import '../../styles/variables';
+@import '@styles/variables';
 
 .like_button {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  border: none;
-  cursor: pointer;
 
   width: 40px;
   height: 40px;

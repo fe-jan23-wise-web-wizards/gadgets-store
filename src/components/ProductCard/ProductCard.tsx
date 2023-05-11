@@ -1,8 +1,7 @@
 import { Product } from '@/types/Product';
-import buttonIcon from '@assets/icons/like-icon.svg';
+import { AddToCartButton } from '../AddToCartButton';
+import { LikeButton } from '../LikeButton';
 import styles from './ProductCard.module.scss';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton';
-import { LikeButton } from '../LikeButton/LikeButton';
 
 interface ProductCardProps {
   product: Product;
@@ -10,13 +9,9 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const formatName = (name: string) => {
-    const firstLine = name.split(' ')
-      .slice(0, -1)
-      .join(' ');
-    
-    const nextLine = name.split(' ')
-      .slice(-1)
-      .join(' ');
+    const firstLine = name.split(' ').slice(0, -1).join(' ');
+
+    const nextLine = name.split(' ').slice(-1).join(' ');
 
     return `${firstLine} \n ${nextLine}`;
   };
@@ -61,17 +56,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
 
-          <div className={styles.product_card_property}>
-            <span className={styles.product_card_property_title}>RAM</span>
-            <span className={styles.product_card_property_value}>
-              {product.ram}
-            </span>
+          <div className={styles.product_card_buttons}>
+            <AddToCartButton />
+            <LikeButton />
           </div>
-        </div>
-
-        <div className={styles.product_card_buttons}>
-          <PrimaryButton />
-          <LikeButton />
         </div>
       </div>
     </div>

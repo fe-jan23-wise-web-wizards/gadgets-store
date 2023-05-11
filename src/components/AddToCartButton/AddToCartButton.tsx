@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styles from './PrimaryButton.module.scss';
+import styles from './AddToCartButton.module.scss';
 
-export const PrimaryButton: React.FC = () => {
+export const AddToCartButton: React.FC = () => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   const handleAddToCart = () => {
@@ -10,19 +10,17 @@ export const PrimaryButton: React.FC = () => {
 
   return (
     !isAddedToCart 
-    ? <a 
-        href="#" 
+    ? <button
         className={styles.product_card_button_cart}
         onClick={handleAddToCart}
-        >
+      >
         Add to cart
-      </a>
-    : <a 
-        href="#" 
+      </button>
+    : <button
         className={styles.product_card_button_added_to_cart}
         onClick={handleAddToCart}
-        >
+      >
         Added to cart
-      </a>
+      </button>
   );
 };
