@@ -5,12 +5,19 @@ interface Props {
   to: string;
   src: string;
   alt: string;
+  classNameIconLinkBlock: string;
+  classNameIconLink: string;
 }
 
-export const IconLink = ({ to, src, alt }: Props) => {
-  return (
-    <div className={styles.navbar_menu_desktop_right_item}>
-      <Link to={`/${to}`} className={styles.navbar_menu_desktop_right_link}>
+export const IconLink = ({
+  to,
+  src,
+  alt,
+  classNameIconLinkBlock,
+  classNameIconLink,
+}: Props) => (
+    <div className={classNameIconLinkBlock}>
+      <Link to={`/${to}`} className={classNameIconLink}>
         <img
           src={src}
           alt={alt}
@@ -19,4 +26,3 @@ export const IconLink = ({ to, src, alt }: Props) => {
       </Link>
     </div>
   );
-};

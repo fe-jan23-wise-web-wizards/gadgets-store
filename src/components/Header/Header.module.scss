@@ -95,32 +95,14 @@
         line-height: 48px;
         text-decoration: none;
 
-        &_active {
-          color: $color-white;
-
-          &::after {
-            position: absolute;
-            bottom: -1px;
-            content: '';
-            display: block;
-            height: 2px;
-            width: 100%;
-            background-color: $color-white;
-
-            @include bp-large-up {
-              bottom: -9px;
-            }
-          }
-        }
-
         &:hover {
           color: $color-white;
 
           &::after {
-            position: absolute;
-            bottom: -1px;
             content: '';
             display: block;
+            position: absolute;
+            bottom: -1px;
             height: 2px;
             width: 100%;
             background-color: $color-white;
