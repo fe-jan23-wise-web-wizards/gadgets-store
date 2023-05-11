@@ -6,13 +6,27 @@
   padding: $footer-first-indent 0;
   border-top: 1px solid $color-elements;
 
+  @include bp-medium-up {
+    padding: $footer-first-indent 0;
+  }
+
   &_container {
     display: flex;
     flex-direction: column;
+
+    @include bp-medium-up {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &_logo {
     margin-bottom: $footer-first-indent;
+
+    @include bp-medium-up {
+      margin-bottom: 0;
+    }
   }
 
   &_links_list {
@@ -22,6 +36,16 @@
 
     & > *:not(:last-child) {
       margin-bottom: calc($footer-first-indent / 2);
+    }
+
+    @include bp-medium-up {
+      flex-direction: row;
+      margin-bottom: 0;
+
+      & > *:not(:last-child) {
+        margin-bottom: 0;
+        margin-right: 7vw;
+      }
     }
 
     &_link {
@@ -48,6 +72,18 @@
 
     cursor: pointer;
 
+    background-color: transparent;
+    border: none;
+
+    &:hover &_icon_container {
+      background-color: $color-icons;
+    }
+
+    @include bp-medium-up {
+      align-self: auto;
+      gap: $footer-first-indent;
+    }
+
     &_text {
       color: $color-secondary;
 
@@ -64,39 +100,6 @@
       align-items: center;
 
       background-color: $color-surface-2;
-
-      &_active {
-        background-color: $color-icons;
-      }
-    }
-  }
-
-  @include bp-medium-up {
-    padding: $footer-first-indent 0;
-
-    &_container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    &_logo {
-      margin-bottom: 0;
-    }
-
-    &_links_list {
-      flex-direction: row;
-      margin-bottom: 0;
-
-      & > *:not(:last-child) {
-        margin-bottom: 0;
-        margin-right: 7vw;
-      }
-    }
-
-    &_nav {
-      align-self: auto;
-      gap: $footer-first-indent;
     }
   }
 }
