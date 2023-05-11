@@ -1,8 +1,9 @@
-@import '@/styles/variables';
-@import '@/styles/breakpoints';
+@import '@styles/variables';
+@import '@styles/breakpoints';
 
 .slider_nav_button {
   display: none;
+  border: none;
 
   @include bp-custom-up(639px) {
     display: flex;
@@ -26,7 +27,7 @@
   width: 10px;
   height: 10px;
 
-  background-image: url('@/assets/icons/forward-arrow.svg');
+  background-image: url('@assets/icons/forward-arrow.svg');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -36,7 +37,7 @@
   width: 10px;
   height: 10px;
 
-  background-image: url('@/assets/icons/back-arrow.svg');
+  background-image: url('@assets/icons/back-arrow.svg');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

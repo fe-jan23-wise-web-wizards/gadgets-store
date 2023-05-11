@@ -10,9 +10,9 @@ import { SliderPagination } from './components/SliderPagination';
 import { SliderNavButtonType } from './types/SliderNavButtonType';
 import { SliderNavButton } from './components/SliderNavButton';
 
-import phonesBanner from '@/assets/banner-phones.png';
-import tabletsBanner from '@/assets/banner-tablets.png';
-import accessoriesBanner from '@/assets/banner-accessories.png';
+import phonesBanner from '@assets/banner-phones.png';
+import tabletsBanner from '@assets/banner-tablets.png';
+import accessoriesBanner from '@assets/banner-accessories.png';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';

@@ -1,10 +1,10 @@
 import styles from './SliderItem.module.scss';
 
-type Props = {
+type SliderItemProps = {
   bannerPath: string,
 };
 
-export const SliderItem= ({ bannerPath }: Props) => {
+export const SliderItem= ({ bannerPath }: SliderItemProps) => {
   return (
     <div
       className={styles.slider_item}

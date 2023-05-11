@@ -1,4 +1,4 @@
 export enum SliderNavButtonType {
-  Previous,
-  Next,
+  Previous = 'previous',
+  Next = 'next',
 }

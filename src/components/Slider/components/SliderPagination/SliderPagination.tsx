@@ -3,17 +3,17 @@ import { SliderPaginationBullet } from '../SliderPaginationBullet';
 
 import styles from './SliderPagination.module.scss';
 
-type Props = {
+type SliderPaginationProps = {
   bannerPaths: string[],
   sliderRef: SwiperClass | null,
   activeSlideIndex: number,
 };
 
-export const SliderPagination: React.FC<Props> = ({
+export const SliderPagination = ({
   bannerPaths,
   sliderRef,
   activeSlideIndex,
-}) => {
+}: SliderPaginationProps) => {
   return (
     <div className={styles.slider_pagination}>
       {bannerPaths.map((bannerPath, index) => {

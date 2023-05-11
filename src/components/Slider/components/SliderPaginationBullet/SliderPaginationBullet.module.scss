@@ -1,9 +1,15 @@
-@import '@/styles/variables';
+@import '@styles/variables';
 
 .slider_pagination_bullet {
   width: 14px;
   height: 4px;
+
   background-color: $color-elements;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .slider_pagination_bullet_active {

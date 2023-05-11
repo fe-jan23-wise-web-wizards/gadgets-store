@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { Swiper as SwiperClass } from 'swiper/types';
 import classNames from 'classnames';
 
@@ -6,19 +6,14 @@ import { SliderNavButtonType } from '../../types/SliderNavButtonType';
 
 import styles from './SliderNavButton.module.scss';
 
-type Props = {
+type SliderNavButtonProps = {
   sliderRef: SwiperClass | null,
   type: SliderNavButtonType,
 };
 
-export const SliderNavButton: React.FC<Props> = ({ sliderRef, type }) => {
-  const isNextButton = useMemo(() => {
-    return type === SliderNavButtonType.Next;
-  }, [type]);
-
-  const isPrevButton = useMemo(() => {
-    return type === SliderNavButtonType.Previous;
-  }, [type]);
+export const SliderNavButton = ({ sliderRef, type }: SliderNavButtonProps) => {
+  const isNextButton = type === SliderNavButtonType.Next;
+  const isPrevButton = type === SliderNavButtonType.Previous;
 
   const handleClick = useCallback(() => {
     if (isNextButton) {
@@ -29,7 +24,7 @@ export const SliderNavButton: React.FC<Props> = ({ sliderRef, type }) => {
   }, [sliderRef, isNextButton]);
 
   return (
-    <a
+    <button
       className={styles.slider_nav_button}
       onClick={handleClick}
     >
@@ -39,6 +34,6 @@ export const SliderNavButton: React.FC<Props> = ({ sliderRef, type }) => {
           { [styles.slider_nav_prev_button_icon]: isPrevButton },
         )}
       ></div>
-    </a>
+    </button>
   );
 };
