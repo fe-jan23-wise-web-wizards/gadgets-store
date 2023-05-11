@@ -1,4 +1,4 @@
-import backToTop from '@/assets/icons/icon-backToTop.svg';
+import backToTop from '@assets/icons/icon-backToTop.svg';
 import classNames from 'classnames';
 import { useState } from 'react';
 import styles from '../Footer.module.scss';

@@ -1,7 +1,7 @@
-import iconCart from '@/assets/icons/icon-cart.svg';
-import iconMenu from '@/assets/icons/icon-menu.svg';
-import iconFavorites from '@/assets/icons/like-icon.svg';
-import { Logo } from '@/components/Logo';
+import iconCart from '@assets/icons/icon-cart.svg';
+import iconMenu from '@assets/icons/icon-menu.svg';
+import iconFavorites from '@assets/icons/like-icon.svg';
+import { Logo } from '@components/Logo';
 import styles from './Header.module.scss';
 import { IconLink } from './IconLink';
 import { MenuLink } from './MenuLink';

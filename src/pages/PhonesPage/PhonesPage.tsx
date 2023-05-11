@@ -1,5 +1,5 @@
-import { getPhones } from '@/api/requests';
-import { ProductList } from '@/components/ProductList';
+import { getPhones } from '@api/requests';
+import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
 import styles from './PhonesPage.module.scss';
 

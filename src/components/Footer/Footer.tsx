@@ -1,5 +1,5 @@
-import { Logo } from '@/components/Logo';
-import '@/styles/blocks/container.scss';
+import { Logo } from '@components/Logo';
+import '@styles/blocks/container.scss';
 import { BackToTopButton } from './BackToTopButton';
 import styles from './Footer.module.scss';
 import { FooterLink } from './FooterLink';

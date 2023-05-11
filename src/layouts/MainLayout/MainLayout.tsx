@@ -1,6 +1,6 @@
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
-import '@/styles/blocks/container.scss';
+import { Footer } from '@components/Footer';
+import { Header } from '@components/Header';
+import '@styles/blocks/container.scss';
 import { Outlet } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
 

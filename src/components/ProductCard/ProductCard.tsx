@@ -1,5 +1,5 @@
-import buttonIcon from '@/assets/icons/like-icon.svg';
 import { Product } from '@/types/Product';
+import buttonIcon from '@assets/icons/like-icon.svg';
 import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {

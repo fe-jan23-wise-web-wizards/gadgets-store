@@ -1,7 +1,5 @@
-import { ShopByCategory } from '@/components/ShopByCategory';
+import { ShopByCategory } from '@components/ShopByCategory';
 
 export const HomePage = () => {
-  return (
-    <ShopByCategory />
-  );
+  return <ShopByCategory />;
 };

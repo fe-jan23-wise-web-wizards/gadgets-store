@@ -1,5 +1,5 @@
-import { getProductDetails } from '@/api/requests';
 import { Category } from '@/types/Category';
+import { getProductDetails } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 

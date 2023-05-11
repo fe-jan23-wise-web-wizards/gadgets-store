@@ -1,7 +1,7 @@
+import accessoriesImage from '@assets/category-accessories.png';
+import phonesImage from '@assets/category-phones.png';
+import tabletsImage from '@assets/category-tablets.png';
 import styles from './ShopByCategory.module.scss';
-import phonesImage from '@/assets/category-phones.png';
-import tabletsImage from '@/assets/category-tablets.png';
-import accessoriesImage from '@/assets/category-accessories.png';
 
 import { SectionTop } from '../SectionTop';
 import { CategoryCard } from './CategoryCard';
