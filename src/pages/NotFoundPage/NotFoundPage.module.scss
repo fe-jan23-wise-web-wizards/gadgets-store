@@ -5,13 +5,9 @@
 
 .page {
   @extend %flexCenter;
-
-  position: absolute;
-  inset: 0;
+  height: 100%;
   flex-direction: column;
   text-align: center;
-  height: 100%;
-  padding: 30px;
 
   @include bp-custom-up(800px) {
     text-align: left;
@@ -68,6 +64,10 @@
 
     &:hover {
       background-color: $color-accent-hover;
+    }
+
+    @include bp-medium-up {
+      margin-bottom: 0;
     }
   }
 
