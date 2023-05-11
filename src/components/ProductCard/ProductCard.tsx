@@ -29,10 +29,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <h2 className={styles.product_card_title}>
             {formatName(product.name)}
           </h2>
+
           <div className={styles.product_card_price}>
             <span className={styles.product_card_price_actual}>
               {'$' + product.price}
             </span>
+
             <span className={styles.product_card_price_default}>
               {'$' + product.fullPrice}
             </span>
@@ -56,10 +58,17 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
 
-          <div className={styles.product_card_buttons}>
-            <AddToCartButton />
-            <LikeButton />
+          <div className={styles.product_card_property}>
+            <span className={styles.product_card_property_title}>RAM</span>
+            <span className={styles.product_card_property_value}>
+              {product.ram}
+            </span>
           </div>
+        </div>
+        
+        <div className={styles.product_card_buttons}>
+          <AddToCartButton />
+          <LikeButton />
         </div>
       </div>
     </div>

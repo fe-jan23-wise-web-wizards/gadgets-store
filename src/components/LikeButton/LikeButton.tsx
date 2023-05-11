@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './LikeButton.module.scss';
-import likeIcon from '../../assets/icons/like-icon.svg';
-import likeIconFilled from '../../assets/icons/like-icon-filled.svg';
+import likeIcon from '@assets/icons/like-icon.svg';
+import likeIconFilled from '@assets/icons/like-icon-filled.svg';
 
 export const LikeButton = () => {
   const [isLiked, setIsLiked] = useState(false);
