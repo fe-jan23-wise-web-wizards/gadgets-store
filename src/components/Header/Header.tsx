@@ -31,6 +31,7 @@ export const Header = () => {
                 classNameList={styles.navbar_menu_desktop_list}
                 classNameItem={styles.navbar_menu_desktop_item}
                 classNameLink={styles.navbar_menu_desktop_link}
+                classNameActiveLink={styles.navbar_menu_desktop_link_active}
               />
             </div>
 

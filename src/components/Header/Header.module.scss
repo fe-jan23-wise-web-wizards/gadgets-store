@@ -31,7 +31,7 @@
       justify-content: end;
       align-items: center;
 
-      @include bp-custom-up(640px) {
+      @include bp-medium-up {
         display: none;
       }
 
@@ -55,7 +55,7 @@
     &_desktop {
       display: none;
 
-      @include bp-custom-up(640px) {
+      @include bp-medium-up {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -95,14 +95,32 @@
         line-height: 48px;
         text-decoration: none;
 
+        &_active {
+          color: $color-white;
+
+          &::after {
+            position: absolute;
+            bottom: -1px;
+            content: '';
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: $color-white;
+
+            @include bp-large-up {
+              bottom: -9px;
+            }
+          }
+        }
+
         &:hover {
           color: $color-white;
 
           &::after {
-            content: '';
-            display: block;
             position: absolute;
             bottom: -1px;
+            content: '';
+            display: block;
             height: 2px;
             width: 100%;
             background-color: $color-white;
