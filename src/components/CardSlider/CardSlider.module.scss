@@ -1,0 +1,44 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+@import '@styles/breakpoints';
+@import '@styles/extends';
+
+.card_slider {
+  @extend %homeIndentsSet;
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 100%;
+    margin-bottom: $main-indent;
+
+    @include bp-medium-up {
+      margin-bottom: 28px;
+    }
+  }
+
+  &_title {
+    font-weight: 800;
+    font-size: 1.4rem;
+    line-height: 140%;
+
+    @include bp-medium-up {
+      font-size: 2rem;
+    }
+  }
+
+  &_wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    :global(.swiper-slide) {
+      max-width: min-content !important;
+    }
+
+    :global(.swiper) {
+      max-width: 100% !important;
+    }
+  }
+}

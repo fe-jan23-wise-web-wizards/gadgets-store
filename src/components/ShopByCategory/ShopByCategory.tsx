@@ -8,10 +8,10 @@ import { CategoryCard } from './CategoryCard';
 
 export const ShopByCategory = () => {
   return (
-    <section>
+    <section className={styles.categories}>
       <SectionTop title={'Shop by category'} />
 
-      <div className={styles.category_cards}>
+      <div className={styles.categories_cards}>
         <CategoryCard
           to={'phones'}
           title={'Mobile phones'}

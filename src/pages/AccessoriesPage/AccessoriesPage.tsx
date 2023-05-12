@@ -1,7 +1,10 @@
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+
 export const AccessoriesPage = () => {
   return (
-    <div>
+    <>
+      <Breadcrumbs />
       <h1>Accessories</h1>
-    </div>
+    </>
   );
 };

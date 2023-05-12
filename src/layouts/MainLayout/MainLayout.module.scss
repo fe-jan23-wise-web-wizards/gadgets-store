@@ -12,10 +12,5 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
-    padding: $main-indent 0  $footer-first-indent * 2;
-
-    @include bp-medium-up {
-      padding-bottom: $footer-first-indent * 3;
-    }
   }
 }

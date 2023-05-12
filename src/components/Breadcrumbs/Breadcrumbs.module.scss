@@ -1,0 +1,37 @@
+@import '@/styles/variables';
+@import '@/styles/extends';
+@import '@/styles/breakpoints';
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: $main-indent 0;
+
+  @include bp-medium-up {
+    margin: $main-indent 0 1.6 * $main-indent;
+  }
+
+  &_link {
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: $color-white;
+
+    &:last-child {
+      color: $color-secondary;
+      pointer-events: none;
+    }
+  }
+
+  &_home_icon {
+    @extend %iconsBaseSet;
+
+    background-image: url('@/assets/icons/icon-home.svg');
+  }
+
+  &_arrow_icon {
+    @extend %iconsBaseSet;
+
+    background-image: url('@/assets/icons/arrow-right.svg');
+  }
+}
