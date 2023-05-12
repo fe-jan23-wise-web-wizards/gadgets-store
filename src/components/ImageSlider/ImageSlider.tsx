@@ -20,6 +20,11 @@ export const ImageSlider = ({ productImages }: ImageSliderProps) => {
 
   return (
     <div className={styles.slider_wrapper}>
+      <ImageSliderPagination
+        images={productImages}
+        sliderRef={swiperRef}
+      />
+
       <div className={styles.slider}>
         <Swiper
           slidesPerView={1}
@@ -32,11 +37,6 @@ export const ImageSlider = ({ productImages }: ImageSliderProps) => {
           ))}
         </Swiper>
       </div>
-
-      <ImageSliderPagination
-        images={productImages}
-        sliderRef={swiperRef}
-      />
     </div>
   );
 };
