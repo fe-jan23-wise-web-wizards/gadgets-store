@@ -1,0 +1,135 @@
+@import '@styles/variables';
+@import '@styles/breakpoints';
+@import '@styles/extends';
+@import '@styles/mixins';
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  width: 288px;
+  border: 1px solid $color-elements;
+  margin-bottom: $secondary-indent;
+  padding: $secondary-indent;
+  gap: $main-indent;
+  align-items: center;
+  background-color: $color-surface-1;
+
+  @include bp-custom-up(640px) {
+    flex-direction: row;
+    width: 592px;
+    padding: $main-indent;
+  }
+
+  @include bp-x-large-up {
+    width: 752px;
+  }
+
+  &_info {
+    @extend %flexCenter;
+    width: 100%;
+  }
+}
+
+.delete_button_link {
+  @extend %flexCenter;
+
+  padding: 5px;
+  margin-right: 25px;
+  
+  @extend %transitionDetails;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.phone_image {
+  width: 66px;
+  height: auto;
+  max-width: 100%;
+  padding: 7px;
+  margin-right: $main-indent;
+}
+
+.content {
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 21px;
+  padding-right: 10px;
+  color: $color-white;
+
+  @include bp-custom-up(640px) {
+    padding-right: 34px;
+    width: 176px;
+  }
+
+  @include bp-x-large-up {
+    padding-right: 34px;
+    width: 336px;
+  }
+}
+
+.quantity_and_price {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @include bp-custom-up(640px) {
+    width: 200px;
+  }
+}
+
+.quantity_buttons {
+  @extend %flexCenter;
+  margin-right: 33px;
+
+  &_minus {
+    display: flex;
+    padding: 12px;
+  }
+
+  &_plus {
+    display: flex;
+    padding: 12px;
+  }
+
+  &_number {
+    margin-right: 14px;
+  }
+}
+
+.minus {
+  @extend %flexCenter;
+
+  margin-right: 13px;
+  border: 1px solid $color-elements;
+  
+  @include square(32px);
+
+  @extend %transitionDetails;
+  
+  &:hover {
+    background-color: $color-elements;
+  }
+}
+
+.plus {
+  @extend %flexCenter;
+
+  margin-right: 13px;
+  background-color: $color-elements;
+  @include square(32px);
+
+  @extend %transitionDetails;
+
+  &:hover {
+    background-color: $color-icons;
+  }
+}
+
+.phone_price {
+  font-weight: 800;
+  font-size: 1.375rem;
+  line-height: 140%;
+  color: $color-white;
+}

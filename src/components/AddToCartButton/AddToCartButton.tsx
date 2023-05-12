@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './AddToCartButton.module.scss';
+import classNames from 'classnames';
 
 export const AddToCartButton: React.FC = () => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -9,18 +10,20 @@ export const AddToCartButton: React.FC = () => {
   };
 
   return (
-    !isAddedToCart 
-    ? <button
-        className={styles.product_card_button_cart}
-        onClick={handleAddToCart}
-      >
-        Add to cart
-      </button>
-    : <button
-        className={styles.product_card_button_added_to_cart}
-        onClick={handleAddToCart}
-      >
-        Added to cart
-      </button>
+    <button
+      onClick={handleAddToCart}
+      className={classNames(
+        styles.product_card_button_cart,
+          {
+            [styles.product_card_button_clicked]: isAddedToCart,
+          },
+      )}
+    >
+      {
+        !isAddedToCart
+          ? "Add to cart"
+          : "Added to cart"
+      }
+    </button>
   );
 };

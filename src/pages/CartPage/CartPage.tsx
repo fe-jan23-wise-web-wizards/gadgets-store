@@ -1,7 +1,17 @@
+import { CartCheckout } from '@components/CartCheckout';
+import { CartItem } from '@components/CartItem';
+import styles from './CartPage.module.scss';
+
 export const CartPage = () => {
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className={styles.cart_page}>
+      <div>
+        <CartItem />
+        <CartItem />
+        <CartItem />
+      </div>
+
+      <CartCheckout />
     </div>
   );
 };

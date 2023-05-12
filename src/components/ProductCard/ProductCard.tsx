@@ -1,5 +1,4 @@
 import { Product } from '@/types/Product';
-import React from 'react';
 import { AddToCartButton } from '../AddToCartButton';
 import { LikeButton } from '../LikeButton';
 import styles from './ProductCard.module.scss';
@@ -8,15 +7,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard = React.memo(({ product }: ProductCardProps) => {
-  const formatName = (name: string) => {
-    const firstLine = name.split(' ').slice(0, -1).join(' ');
-
-    const nextLine = name.split(' ').slice(-1).join(' ');
-
-    return `${firstLine} \n ${nextLine}`;
-  };
-
+export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="grid_item">
       <div className={styles.product_card}>
@@ -28,7 +19,7 @@ export const ProductCard = React.memo(({ product }: ProductCardProps) => {
 
         <a href="#">
           <h2 className={styles.product_card_title}>
-            {formatName(product.name)}
+            {product.name}
           </h2>
 
           <div className={styles.product_card_price}>
@@ -66,12 +57,12 @@ export const ProductCard = React.memo(({ product }: ProductCardProps) => {
             </span>
           </div>
         </div>
-
+        
         <div className={styles.product_card_buttons}>
           <AddToCartButton />
-          <LikeButton product={product} />
+          <LikeButton />
         </div>
       </div>
     </div>
   );
-});
+};

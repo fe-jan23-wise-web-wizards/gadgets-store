@@ -1,44 +1,29 @@
 @import '@styles/variables';
+@import '@styles/extends';
 
 .product_card_button_cart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
+  flex-grow: 1;
 
   padding: 9.5px 0;
 
-  color: #f1f2f9;
-  font-size: 14px;
-  line-height: 150%;
+  color: $color-white;
+  font-size: 0.9rem;
   font-family: inherit;
   font-weight: 600;
-  background-color: #905bff;
+  line-height: 150%;
   text-decoration: none;
-  flex-grow: 1;
+  
+  background-color: $color-accent;
 
-  transition: all 0.3s;
+  @extend %transitionDetails;
 
   &:hover {
-    background-color: #A378FF;
+    background-color: $color-accent-hover;
   }
 }
 
-.product_card_button_added_to_cart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 9.5px 0;
-
-  color: #f1f2f9;
-  font-size: 14px;
-  line-height: 150%;
-  font-weight: 600;
-  background-color: #905bff;
-  text-decoration: none;
-  flex-grow: 1;
-
-  transition: all 0.3s;
+.product_card_button_clicked {
   background-color: $color-surface-2;
 
   &:hover {
