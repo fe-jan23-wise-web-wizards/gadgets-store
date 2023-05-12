@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperClass } from 'swiper/types';
 
 import { ImageSliderPagination } from './ImageSliderPagination';
+import { ImageSlide } from './ImageSlide';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -26,8 +27,7 @@ export const ImageSlider = ({ productImages }: ImageSliderProps) => {
         >
           {productImages.map(productImage => (
             <SwiperSlide key={productImage}>
-              <div className={styles.slide}>
-              </div>
+              <ImageSlide image={productImage} />
             </SwiperSlide>
           ))}
         </Swiper>
