@@ -6,12 +6,13 @@
 
   &_title {
     padding: $main-indent 0;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 115%;
     letter-spacing: -0.01em;
 
-    @include bp-medium-up {
+    @include bp-custom-up(640px) {
+      font-size: 3rem;
       padding: $secondary-indent 0;
     }
 

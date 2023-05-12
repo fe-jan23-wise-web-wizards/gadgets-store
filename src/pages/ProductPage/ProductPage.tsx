@@ -1,9 +1,19 @@
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ImageSlider } from '@/components/ImageSlider';
-import { Category } from '@/types/Category';
-import { getProductDetails } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
+
+import { getAllProducts, getProductDetails} from '@api/requests';
+
+import { Category } from '@/types/Category';
+
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { BackButton } from '@/components/BackButton';
+import { ProductSidebar } from '@/components/ProductSidebar';
+import { ProductAbout } from '@/components/ProductAbout';
+import { ProductTechSpecs } from '@/components/ProductTechSpecs';
+import { CardSlider } from '@/components/CardSlider';
+
+import styles from './ProductPage.module.scss';
+import { ImageSlider } from '@/components/ImageSlider';
 
 export const ProductPage = () => {
   const { id = '' } = useParams();
@@ -15,19 +25,53 @@ export const ProductPage = () => {
     queryFn: () => getProductDetails(id),
   });
 
+  const recommendedProductsQuery = useQuery({
+    queryKey: ['recommendedProducts'],
+    queryFn: () => getAllProducts(),
+  });
+
+  const recommendedProducts = recommendedProductsQuery.data || [];
+  
+  const product = productQuery?.data;
+
   return (
     <>
       <Breadcrumbs />
-      <h1>{`category: ${JSON.stringify(category)}`}</h1>
-      <br />
-      <p>{`product details: ${JSON.stringify(productQuery.data, null, 2)}`}</p>
-      <br />
-      <h1>{`isError: ${JSON.stringify(productQuery.isError)}`}</h1>
-      <br />
-      <h1>{`isSuccess: ${JSON.stringify(productQuery.isSuccess)}`}</h1>
-      <br />
-      <h1>{`isLoading: ${JSON.stringify(productQuery.isLoading)}`}</h1>
-      <ImageSlider productImages={productQuery.data?.images || []} />
+
+      <BackButton category={category} />
+
+      {product && (
+        <>
+          <h1 className={styles.product_title}>
+            {product.name}
+          </h1>
+
+          <div className={styles.product_details}>
+            <div className={styles.product_details_slider}>
+              <ImageSlider productImages={product.images}/>
+            </div>
+            
+            <div className={styles.product_details_sidebar}>
+              <ProductSidebar product={product} />
+            </div>
+          </div>
+
+          <div className={styles.product_description}>
+            <div className={styles.product_description_about}>
+              <ProductAbout description={product.description} />
+            </div>
+            
+            <div className={styles.product_description_tech}>
+              <ProductTechSpecs product={product} />
+            </div>
+          </div>
+
+          <CardSlider
+            title={'You may also like'}
+            products={recommendedProducts}
+          />
+        </>
+      )}
     </>
   );
 };

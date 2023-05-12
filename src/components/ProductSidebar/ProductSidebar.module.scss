@@ -1,0 +1,53 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+@import '@/styles/extends';
+
+.product {
+  &_price {
+    display: flex;
+    align-items: center;
+    margin-bottom: $main-indent;
+    font-weight: 800;
+    line-height: 130%;
+
+    &_actual {
+      font-size: 2rem;
+      color: $color-white;
+      margin-right: calc($main-indent / 3);
+    }
+
+    &_default {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: $color-secondary;
+      text-decoration: line-through;
+    }
+  }
+  
+  &_buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: $secondary-indent;
+
+    @include bp-custom-up(600px) {
+      max-width: 320px;
+    }
+  }
+
+  &_spec {
+    @extend %flexBetween;
+  
+    font-size: 0.8rem;
+    line-height: 150%;
+    font-weight: 600;
+  
+    &_name {
+      color: $color-secondary;
+    }
+  
+    &_value {
+      padding-left: calc($secondary-indent / 2);
+      text-align: right;
+    }
+  }
+}
