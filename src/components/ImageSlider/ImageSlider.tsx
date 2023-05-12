@@ -32,7 +32,7 @@ export const ImageSlider = ({ productImages }: ImageSliderProps) => {
         >
           {productImages.map(productImage => (
             <SwiperSlide key={productImage}>
-              <ImageSlide image={productImage} />
+              <ImageSlide image={`${import.meta.env.VITE_API_URL}/static/${productImage}`} />
             </SwiperSlide>
           ))}
         </Swiper>

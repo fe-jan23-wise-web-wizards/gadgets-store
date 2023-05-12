@@ -1,4 +1,5 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { ImageSlider } from '@/components/ImageSlider';
 import { Category } from '@/types/Category';
 import { getProductDetails } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
@@ -26,6 +27,7 @@ export const ProductPage = () => {
       <h1>{`isSuccess: ${JSON.stringify(productQuery.isSuccess)}`}</h1>
       <br />
       <h1>{`isLoading: ${JSON.stringify(productQuery.isLoading)}`}</h1>
+      <ImageSlider productImages={productQuery.data?.images || []} />
     </>
   );
 };

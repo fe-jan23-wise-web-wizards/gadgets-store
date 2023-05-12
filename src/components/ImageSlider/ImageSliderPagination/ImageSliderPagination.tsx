@@ -33,7 +33,7 @@ export const ImageSliderPagination = ({
         return (
           <ImageSliderPaginationBullet
             key={image}
-            image={image}
+            image={`${import.meta.env.VITE_API_URL}/static/${image}`}
             isActive={isActiveBullet}
             onClick={onBulletClick}
           />
