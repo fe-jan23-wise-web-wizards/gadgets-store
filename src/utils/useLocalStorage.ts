@@ -3,55 +3,63 @@ import { useCallback, useEffect, useState } from 'react';
 
 type Key = 'favorites' | 'cart';
 
-function useLocalStorage<T>(key: Key, defaultValue: T) {
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : defaultValue;
+function getStorageValue(key: Key, defaultValue: Product[]) {
+  // getting stored value
+  const saved = localStorage.getItem(key) || '[]';
+  const initial = JSON.parse(saved);
+  return initial || defaultValue;
+}
+
+export const useLocalStorage = (key: Key, defaultValue: Product[]) => {
+  const [value, setValue] = useState<Product[]>(() => {
+    return getStorageValue(key, defaultValue);
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(storedValue));
-  }, [key, storedValue]);
+    // storing input name
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
 
-  return [storedValue, setStoredValue] as const;
-}
+  return [value, setValue] as const;
+};
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useLocalStorage<Product[]>('favorites', []);
-
-  const addFavorite = useCallback(
-    (favorite: Product) => {
-      setFavorites(prevFavorites => {
-        if (prevFavorites.some(f => f.id === favorite.id)) {
-          return prevFavorites;
-        }
-        return [...prevFavorites, favorite];
-      });
-    },
-    [favorites],
-  );
-
-  const removeFavorite = useCallback(
-    (favorite: Product) => {
-      setFavorites(prevFavorites =>
-        prevFavorites.filter(f => f.id !== favorite.id),
-      );
-    },
-    [favorites],
-  );
+  const [value, setValue] = useLocalStorage('favorites', []);
 
   const isFavorite = useCallback(
-    (id: string) => {
-      return favorites.some(f => f.id === id);
+    (itemId: string) => {
+      return value.some(f => f.itemId === itemId);
     },
-    [favorites],
+    [value],
+  );
+
+  const addToFavorite = useCallback(
+    (product: Product) => {
+      setValue(prev => {
+        if (isFavorite(product.itemId)) {
+          return prev;
+        }
+
+        return [...prev, product];
+      });
+    },
+    [isFavorite, setValue],
+  );
+
+  const removeFromFavorite = useCallback(
+    (itemId: string) => {
+      setValue(prev => {
+        return prev.filter(f => f.itemId !== itemId);
+      });
+    },
+    [setValue],
   );
 
   return {
-    favorites,
-    addFavorite,
-    removeFavorite,
+    favorites: value,
     isFavorite,
+    addToFavorite,
+    removeFromFavorite,
   } as const;
 }
 

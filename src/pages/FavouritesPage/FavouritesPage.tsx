@@ -1,10 +1,11 @@
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export const FavouritesPage = () => {
+  // const useFa
+
   return (
     <>
       <Breadcrumbs />
-      <h1>Favourites</h1>
     </>
   );
 };

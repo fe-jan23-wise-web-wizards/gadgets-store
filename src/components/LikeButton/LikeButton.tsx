@@ -2,36 +2,30 @@ import { Product } from '@/types/Product';
 import likeIconFilled from '@assets/icons/like-icon-filled.svg';
 import likeIcon from '@assets/icons/like-icon.svg';
 import { useFavorites } from '@utils/useLocalStorage';
-import { FC, useMemo } from 'react';
+import React, { FC, useCallback } from 'react';
 import styles from './LikeButton.module.scss';
 
 interface Props {
   product: Product;
 }
 
-export const LikeButton: FC<Props> = ({ product }) => {
-  const { favorites, addFavorite, removeFavorite, isFavorite } = useFavorites();
+export const LikeButton: FC<Props> = React.memo(({ product }) => {
+  const { addToFavorite, removeFromFavorite, isFavorite } = useFavorites();
 
-  const isItemInFavorites = useMemo(() => {
-    return isFavorite(product.itemId);
-  }, [favorites]);
-
-  const handleLike = () => {
-    if (isItemInFavorites) {
-      removeFavorite(product);
-
-      return;
+  const handleLike = useCallback(() => {
+    if (isFavorite(product.itemId)) {
+      removeFromFavorite(product.itemId);
+    } else {
+      addToFavorite(product);
     }
-
-    addFavorite(product);
-  };
+  }, [product, addToFavorite, removeFromFavorite, isFavorite]);
 
   return (
     <button className={styles.like_button} onClick={handleLike}>
       <img
-        src={isItemInFavorites ? likeIconFilled : likeIcon}
+        src={isFavorite(product.itemId) ? likeIconFilled : likeIcon}
         alt="favourite"
       />
     </button>
   );
-};
+});

@@ -1,4 +1,5 @@
 import { Product } from '@/types/Product';
+import React from 'react';
 import { AddToCartButton } from '../AddToCartButton';
 import { LikeButton } from '../LikeButton';
 import styles from './ProductCard.module.scss';
@@ -7,7 +8,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = React.memo(({ product }: ProductCardProps) => {
   const formatName = (name: string) => {
     const firstLine = name.split(' ').slice(0, -1).join(' ');
 
@@ -73,4 +74,4 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </div>
     </div>
   );
-};
+});
