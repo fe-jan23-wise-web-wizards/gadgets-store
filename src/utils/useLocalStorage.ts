@@ -1,20 +1,7 @@
+import { Product } from '@/types/Product';
 import { useCallback, useEffect, useState } from 'react';
 
-type Favorite = {
-  id: string;
-};
-
-type CartItem = {
-  id: string;
-  quantity: number;
-};
-
-type Storage = {
-  favorites: Favorite[];
-  cart: CartItem[];
-};
-
-type Key = keyof Storage;
+type Key = 'favorites' | 'cart';
 
 function useLocalStorage<T>(key: Key, defaultValue: T) {
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -30,13 +17,10 @@ function useLocalStorage<T>(key: Key, defaultValue: T) {
 }
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useLocalStorage<Favorite[]>(
-    'favorites',
-    [],
-  );
+  const [favorites, setFavorites] = useLocalStorage<Product[]>('favorites', []);
 
   const addFavorite = useCallback(
-    (favorite: Favorite) => {
+    (favorite: Product) => {
       setFavorites(prevFavorites => {
         if (prevFavorites.some(f => f.id === favorite.id)) {
           return prevFavorites;
@@ -48,7 +32,7 @@ export function useFavorites() {
   );
 
   const removeFavorite = useCallback(
-    (favorite: Favorite) => {
+    (favorite: Product) => {
       setFavorites(prevFavorites =>
         prevFavorites.filter(f => f.id !== favorite.id),
       );
