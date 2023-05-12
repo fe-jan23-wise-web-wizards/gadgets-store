@@ -1,41 +1,42 @@
 @import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/extends';
+@import '@styles/mixins';
 
 .cart {
   display: flex;
   flex-direction: column;
   width: 288px;
   border: 1px solid $color-elements;
-  margin-bottom: 16px;
-  padding: 16px;
-  gap: 24px;
+  margin-bottom: $secondary-indent;
+  padding: $secondary-indent;
+  gap: $main-indent;
   align-items: center;
+  background-color: $color-surface-1;
 
   @include bp-custom-up(640px) {
     flex-direction: row;
     width: 592px;
-    padding: 24px;
+    padding: $main-indent;
   }
 
   @include bp-x-large-up {
-    flex-direction: row;
     width: 752px;
   }
 
   &_info {
-    display: flex;
-    align-items: center;
+    @extend %flexCenter;
     width: 100%;
   }
 }
 
 .delete_button_link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
+
   padding: 5px;
   margin-right: 25px;
-  transition: all 0.2s;
+  
+  @extend %transitionDetails;
 
   &:hover {
     transform: scale(1.2);
@@ -47,12 +48,12 @@
   height: auto;
   max-width: 100%;
   padding: 7px;
-  margin-right: 23px;
+  margin-right: $main-indent;
 }
 
 .content {
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 0.9rem;
   line-height: 21px;
   padding-right: 10px;
   color: $color-white;
@@ -79,9 +80,7 @@
 }
 
 .quantity_buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
   margin-right: 33px;
 
   &_minus {
@@ -100,48 +99,37 @@
 }
 
 .minus {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
+
   margin-right: 13px;
   border: 1px solid $color-elements;
-  width: 32px;
-  height: 32px;
+  
+  @include square(32px);
 
-  transition: background-color 0.2s;
+  @extend %transitionDetails;
   
   &:hover {
     background-color: $color-elements;
   }
-
-  &:active {
-    border: 1px solid $color-secondary;
-  }
 }
 
 .plus {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
+
   margin-right: 13px;
   background-color: $color-elements;
-  width: 32px;
-  height: 32px;
+  @include square(32px);
 
-  transition: background-color 0.2s;
+  @extend %transitionDetails;
 
   &:hover {
     background-color: $color-icons;
-  }
-
-  &:active {
-    border: 1px solid $color-secondary;
   }
 }
 
 .phone_price {
   font-weight: 800;
-  font-size: 22px;
+  font-size: 1.375rem;
   line-height: 140%;
   color: $color-white;
 }
