@@ -1,0 +1,16 @@
+@import '@styles/breakpoints';
+
+.pagination {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, 1fr);
+
+  @include bp-custom-up(639px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, max-content);
+  }
+
+  @include bp-large-up {
+    gap: 16px;
+  }
+}
