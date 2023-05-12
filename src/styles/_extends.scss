@@ -1,4 +1,5 @@
 @import '@/styles/mixins';
+@import '@/styles/breakpoints';
 
 %flexCenter {
   display: flex;
@@ -18,5 +19,17 @@
   background-repeat: no-repeat;
 
   @include square(16px);
+}
+
+%homeIndentsSet {
+  margin-bottom: 1.75 * $secondary-indent;
+
+  @include bp-medium-up {
+    margin-bottom: 2 * $secondary-indent;
+  }
+
+  @include bp-medium-up {
+    margin-bottom: 2.5 * $secondary-indent;
+  }
 }
 

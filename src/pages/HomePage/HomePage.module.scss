@@ -1,3 +1,22 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+
 .homepage {
   max-width: 100%;
+
+  &_title {
+    padding: $main-indent 0;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 115%;
+    letter-spacing: -0.01em;
+
+    @include bp-medium-up {
+      padding: $secondary-indent 0;
+    }
+
+    @include bp-x-large-up {
+      padding: 1.75 * $secondary-indent 0;
+    }
+  }
 }

@@ -1,39 +1,44 @@
 @import '@styles/mixins';
 @import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/extends';
 
-.card_slider_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.card_slider {
+  @extend %homeIndentsSet;
 
-  max-width: 100%;
-  margin-bottom: 24px;
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  @include bp-medium-up {
-    margin-bottom: 28px;
-  }
-}
+    max-width: 100%;
+    margin-bottom: $main-indent;
 
-.card_slider_title {
-  font-weight: 800;
-  font-size: 22px;
-  line-height: 140%;
-
-  @include bp-medium-up {
-    font-size: 32px;
-  }
-}
-
-.card_slider_wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  :global(.swiper-slide) {
-    max-width: min-content !important;
+    @include bp-medium-up {
+      margin-bottom: 28px;
+    }
   }
 
-  :global(.swiper) {
-    max-width: 100% !important;
+  &_title {
+    font-weight: 800;
+    font-size: 1.4rem;
+    line-height: 140%;
+
+    @include bp-medium-up {
+      font-size: 2rem;
+    }
+  }
+
+  &_wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    :global(.swiper-slide) {
+      max-width: min-content !important;
+    }
+
+    :global(.swiper) {
+      max-width: 100% !important;
+    }
   }
 }
