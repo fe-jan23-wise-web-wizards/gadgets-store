@@ -25,6 +25,10 @@ export const HomePage = () => {
 
   return (
     <div className={styles.homepage}>
+      <h1 className={styles.homepage_title}>
+        Welcome to Nice Gadgets store!
+      </h1>
+
       <Slider />
 
       <CardSlider
