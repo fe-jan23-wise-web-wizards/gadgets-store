@@ -1,24 +1,26 @@
 import { FC } from 'react';
-// import styles from '@components/Header/Header.module.scss';
 import { MenuItem } from '../MenuItem/MenuItem';
 
 interface Props {
   classNameList: string;
   classNameItem: string;
   classNameLink: string;
+  classNameActiveLink: string;
 };
 
 export const NavBarList: FC<Props> = ({
   classNameList,
   classNameItem,
   classNameLink,
+  classNameActiveLink,
 }) => (
   <menu className={classNameList}>
     <MenuItem
-      to={'home'}
+      to={''}
       content={'Home'}
       classNameItem={classNameItem}
       classNameLink={classNameLink}
+      classNameActiveLink={classNameActiveLink}
     />
 
     <MenuItem
@@ -26,6 +28,7 @@ export const NavBarList: FC<Props> = ({
       content={'Phones'}
       classNameItem={classNameItem}
       classNameLink={classNameLink}
+      classNameActiveLink={classNameActiveLink}
     />
 
     <MenuItem
@@ -33,6 +36,7 @@ export const NavBarList: FC<Props> = ({
       content={'Tablets'}
       classNameItem={classNameItem}
       classNameLink={classNameLink}
+      classNameActiveLink={classNameActiveLink}
     />
 
     <MenuItem
@@ -40,6 +44,7 @@ export const NavBarList: FC<Props> = ({
       content={'Accessories'}
       classNameItem={classNameItem}
       classNameLink={classNameLink}
+      classNameActiveLink={classNameActiveLink}
     />
   </menu>
 );

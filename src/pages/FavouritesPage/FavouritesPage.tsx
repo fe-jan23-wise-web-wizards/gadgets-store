@@ -1,10 +1,10 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const AccessoriesPage = () => {
+export const FavouritesPage = () => {
   return (
     <>
       <Breadcrumbs />
-      <h1>Accessories</h1>
+      <h1>Favourites</h1>
     </>
   );
 };

@@ -3,11 +3,11 @@
 
 .footer {
   width: 100%;
-  padding: $footer-first-indent 0;
+  padding: $secondary-indent 0;
   border-top: 1px solid $color-elements;
 
   @include bp-medium-up {
-    padding: $footer-first-indent 0;
+    padding: $secondary-indent 0;
   }
 
   &_container {
@@ -22,7 +22,7 @@
   }
 
   &_logo {
-    margin-bottom: $footer-first-indent;
+    margin-bottom: $secondary-indent;
 
     @include bp-medium-up {
       margin-bottom: 0;
@@ -32,10 +32,10 @@
   &_links_list {
     display: flex;
     flex-direction: column;
-    margin-bottom: $footer-first-indent;
+    margin-bottom: $secondary-indent;
 
     & > *:not(:last-child) {
-      margin-bottom: calc($footer-first-indent / 2);
+      margin-bottom: calc($secondary-indent / 2);
     }
 
     @include bp-medium-up {
@@ -68,7 +68,7 @@
     justify-content: space-between;
     align-items: center;
 
-    gap: calc($footer-first-indent / 2);
+    gap: calc($secondary-indent / 2);
 
     cursor: pointer;
 
@@ -81,7 +81,7 @@
 
     @include bp-medium-up {
       align-self: auto;
-      gap: $footer-first-indent;
+      gap: $secondary-indent;
     }
 
     &_text {

@@ -1,6 +1,6 @@
 import iconCart from '@assets/icons/icon-cart.svg';
 import iconMenu from '@assets/icons/icon-menu.svg';
-import iconFavorites from '@assets/icons/like-icon.svg';
+import iconFavourites from '@assets/icons/like-icon.svg';
 import { Logo } from '@components/Logo';
 import styles from './Header.module.scss';
 import { IconLink } from './IconLink';
@@ -31,14 +31,16 @@ export const Header = () => {
                 classNameList={styles.navbar_menu_desktop_list}
                 classNameItem={styles.navbar_menu_desktop_item}
                 classNameLink={styles.navbar_menu_desktop_link}
+                classNameActiveLink={styles.navbar_menu_desktop_link_active}
               />
             </div>
 
             <div className={styles.navbar_menu_desktop_right}>
               <IconLink
-                to={'favorites'}
-                src={iconFavorites}
-                alt={'IconLink-favorites'}
+                to={'favourites'}
+                src={iconFavourites}
+                alt={'IconLink-favourites'}
+
                 classNameIconLinkBlock={styles.navbar_menu_desktop_right_item}
                 classNameIconLink={styles.navbar_menu_desktop_right_link}
               />

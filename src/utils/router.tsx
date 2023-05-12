@@ -8,7 +8,7 @@ import {
 import { MainLayout } from '@layouts/MainLayout';
 import { AccessoriesPage } from '@pages/AccessoriesPage';
 import { CartPage } from '@pages/CartPage';
-import { FavoritesPage } from '@pages/FavoritesPage';
+import { FavouritesPage } from '@/pages/FavouritesPage';
 import { HomePage } from '@pages/HomePage';
 import { NotFoundPage } from '@pages/NotFoundPage';
 import { PhonesPage } from '@pages/PhonesPage';
@@ -36,7 +36,7 @@ export const router = createBrowserRouter(
         <Route path=":id" element={<ProductPage />} />
       </Route>
 
-      <Route path="favorites" element={<FavoritesPage />} />
+      <Route path="favourites" element={<FavouritesPage />} />
       <Route path="cart" element={<CartPage />} />
 
       <Route path="*" element={<NotFoundPage />} />
