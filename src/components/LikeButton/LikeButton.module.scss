@@ -1,17 +1,22 @@
 @import '@styles/variables';
+@import '@styles/mixins';
+@import '@styles/extends';
 
 .like_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
 
-  width: 40px;
-  height: 40px;
+  @include square(40px);
+
   background-color: $color-surface-2;
 
   transition: all 0.3s;
 
   &:hover {
     background-color: $color-icons;
+  }
+
+  &_pressed {
+    border: 1px solid $color-icons;
+    background-color: $color-surface-1;
   }
 }

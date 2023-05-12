@@ -1,7 +1,8 @@
+import likeIconFilled from '@assets/icons/like-icon-filled.svg';
+import likeIcon from '@assets/icons/like-icon.svg';
+import classNames from 'classnames';
 import { useState } from 'react';
 import styles from './LikeButton.module.scss';
-import likeIcon from '@assets/icons/like-icon.svg';
-import likeIconFilled from '@assets/icons/like-icon-filled.svg';
 
 export const LikeButton = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -12,13 +13,12 @@ export const LikeButton = () => {
 
   return (
     <button
-      className={styles.like_button}
+      className={classNames(styles.like_button, {
+        [styles.like_button_pressed]: isLiked,
+      })}
       onClick={handleLike}
     >
-      <img
-        src={!isLiked ? likeIcon : likeIconFilled}
-        alt="favourite"
-      />
+      <img src={!isLiked ? likeIcon : likeIconFilled} alt="favourite" />
     </button>
   );
 };

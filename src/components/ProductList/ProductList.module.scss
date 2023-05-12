@@ -4,7 +4,7 @@ $card-width-tablet-mobile: 288px;
 $column-gap: 16px;
 
 .product_list {
-  margin: 0 auto;
+  margin: 0 auto $main-indent;
   display: grid;
   max-width: 288px;
   grid-template-columns: 1fr;
@@ -16,7 +16,7 @@ $column-gap: 16px;
     grid-template-columns: 1fr 1fr;
   }
 
-  @include bp-custom-up(900px) {
+  @include bp-medium-up {
     max-width: $card-width-tablet-mobile * 3 + $column-gap * 2;
     grid-template-columns: 1fr 1fr 1fr;
   }

@@ -8,14 +8,6 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const formatName = (name: string) => {
-    const firstLine = name.split(' ').slice(0, -1).join(' ');
-
-    const nextLine = name.split(' ').slice(-1).join(' ');
-
-    return `${firstLine} \n ${nextLine}`;
-  };
-
   return (
     <div className="grid_item">
       <div className={styles.product_card}>
@@ -27,7 +19,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
         <a href="#">
           <h2 className={styles.product_card_title}>
-            {formatName(product.name)}
+            {product.name}
           </h2>
 
           <div className={styles.product_card_price}>
