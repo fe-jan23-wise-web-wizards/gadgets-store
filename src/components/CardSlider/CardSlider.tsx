@@ -37,7 +37,7 @@ export const CardSlider = ({ title, products }: CardSliderProps) => {
           onSwiper={setSwiperRef}
         >
           {products.map(product => (
-            <SwiperSlide>
+            <SwiperSlide key={product.itemId}>
               <ProductCard product={product} />
             </SwiperSlide>
           ))}
