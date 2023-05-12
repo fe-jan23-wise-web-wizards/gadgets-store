@@ -1,0 +1,23 @@
+@import '@/styles/variables';
+@import '@/styles/extends';
+
+.header {
+  @extend %categorySubtitle;
+}
+
+.spec {
+  @extend %flexBetween;
+
+  font-size: 0.8rem;
+  line-height: 150%;
+  font-weight: 600;
+
+  &_name {
+    color: $color-secondary;
+  }
+
+  &_value {
+    padding-left: calc($secondary-indent / 2);
+    text-align: right;
+  }
+}
