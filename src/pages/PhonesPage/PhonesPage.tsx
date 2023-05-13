@@ -4,6 +4,7 @@ import { getProductsByCategory } from '@api/requests';
 import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
 import styles from './PhonesPage.module.scss';
+import { Loader } from '@/components/Loader';
 
 export const PhonesPage = () => {
   const phonesQuery = useQuery({
@@ -15,7 +16,10 @@ export const PhonesPage = () => {
     <>
       <Breadcrumbs />
       <h1 className={styles.title}>Mobile phones</h1>
-      <ProductList products={phonesQuery?.data || []} />
+
+      {phonesQuery.isLoading
+        ? (<Loader />)
+        : (<ProductList products={phonesQuery.data || []} />)}
     </>
   );
 };
