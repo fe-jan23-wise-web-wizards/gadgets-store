@@ -1,4 +1,6 @@
 import { Phone } from '@/types/Phone';
+import { Tablet } from '@/types/Tablet';
+import { Accessory } from '@/types/Accessory';
 
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { LikeButton } from '@/components/LikeButton';
@@ -6,9 +8,11 @@ import { ProductCapacities } from './ProductCapacities';
 
 import styles from './ProductSidebar.module.scss';
 import { ProductColors } from './ProductColors';
+import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
+
 
 interface ProductSidebarProps {
-  product: Phone;
+  product: Phone | Tablet | Accessory;
 }
 
 export const ProductSidebar = ({ product }: ProductSidebarProps) => {
@@ -19,6 +23,20 @@ export const ProductSidebar = ({ product }: ProductSidebarProps) => {
     Resolution: resolution,
     Processor: processor,
     RAM: ram,
+  };
+
+  const {
+    removeFromFavorites,
+    isFavorite,
+    addToFavorites,
+  } = useLocalStorageContext();
+
+  const isItemFavorite = isFavorite(product.id);
+
+  const handleLikeButtonClick = () => {
+    isFavorite(product.id)
+      ? removeFromFavorites(product.id)
+      : addToFavorites(product.id);
   };
 
   return (
@@ -43,7 +61,7 @@ export const ProductSidebar = ({ product }: ProductSidebarProps) => {
 
       <div className={styles.product_buttons}>
         <AddToCartButton />
-        <LikeButton />
+        <LikeButton onLike={handleLikeButtonClick} isItemFavorite={isItemFavorite} />
       </div>
 
 

@@ -32,21 +32,11 @@ export const ProductPage = () => {
 
   const recommendedProducts = recommendedProductsQuery.data || [];
   
-  const product = productQuery?.data;
+  const product = productDetailsQuery?.data;
 
   return (
     <>
       <Breadcrumbs />
-      <h1>{`category: ${JSON.stringify(category)}`}</h1>
-      <br />
-      <p>{`product details: ${JSON.stringify(productDetailsQuery.data, null, 2)}`}</p>
-      <br />
-      <h1>{`isError: ${JSON.stringify(productDetailsQuery.isError)}`}</h1>
-      <br />
-      <h1>{`isSuccess: ${JSON.stringify(productDetailsQuery.isSuccess)}`}</h1>
-      <br />
-      <h1>{`isLoading: ${JSON.stringify(productDetailsQuery.isLoading)}`}</h1>
-      <ImageSlider productImages={productDetailsQuery.data?.images || []} />
 
       <BackButton category={category} />
 
