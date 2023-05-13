@@ -1,17 +1,14 @@
-import { Product } from '@/types/Product';
 import { useEffect, useState } from 'react';
 
-type Key = 'favorites' | 'cart';
-
-function getStorageValue(key: Key, defaultValue: Product[]) {
-  const saved = localStorage.getItem(key) || '[]';
+function getStorageValue<T>(key: string, defaultValue: T) {
+  const saved = localStorage.getItem(key) || 'null';
   const initial = JSON.parse(saved);
   return initial || defaultValue;
 }
 
-export const useLocalStorage = (key: Key, defaultValue: Product[]) => {
-  const [value, setValue] = useState<Product[]>(() => {
-    return getStorageValue(key, defaultValue);
+export const useLocalStorage = <T>(key: string, defaultValue: T) => {
+  const [value, setValue] = useState<T>(() => {
+    return getStorageValue<T>(key, defaultValue);
   });
 
   useEffect(() => {

@@ -1,35 +1,26 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { Product } from '@/types/Product';
 import { useCallback } from 'react';
 
-export function useFavorites() {
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
+export const useFavorites = () => {
+  const [favorites, setFavorites] = useLocalStorage<string[]>('favorites', []);
 
   const isFavorite = useCallback(
-    (itemId: string) => {
-      return favorites.some(f => f.itemId === itemId);
-    },
+    (productId: string) => favorites.some(id => id === productId),
     [favorites],
   );
 
-  const addToFavorite = useCallback(
-    (product: Product) => {
-      setFavorites(prev => {
-        if (isFavorite(product.itemId)) {
-          return prev;
-        }
-
-        return [...prev, product];
-      });
+  const addToFavorites = useCallback(
+    (productId: string) => {
+      setFavorites(prev =>
+        isFavorite(productId) ? prev : [...prev, productId],
+      );
     },
     [isFavorite, setFavorites],
   );
 
-  const removeFromFavorite = useCallback(
-    (itemId: string) => {
-      setFavorites(prev => {
-        return prev.filter(product => product.itemId !== itemId);
-      });
+  const removeFromFavorites = useCallback(
+    (productId: string) => {
+      setFavorites(prev => prev.filter(favoriteId => favoriteId !== productId));
     },
     [setFavorites],
   );
@@ -37,7 +28,7 @@ export function useFavorites() {
   return {
     favorites,
     isFavorite,
-    addToFavorite,
-    removeFromFavorite,
+    addToFavorites,
+    removeFromFavorites,
   } as const;
-}
+};

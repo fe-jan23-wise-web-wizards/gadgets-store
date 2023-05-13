@@ -1,6 +1,6 @@
 import { ProductDescription } from './ProductDescription';
 
-export interface Phone {
+export interface Tablet {
   id: string;
   namespaceId: string;
   name: string;
