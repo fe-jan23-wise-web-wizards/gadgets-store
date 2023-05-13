@@ -1,0 +1,40 @@
+@import '@/styles/variables.scss';
+@import '@/styles/breakpoints.scss';
+
+.container {
+  width: 100%;
+  padding-bottom: calc($secondary-indent * 1.75);
+
+  @include bp-small-up {
+    padding-bottom: calc($secondary-indent * 2);
+  }
+
+  @include bp-medium-up {
+    padding-bottom: calc($secondary-indent * 2.5);
+  }
+}
+
+.title {
+  font-size: 2em;
+  font-weight: 800;
+  line-height: 41px;
+  margin-bottom: 0.5rem;
+
+  @include bp-small-up {
+    font-size: 3em;
+    line-height: 56px;
+  }
+}
+
+.description {
+  color: $color-secondary;
+
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: 21px;
+  margin-bottom: 2rem;
+
+  @include bp-small-up {
+    margin-bottom: 2.5rem;
+  }
+}

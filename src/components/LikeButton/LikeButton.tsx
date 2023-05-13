@@ -1,24 +1,19 @@
 import likeIconFilled from '@assets/icons/like-icon-filled.svg';
 import likeIcon from '@assets/icons/like-icon.svg';
-import classNames from 'classnames';
-import { useState } from 'react';
+import React, { FC } from 'react';
 import styles from './LikeButton.module.scss';
 
-export const LikeButton = () => {
-  const [isLiked, setIsLiked] = useState(false);
+interface Props {
+  onLike: () => void;
+  isItemFavorite: boolean;
+}
 
-  const handleLike = () => {
-    setIsLiked(!isLiked);
-  };
-
-  return (
-    <button
-      className={classNames(styles.like_button, {
-        [styles.like_button_pressed]: isLiked,
-      })}
-      onClick={handleLike}
-    >
-      <img src={!isLiked ? likeIcon : likeIconFilled} alt="favourite" />
-    </button>
-  );
-};
+export const LikeButton: FC<Props> = React.memo(
+  ({ onLike, isItemFavorite }) => {
+    return (
+      <button className={styles.like_button} onClick={onLike}>
+        <img src={isItemFavorite ? likeIconFilled : likeIcon} alt="favourite" />
+      </button>
+    );
+  },
+);

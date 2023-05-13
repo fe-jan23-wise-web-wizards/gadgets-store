@@ -1,3 +1,4 @@
+import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
 import { AddToCartButton } from '../AddToCartButton';
 import { LikeButton } from '../LikeButton';
@@ -8,6 +9,27 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const { removeFromFavorite, isFavorite, addToFavorite } =
+    useLocalStorageContext();
+
+  const isItemFavorite = isFavorite(product.itemId);
+
+  const handleLikeButtonClick = () => {
+    if (isFavorite(product.itemId)) {
+      removeFromFavorite(product.itemId);
+    } else {
+      addToFavorite(product);
+    }
+  };
+
+  const formatName = (name: string) => {
+    const firstLine = name.split(' ').slice(0, -1).join(' ');
+
+    const nextLine = name.split(' ').slice(-1).join(' ');
+
+    return `${firstLine} \n ${nextLine}`;
+  };
+
   return (
     <div className="grid_item">
       <div className={styles.product_card}>
@@ -19,7 +41,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
         <a href="#">
           <h2 className={styles.product_card_title}>
-            {product.name}
+            {formatName(product.name)}
           </h2>
 
           <div className={styles.product_card_price}>
@@ -57,10 +79,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
         </div>
-        
+
         <div className={styles.product_card_buttons}>
           <AddToCartButton />
-          <LikeButton />
+          <LikeButton
+            onLike={handleLikeButtonClick}
+            isItemFavorite={isItemFavorite}
+          />
         </div>
       </div>
     </div>
