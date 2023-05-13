@@ -1,9 +1,7 @@
+import { Category } from '@/types/Category';
+import { getProductDetails,getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation,useParams } from 'react-router-dom';
-
-import { getAllProducts,getProduct,getProductDetails } from '@api/requests';
-
-import { Category } from '@/types/Category';
 
 import { BackButton } from '@/components/BackButton';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -20,10 +18,10 @@ export const ProductPage = () => {
   const { pathname } = useLocation();
   const category = pathname.slice(1).split('/').shift() as Category;
 
-  const productQuery = useQuery({
-    queryKey: [`product-${id}`],
-    queryFn: () => getProduct(id),
-  });
+  // const productQuery = useQuery({
+  //   queryKey: [`product-${id}`],
+  //   queryFn: () => getProduct(id),
+  // });
 
   const productDetailsQuery = useQuery({
     queryKey: [`${id}`],
@@ -32,11 +30,11 @@ export const ProductPage = () => {
 
   const recommendedProductsQuery = useQuery({
     queryKey: ['recommendedProducts'],
-    queryFn: () => getAllProducts(),
+    queryFn: () => getRecommendedProducts(id),
   });
 
   const recommendedProducts = recommendedProductsQuery.data || [];
-  
+
   const product = productDetailsQuery?.data;
 
   return (
@@ -47,15 +45,13 @@ export const ProductPage = () => {
 
       {product && (
         <>
-          <h1 className={styles.product_title}>
-            {product.name}
-          </h1>
+          <h1 className={styles.product_title}>{product.name}</h1>
 
           <div className={styles.product_details}>
             <div className={styles.product_details_slider}>
-              <ImageSlider productImages={product.images}/>
+              <ImageSlider productImages={product.images} />
             </div>
-            
+
             <div className={styles.product_details_sidebar}>
               <ProductSidebar product={product} />
             </div>
@@ -65,7 +61,7 @@ export const ProductPage = () => {
             <div className={styles.product_description_about}>
               <ProductAbout description={product.description} />
             </div>
-            
+
             <div className={styles.product_description_tech}>
               <ProductTechSpecs product={product} />
             </div>
