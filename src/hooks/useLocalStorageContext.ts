@@ -1,8 +1,8 @@
 import { LocalStorageContext } from '@/contexts/LocalStorageContext';
-import React from 'react';
+import { useContext } from 'react';
 
 export const useLocalStorageContext = () => {
-  const localStorageContext = React.useContext(LocalStorageContext);
+  const localStorageContext = useContext(LocalStorageContext);
 
   if (localStorageContext === undefined) {
     throw new Error(

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 type Key = 'favorites' | 'cart';
 
 function getStorageValue(key: Key, defaultValue: Product[]) {
-  // getting stored value
   const saved = localStorage.getItem(key) || '[]';
   const initial = JSON.parse(saved);
   return initial || defaultValue;
@@ -16,7 +15,6 @@ export const useLocalStorage = (key: Key, defaultValue: Product[]) => {
   });
 
   useEffect(() => {
-    // storing input name
     localStorage.setItem(key, JSON.stringify(value));
   }, [value, key]);
 

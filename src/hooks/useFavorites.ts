@@ -3,18 +3,18 @@ import { Product } from '@/types/Product';
 import { useCallback } from 'react';
 
 export function useFavorites() {
-  const [value, setValue] = useLocalStorage('favorites', []);
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const isFavorite = useCallback(
     (itemId: string) => {
-      return value.some(f => f.itemId === itemId);
+      return favorites.some(f => f.itemId === itemId);
     },
-    [value],
+    [favorites],
   );
 
   const addToFavorite = useCallback(
     (product: Product) => {
-      setValue(prev => {
+      setFavorites(prev => {
         if (isFavorite(product.itemId)) {
           return prev;
         }
@@ -22,21 +22,20 @@ export function useFavorites() {
         return [...prev, product];
       });
     },
-    [isFavorite, setValue],
+    [isFavorite, setFavorites],
   );
 
   const removeFromFavorite = useCallback(
     (itemId: string) => {
-      setValue(prev => {
-        return prev.filter(f => f.itemId !== itemId);
+      setFavorites(prev => {
+        return prev.filter(product => product.itemId !== itemId);
       });
     },
-    [setValue],
+    [setFavorites],
   );
 
   return {
-    value,
-    favorites: value,
+    favorites,
     isFavorite,
     addToFavorite,
     removeFromFavorite,
