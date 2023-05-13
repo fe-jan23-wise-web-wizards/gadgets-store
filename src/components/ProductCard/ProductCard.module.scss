@@ -24,9 +24,15 @@
     width: 272px;
   }
 
+  &_figure {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
   &_image {
     height: 130px;
-    margin: 0 auto 24px;
 
     @include bp-custom-up(640px) {
       height: 196px;
