@@ -1,10 +1,11 @@
 import { Fragment } from 'react';
-import { PhoneDescription } from "@/types/Phone";
+
 
 import styles from './ProductAbout.module.scss';
+import { ProductDescription } from '@/types/ProductDescription';
 
 interface ProductAboutProps {
-  description: PhoneDescription[];
+  description: ProductDescription[];
 }
 
 export const ProductAbout = ({ description }: ProductAboutProps) => {
@@ -14,7 +15,7 @@ export const ProductAbout = ({ description }: ProductAboutProps) => {
         About
       </h2>
 
-      {description.map((spec: PhoneDescription) => (
+      {description.map((spec: ProductDescription) => (
         <Fragment key={spec.title}>
           <h3 className={styles.about_title}>
             {spec.title}
