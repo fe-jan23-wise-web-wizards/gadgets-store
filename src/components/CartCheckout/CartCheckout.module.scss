@@ -60,13 +60,13 @@
   order: 1;
   align-self: stretch;
   flex-grow: 0;
-  margin-bottom: $secondary-indent;
+  margin-bottom: calc($secondary-indent / 2);
 }
 
 .line {
   height: 0;
   border: 1px solid $color-elements;
-  margin-bottom: $secondary-indent;
+  margin-bottom: calc($secondary-indent / 2);
 }
 
 .button_checkout {
