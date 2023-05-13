@@ -8,8 +8,8 @@
   flex-direction: column;
   width: 288px;
   border: 1px solid $color-elements;
-  margin-bottom: $secondary-indent;
-  padding: $secondary-indent;
+  margin-bottom: calc($secondary-indent / 2);
+  padding: calc($secondary-indent / 2);
   gap: $main-indent;
   align-items: center;
   background-color: $color-surface-1;
