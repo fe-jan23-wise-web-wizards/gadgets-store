@@ -10,17 +10,18 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const { removeFromFavorite, isFavorite, addToFavorite } =
-    useLocalStorageContext();
+  const {
+    removeFromFavorites,
+    isFavorite,
+    addToFavorites,
+  } = useLocalStorageContext();
 
   const isItemFavorite = isFavorite(product.itemId);
 
   const handleLikeButtonClick = () => {
-    if (isFavorite(product.itemId)) {
-      removeFromFavorite(product.itemId);
-    } else {
-      addToFavorite(product);
-    }
+    isFavorite(product.itemId)
+      ? removeFromFavorites(product.itemId)
+      : addToFavorites(product.itemId);
   };
 
   const titleSplit = product.name.split(' ');
