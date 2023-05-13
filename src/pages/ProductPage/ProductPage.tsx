@@ -12,7 +12,7 @@ export const ProductPage = () => {
 
   const productQuery = useQuery({
     queryKey: [`${id}`],
-    queryFn: () => getProductDetails(category, id),
+    queryFn: () => getProductDetails(id),
   });
 
   return (
