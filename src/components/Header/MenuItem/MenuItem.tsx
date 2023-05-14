@@ -8,6 +8,7 @@ interface Props {
   classNameItem: string;
   classNameLink: string;
   classNameActiveLink: string;
+  onClickLink?: () => void;
 }
 
 export const MenuItem: React.FC<Props> = ({
@@ -16,6 +17,7 @@ export const MenuItem: React.FC<Props> = ({
   classNameItem,
   classNameLink,
   classNameActiveLink,
+  onClickLink
 }) => {
   return (
     <li className={classNameItem}>
@@ -28,6 +30,8 @@ export const MenuItem: React.FC<Props> = ({
             }
           ))
         }
+
+      onClick={onClickLink}
       >
         {content}
       </NavLink>
