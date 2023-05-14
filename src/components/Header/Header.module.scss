@@ -141,7 +141,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          border-left: 1px solid $color-elements;
           cursor: pointer;
         }
 
@@ -151,6 +150,7 @@
           align-items: center;
           width: 48px;
           height: 48px;
+          border-left: 1px solid $color-elements;
 
           &:hover {
             background-color: $color-icons;
@@ -162,6 +162,21 @@
           }
         }
       }
+    }
+  }
+
+  &_burgerMenu_button {
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+
+    border-left: 1px solid $color-elements;
+
+    &:hover {
+      background-color: $color-icons;
     }
   }
 }

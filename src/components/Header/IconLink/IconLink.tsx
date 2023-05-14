@@ -1,28 +1,29 @@
 import { Link } from 'react-router-dom';
-import styles from '../Header.module.scss';
 
 interface Props {
   to: string;
   src: string;
   alt: string;
-  classNameIconLinkBlock: string;
+  classNameIconLinkBlock?: string;
   classNameIconLink: string;
+  classNameIcon: string;
+  clickFunc?: () => void;
 }
 
 export const IconLink = ({
   to,
   src,
   alt,
-  classNameIconLinkBlock,
   classNameIconLink,
+  classNameIcon,
+  clickFunc,
 }: Props) => (
-    <div className={classNameIconLinkBlock}>
       <Link to={`/${to}`} className={classNameIconLink}>
         <img
           src={src}
           alt={alt}
-          className={styles.navbar_menu_desktop_right_icon}
+          className={classNameIcon}
+          onClick={clickFunc}
         />
       </Link>
-    </div>
   );
