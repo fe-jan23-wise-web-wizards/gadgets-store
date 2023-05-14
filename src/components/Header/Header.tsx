@@ -22,13 +22,13 @@ export const Header: FC = () => {
     }
   }, [isOpen]);
 
-  const handleToggleMenu = () => {
-    setIsOpen(currentPosition => !currentPosition);
+  const handleOpenBurgerMenu = () => {
+    setIsOpen(currPosition => !currPosition);
   };
 
   return (
     <>
-      <BurgerMenu isMenuOpen={isOpen} onMenuClose={handleToggleMenu} />
+      <BurgerMenu isMenuOpen={isOpen} onMenuClose={handleOpenBurgerMenu} />
       <nav className={styles.navbar}>
         <div className={styles.navbar_container}>
           <div className={styles.navbar_logo}>
@@ -40,7 +40,7 @@ export const Header: FC = () => {
               <button
                 className={styles.navbar_burgerMenu_button}
                 type="button"
-                onClick={handleToggleMenu}
+                onClick={handleOpenBurgerMenu}
               >
                 <img src={iconMenu} alt="Burger menu" />
               </button>
