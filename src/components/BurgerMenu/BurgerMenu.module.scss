@@ -9,15 +9,13 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-
+  z-index: 100;
   transform: translateX(100%);
   transition: transform 400ms;
 
   background-color: $color-dark;
 
   &__opened {
-    z-index: 100;
-
     transform: translateX(0%);
     transition: transform 400ms;
     overflow: hidden;
@@ -96,7 +94,6 @@
     &:not(:last-child) {
       border-right: 1px solid $color-elements;
     }
-
   }
 
   &__icon {
@@ -107,9 +104,7 @@
     flex-grow: 1;
   }
 
-  @include bp-custom-up (640px) {
+  @include bp-custom-up($bp-640) {
     display: none;
   }
 }
-
-

@@ -18,12 +18,12 @@ export const IconLink = ({
   classNameIcon,
   clickFunc,
 }: Props) => (
-      <Link to={`/${to}`} className={classNameIconLink}>
-        <img
-          src={src}
-          alt={alt}
-          className={classNameIcon}
-          onClick={clickFunc}
-        />
-      </Link>
+    <Link to={`/${to}`} className={classNameIconLink}>
+      <img
+        src={src}
+        alt={alt}
+        className={classNameIcon}
+        onClick={clickFunc}
+      />
+    </Link>
   );

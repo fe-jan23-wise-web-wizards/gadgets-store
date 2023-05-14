@@ -31,7 +31,7 @@
       justify-content: end;
       align-items: center;
 
-      @include bp-custom-up(640px) {
+      @include bp-custom-up($bp-640) {
         display: none;
       }
 
@@ -55,7 +55,7 @@
     &_desktop {
       display: none;
 
-      @include bp-custom-up(640px) {
+      @include bp-custom-up($bp-640) {
         display: flex;
         justify-content: space-between;
         align-items: center;

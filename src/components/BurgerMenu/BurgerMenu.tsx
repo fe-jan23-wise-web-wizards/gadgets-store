@@ -1,12 +1,12 @@
-import { FC } from "react";
 import classNames from 'classnames';
+import { FC } from 'react';
 
-import { Logo } from "../Logo";
-import { NavBarList } from "../Header/NavBarList";
-import { IconLink } from "../Header/IconLink";
+import { IconLink } from '../Header/IconLink';
+import { NavBarList } from '../Header/NavBarList';
+import { Logo } from '../Logo';
 
-import IconClose from "@assets/icons/icon-close.svg";
 import iconCart from '@assets/icons/icon-cart.svg';
+import IconClose from '@assets/icons/icon-close.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
 
 import styles from '@components/BurgerMenu/BurgerMenu.module.scss';
@@ -19,31 +19,24 @@ interface Props {
 export const BurgerMenu: FC<Props> = ({ isMenuOpen, onMenuClose }) => {
   return (
     <nav
-      className={classNames(
-        [styles.BurgerMenu],
-        {
-          [styles.BurgerMenu__opened]: isMenuOpen,
-        }
-      )}
+      className={classNames([styles.BurgerMenu], {
+        [styles.BurgerMenu__opened]: isMenuOpen,
+      })}
     >
       <div className={styles.BurgerMenu__header}>
-        <Logo
-          position='header'
-        />
+        <Logo position="header" clickFunk={onMenuClose} />
 
         <button
           className={styles.BurgerMenu__closeButton}
           type="button"
-          aria-label="cross"
+          aria-label="close"
           onClick={onMenuClose}
         >
           <img src={IconClose} alt="Burger menu" />
         </button>
       </div>
 
-      <div
-        className={styles.BurgerMenu__main}
-      >
+      <div className={styles.BurgerMenu__main}>
         <NavBarList
           classNameList={styles.BurgerMenu__navlist}
           classNameItem={styles.BurgerMenu__navitem}
@@ -53,14 +46,11 @@ export const BurgerMenu: FC<Props> = ({ isMenuOpen, onMenuClose }) => {
         />
       </div>
 
-      <div
-        className={styles.BurgerMenu__footer}
-      >
+      <div className={styles.BurgerMenu__footer}>
         <IconLink
           to={'favorites'}
           src={iconFavorites}
           alt={'IconLink-favorites'}
-
           classNameIconLink={styles.BurgerMenu__iconlink}
           classNameIcon={styles.BurgerMenu__icon}
           clickFunc={onMenuClose}
