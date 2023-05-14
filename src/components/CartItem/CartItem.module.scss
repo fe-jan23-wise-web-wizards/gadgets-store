@@ -6,8 +6,7 @@
 .cart {
   display: flex;
   flex-direction: column;
-  width: 288px;
-  border: 1px solid $color-elements;
+  width: 100%;
   margin-bottom: $secondary-indent;
   padding: $secondary-indent;
   gap: $main-indent;
@@ -16,16 +15,13 @@
 
   @include bp-custom-up(640px) {
     flex-direction: row;
-    width: 592px;
     padding: $main-indent;
   }
 
-  @include bp-x-large-up {
-    width: 752px;
-  }
-
   &_info {
-    @extend %flexCenter;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
   }
 }
@@ -35,8 +31,10 @@
 
   padding: 5px;
   margin-right: 25px;
-  
+
   @extend %transitionDetails;
+
+  background-color: transparent;
 
   &:hover {
     transform: scale(1.2);
@@ -84,11 +82,13 @@
   margin-right: 33px;
 
   &_minus {
+    background-color: transparent;
     display: flex;
     padding: 12px;
   }
 
   &_plus {
+    background-color: transparent;
     display: flex;
     padding: 12px;
   }
@@ -103,11 +103,11 @@
 
   margin-right: 13px;
   border: 1px solid $color-elements;
-  
+
   @include square(32px);
 
   @extend %transitionDetails;
-  
+
   &:hover {
     background-color: $color-elements;
   }

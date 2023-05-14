@@ -14,31 +14,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 288px;
+  width: 100%;
   height: 190px;
   padding: $main-indent;
   border: 1px solid $color-icons;
 
-  @include bp-custom-up (640px) {
-    width: 592px;
-    height: 190px;
+  @include bp-x-large-up {
+    width: 368px;
+    height: 206px;
     padding: $main-indent;
   }
 
-  @include bp-x-large-up {
-    width: 368px;
-  }
+  //@include bp-x-large-up {
+  //  width: 368px;
+  //}
 }
 
 .info {
-  width: 240px;
+  width: 100%;
 
-  @include bp-custom-up (640px) {
-    width: 544px;
-  }
-  @include bp-x-large-up {
-    width: 100%;
-  }
+  //@include bp-custom-up(640px) {
+  //  width: 544px;
+  //}
+  //@include bp-x-large-up {
+  //  width: 100%;
+  //}
 }
 
 .total_price {

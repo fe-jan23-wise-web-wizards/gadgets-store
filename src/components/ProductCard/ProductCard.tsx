@@ -14,14 +14,30 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     removeFromFavorites,
     isFavorite,
     addToFavorites,
+    isAddedToCart,
+    addToCart,
+    removeFromCart,
   } = useLocalStorageContext();
 
+  const isItemInCart = isAddedToCart(product.itemId);
   const isItemFavorite = isFavorite(product.itemId);
 
-  const handleLikeButtonClick = () => {
+  const handleLike = () => {
     isFavorite(product.itemId)
       ? removeFromFavorites(product.itemId)
       : addToFavorites(product.itemId);
+  };
+
+  const handleAddToCart = () => {
+    if (isItemInCart) {
+      removeFromCart(product.itemId);
+    } else {
+      addToCart({
+        id: product.itemId,
+        price: product.price,
+        quantity: 1,
+      });
+    }
   };
 
   const titleSplit = product.name.split(' ');
@@ -83,11 +99,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className={styles.product_card_buttons}>
-          <AddToCartButton />
-          <LikeButton
-            onLike={handleLikeButtonClick}
-            isItemFavorite={isItemFavorite}
+          <AddToCartButton
+            isAddedToCart={isItemInCart}
+            handleAddToCart={handleAddToCart}
           />
+          <LikeButton onLike={handleLike} isItemFavorite={isItemFavorite} />
         </div>
       </div>
     </div>
