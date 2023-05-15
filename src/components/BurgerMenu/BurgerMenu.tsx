@@ -8,15 +8,21 @@ import { Logo } from '../Logo';
 import iconCart from '@assets/icons/icon-cart.svg';
 import IconClose from '@assets/icons/icon-close.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
-
 import styles from '@components/BurgerMenu/BurgerMenu.module.scss';
 
 interface Props {
   isMenuOpen: boolean;
   onMenuClose: () => void;
+  favoritesCount: number;
+  cartCount: number;
 }
 
-export const BurgerMenu: FC<Props> = ({ isMenuOpen, onMenuClose }) => {
+export const BurgerMenu: FC<Props> = ({
+  isMenuOpen,
+  onMenuClose,
+  favoritesCount,
+  cartCount,
+}) => {
   return (
     <nav
       className={classNames([styles.BurgerMenu], {
@@ -51,18 +57,18 @@ export const BurgerMenu: FC<Props> = ({ isMenuOpen, onMenuClose }) => {
           to={'favorites'}
           src={iconFavorites}
           alt={'IconLink-favorites'}
-          classNameIconLink={styles.BurgerMenu__iconlink}
-          classNameIcon={styles.BurgerMenu__icon}
+          isBurger={true}
           clickFunc={onMenuClose}
+          count={favoritesCount}
         />
 
         <IconLink
           to={'cart'}
           src={iconCart}
           alt={'IconLink-cart'}
-          classNameIconLink={styles.BurgerMenu__iconlink}
-          classNameIcon={styles.BurgerMenu__icon}
+          isBurger={true}
           clickFunc={onMenuClose}
+          count={cartCount}
         />
       </div>
     </nav>
