@@ -1,13 +1,15 @@
+import { FC, useEffect, useState } from 'react';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
+import { useQuery } from '@tanstack/react-query';
+
+import { CartCheckout } from '@components/CartCheckout';
 import { Product } from '@/types/Product';
 import { getProduct } from '@api/requests';
-import { CartCheckout } from '@components/CartCheckout';
 import { CartItem } from '@components/CartItem';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 import styles from './CartPage.module.scss';
+import { Modal } from '@/components/ModalCheckout';
 
-export const CartPage = () => {
+export const CartPage: FC = () => {
   const {
     cartItems,
     removeFromCart,
@@ -18,6 +20,9 @@ export const CartPage = () => {
   } = useLocalStorageContext();
 
   const [cart, setCart] = useState<Product[]>([]);
+  const [showModal, setShowModal] = useState(false);
+
+
 
   const cartQuery = useQuery({
     queryKey: ['cart'],
@@ -32,6 +37,14 @@ export const CartPage = () => {
 
   const handleGoBack = () => {
     window.history.back();
+  };
+
+  const handleCheckoutClick = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -70,8 +83,11 @@ export const CartPage = () => {
               <CartCheckout
                 totalPrice={totalPrice}
                 totalQuantity={totalQuantity}
+                onCheckout={handleCheckoutClick}
               />
             </div>
+
+            {showModal && <Modal onClose={closeModal} />}
           </div>
         </>
       ) : (
