@@ -4,11 +4,13 @@ import styles from './CartCheckout.module.scss';
 interface CartCheckoutProps {
   totalQuantity: number;
   totalPrice: number;
+  onCheckout: () => void;
 }
 
 export const CartCheckout: FC<CartCheckoutProps> = ({
   totalQuantity,
   totalPrice,
+  onCheckout
 }) => {
   return (
     <>
@@ -19,7 +21,12 @@ export const CartCheckout: FC<CartCheckoutProps> = ({
             Total for {totalQuantity} items
           </p>
           <div className={styles.line}></div>
-          <a className={styles.button_checkout} href="#button" data-qa="hover">
+          <a
+            className={styles.button_checkout}
+            href="#button"
+            data-qa="hover"
+            onClick={onCheckout}
+          >
             Checkout
           </a>
         </div>
