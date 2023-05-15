@@ -1,7 +1,8 @@
+import { useRef, useState } from 'react';
 import { Category } from '@/types/Category';
-import { getProductDetails,getRecommendedProducts } from '@api/requests';
+import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
-import { useLocation,useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { BackButton } from '@/components/BackButton';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -16,17 +17,26 @@ import styles from './ProductPage.module.scss';
 export const ProductPage = () => {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
+  const [currentProductPath, setCurrentProductPath] = useState('');
+
   const category = pathname.slice(1).split('/').shift() as Category;
 
-  // const productQuery = useQuery({
-  //   queryKey: [`product-${id}`],
-  //   queryFn: () => getProduct(id),
-  // });
+  const currentProductId = useRef(id);
 
   const productDetailsQuery = useQuery({
     queryKey: [`${id}`],
-    queryFn: () => getProductDetails(id),
+    queryFn: () => getProductDetails(currentProductId.current),
+    enabled: !!currentProductId.current,
   });
+
+  const handleProductChange = (newId: string) => {
+    currentProductId.current = newId;
+    const newPathname =  `/${category}/${newId}`;
+    window.history.replaceState(null, '', `${newPathname}`);
+
+    setCurrentProductPath(newPathname);
+    void productDetailsQuery.refetch();
+  };
 
   const recommendedProductsQuery = useQuery({
     queryKey: ['recommendedProducts'],
@@ -39,7 +49,9 @@ export const ProductPage = () => {
 
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs
+        newPath={currentProductPath}
+      />
 
       <BackButton category={category} />
 
@@ -53,7 +65,7 @@ export const ProductPage = () => {
             </div>
 
             <div className={styles.product_details_sidebar}>
-              <ProductSidebar product={product} />
+              <ProductSidebar product={product} onProductChange={handleProductChange} />
             </div>
           </div>
 

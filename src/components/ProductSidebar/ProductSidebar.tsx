@@ -12,14 +12,18 @@ import styles from './ProductSidebar.module.scss';
 
 interface ProductSidebarProps {
   product: Phone | Accessory | Tablet;
+  onProductChange: (newId: string) => void;
 }
 
-export const ProductSidebar = ({ product }: ProductSidebarProps) => {
+export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps) => {
   const {
+    namespaceId,
+    capacity,
     screen,
     resolution,
     processor,
     ram,
+    color,
   } = product;
 
   const specs = {
@@ -43,14 +47,34 @@ export const ProductSidebar = ({ product }: ProductSidebarProps) => {
       : addToFavorites(product.id);
   };
 
+  const handleCapacityChange = (newCapacity: string) => {
+    const newProductId = `${namespaceId}-${newCapacity.toLocaleLowerCase()}-${color.split(' ').join('-')}`;
+
+    onProductChange(newProductId);
+  };
+
+  const handleColorChange = (newColor: string) => {
+    const newProductId = `${namespaceId}-${capacity.toLocaleLowerCase()}-${newColor.split(' ').join('-')}`;
+
+    onProductChange(newProductId);
+  };
+
   return (
     <>
       <div className={styles.product_colors}>
-        <ProductColors colors={product.colorsAvailable} />
+        <ProductColors
+          currentColor={color}
+          colors={product.colorsAvailable}
+          onColorChange={handleColorChange}
+        />
       </div>
 
       <div className={styles.product_capacities}>
-        <ProductCapacities capacities={product.capacityAvailable} />
+        <ProductCapacities
+          currentCapacity={capacity}
+          capacities={product.capacityAvailable}
+          onCapacityChange={handleCapacityChange}
+        />
       </div>
 
       <div className={styles.product_price}>

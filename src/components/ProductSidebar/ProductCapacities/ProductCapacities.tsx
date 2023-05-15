@@ -1,54 +1,32 @@
-import { NavLink, useLocation } from 'react-router-dom';
-
 import styles from './ProductCapacities.module.scss';
 import classNames from 'classnames';
 
 interface ProductCapacitiesProps {
+  currentCapacity: string;
   capacities: string[];
+  onCapacityChange: (newCapacity: string) => void;
 }
 
-export const ProductCapacities = ({ capacities }: ProductCapacitiesProps) => {
-  const { pathname } = useLocation();
-
-  const updateProductLink = (newCapacity: string) => {
-    const capacityRegex = /(\d+)gb/;
-    const capacityMatch = pathname.match(capacityRegex);
-
-    if (!capacityMatch) {
-      return;
-    }
-    
-    const updatedCapacity = `${newCapacity}gb`;
-
-    return pathname.replace(capacityRegex, updatedCapacity);
-  };
-  
+export const ProductCapacities = ({ currentCapacity, capacities, onCapacityChange }: ProductCapacitiesProps) => {
   return (
     <div className={styles.capacities}>
       <h3 className={styles.capacities_header}>
-        Select capacity
+        {capacities[0].includes('mm') ? ('Select size') : ('Select capacity')}
       </h3>
 
       <div className={styles.capacities_options}>
         {capacities.map(capacity => {
-          const capacityNumber = capacity.split('GB').join('');
-          const updatedLink = updateProductLink(capacityNumber);
-        
           return (
-            <NavLink
-              className={
-              ({ isActive }) => classNames(
+            <button
+              className={classNames(
                 styles.capacities_button,
-                {
-                  [styles.capacities_button__active]: isActive, 
-                },
-              )
-            }
+                {[styles.capacities_button__active]: capacity === currentCapacity},
+              )}
               key={capacity}
-              to={`${updatedLink}`}
+              onClick={() => onCapacityChange(capacity)}
             >
-              {`${capacityNumber} GB`}
-            </NavLink>
+              {capacity}
+            </button>
           );
         })}
       </div>

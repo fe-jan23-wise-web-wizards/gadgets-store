@@ -1,27 +1,13 @@
-import { NavLink, useLocation } from 'react-router-dom';
 import styles from './ProductColors.module.scss';
 import classNames from 'classnames';
 
 interface ProductColorsProps {
+  currentColor: string;
   colors: string[];
+  onColorChange: (newColor: string) => void;
 }
 
-export const ProductColors = ({ colors }: ProductColorsProps) => {
-  const { pathname } = useLocation();
-
-  const updateProductLink = (newColor: string) => {
-    const colorRegex = /-(\w+)$/;
-    const colorMatch = pathname.match(colorRegex);
-  
-    if (!colorMatch) {
-      return;
-    }
-  
-    const updatedColor = `-${newColor}`;
-  
-    return pathname.replace(colorRegex, updatedColor);
-  };
-
+export const ProductColors = ({ currentColor, colors, onColorChange }: ProductColorsProps) => {
   const generateId = () => {
     const min = 100000;
     const max = 999999;
@@ -40,22 +26,17 @@ export const ProductColors = ({ colors }: ProductColorsProps) => {
   
         <div className={styles.colors_options}>
           {colors.map(color => {
-            const updatedLink = updateProductLink(color);
-
             return (
-              <NavLink
+              <button
                 key={color}
-                className={
-                ({ isActive }) => classNames(
+                className={classNames(
                   styles.colors_circle,
-                  {
-                    [styles.colors_circle__active]: isActive,
-                    [styles[`colors_circle__${color}`]]: true,
-                  },
+                  {[styles[`colors_circle__active`]]: color === currentColor },
+                  {[styles[`colors_circle__${color.split(' ').join('')}`]]: true },
                 )}
-                to={`${updatedLink}`}
+                onClick={() => onColorChange(color)}
               >
-              </NavLink>
+              </button>
             );
           })}
         </div>
