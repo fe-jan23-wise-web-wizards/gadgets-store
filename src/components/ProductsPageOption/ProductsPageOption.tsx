@@ -1,19 +1,19 @@
-import styles from './PhonesPageOption.module.scss';
-import { Dropdown } from '../Dropdown/';
+import styles from './ProductsPageOption.module.scss';
+import { Dropdown } from '../Dropdown';
 
-type PhonesPageOptionProps = {
+type ProductsPageOptionProps = {
   title: string,
   searchParamsKey: string,
   optionItems: string[] | number[],
   currentOptionItem: string | number,
 };
 
-export const PhonesPageOption = ({
+export const ProductsPageOption = ({
   title,
   searchParamsKey,
   optionItems,
   currentOptionItem,
-}: PhonesPageOptionProps) => {
+}: ProductsPageOptionProps) => {
   return (
     <div className={styles.option_wrapper}>
       <p className={styles.option_title}>

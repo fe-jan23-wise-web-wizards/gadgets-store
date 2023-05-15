@@ -1,14 +1,14 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { SortBy } from '@/types/SortBy';
-import { PhonesPageOption } from '../PhonesPageOption';
+import { ProductsPageOption } from '../ProductsPageOption';
 
-import styles from './PhonesPageOptions.module.scss';
+import styles from './ProductsPageOptions.module.scss';
 
 const sortByOptionItems = Object.values(SortBy);
-const limitOptionItems = [16, 10, 5];
+const limitOptionItems = [16, 32, 64];
 
-export const PhonesPageOptions = () => {
+export const ProductsPageOptions = () => {
   const [searchParams] = useSearchParams();
 
   const sortBy = searchParams.get('sort') || SortBy.Default;
@@ -16,14 +16,14 @@ export const PhonesPageOptions = () => {
 
   return (
     <div className={styles.options_wrapper}>
-      <PhonesPageOption
+      <ProductsPageOption
         title='Sort by'
         searchParamsKey='sort'
         optionItems={sortByOptionItems}
         currentOptionItem={sortBy}
       />
 
-      <PhonesPageOption
+      <ProductsPageOption
         title='Items on page'
         searchParamsKey='limit'
         optionItems={limitOptionItems}

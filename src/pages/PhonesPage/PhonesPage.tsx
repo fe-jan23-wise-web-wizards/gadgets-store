@@ -10,7 +10,7 @@ import { SortBy } from '@/types/SortBy';
 import { Category } from '@/types/Category';
 import { ProductList } from '@components/ProductList';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { PhonesPageOptions } from '@components/PhonesPageOptions';
+import { ProductsPageOptions } from '@/components/ProductsPageOptions';
 import { Pagination } from '@/components/Pagination';
 
 import styles from './PhonesPage.module.scss';
@@ -29,14 +29,14 @@ export const PhonesPage = () => {
     window.scrollTo({ top: 0 });
   });
 
-  const productsQuantityQuery = useQuery({
-    queryKey: ['productsQuantity', category],
+  const phonesQuantityQuery = useQuery({
+    queryKey: ['phonesQuantity', category],
     queryFn: () => getProductsCount(category),
   });
 
-  const modelsQuantity = productsQuantityQuery.data?.count || 0;
+  const phonesQuantity = phonesQuantityQuery.data?.count || 0;
 
-  const pagesQuantity = Math.ceil(modelsQuantity / (limit || 16));
+  const pagesQuantity = Math.ceil(phonesQuantity / (limit || 16));
 
   const phonesQuery = useQuery({
     queryKey: ['phones', page, limit, sortBy],
@@ -51,10 +51,10 @@ export const PhonesPage = () => {
       <h1 className={styles.title}>Mobile phones</h1>
 
       <p className={styles.models_quantity_info}>
-        {modelsQuantity} models
+        {phonesQuantity} models
       </p>
 
-      <PhonesPageOptions />
+      <ProductsPageOptions />
 
       <ProductList products={phonesQuery?.data || []} />
 
