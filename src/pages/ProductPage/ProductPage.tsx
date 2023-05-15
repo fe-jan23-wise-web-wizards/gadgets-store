@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
 import { Category } from '@/types/Category';
 import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
+import { useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { BackButton } from '@/components/BackButton';
@@ -12,6 +12,7 @@ import { ProductSidebar } from '@/components/ProductSidebar';
 import { ProductTechSpecs } from '@/components/ProductTechSpecs';
 
 import { ImageSlider } from '@/components/ImageSlider';
+import { Loader } from '@/components/Loader';
 import styles from './ProductPage.module.scss';
 
 export const ProductPage = () => {
@@ -31,7 +32,7 @@ export const ProductPage = () => {
 
   const handleProductChange = (newId: string) => {
     currentProductId.current = newId;
-    const newPathname =  `/${category}/${newId}`;
+    const newPathname = `/${category}/${newId}`;
     window.history.replaceState(null, '', `${newPathname}`);
 
     setCurrentProductPath(newPathname);
@@ -49,40 +50,47 @@ export const ProductPage = () => {
 
   return (
     <>
-      <Breadcrumbs
-        newPath={currentProductPath}
-      />
-
-      <BackButton category={category} />
-
-      {product && (
+      {productDetailsQuery.isInitialLoading ? (
+        <Loader />
+      ) : (
         <>
-          <h1 className={styles.product_title}>{product.name}</h1>
+          <Breadcrumbs newPath={currentProductPath} />
 
-          <div className={styles.product_details}>
-            <div className={styles.product_details_slider}>
-              <ImageSlider productImages={product.images} />
-            </div>
+          <BackButton category={category} />
 
-            <div className={styles.product_details_sidebar}>
-              <ProductSidebar product={product} onProductChange={handleProductChange} />
-            </div>
-          </div>
+          {product && (
+            <>
+              <h1 className={styles.product_title}>{product.name}</h1>
 
-          <div className={styles.product_description}>
-            <div className={styles.product_description_about}>
-              <ProductAbout description={product.description} />
-            </div>
+              <div className={styles.product_details}>
+                <div className={styles.product_details_slider}>
+                  <ImageSlider productImages={product.images} />
+                </div>
 
-            <div className={styles.product_description_tech}>
-              <ProductTechSpecs product={product} />
-            </div>
-          </div>
+                <div className={styles.product_details_sidebar}>
+                  <ProductSidebar
+                    product={product}
+                    onProductChange={handleProductChange}
+                  />
+                </div>
+              </div>
 
-          <CardSlider
-            title={'You may also like'}
-            products={recommendedProducts}
-          />
+              <div className={styles.product_description}>
+                <div className={styles.product_description_about}>
+                  <ProductAbout description={product.description} />
+                </div>
+
+                <div className={styles.product_description_tech}>
+                  <ProductTechSpecs product={product} />
+                </div>
+              </div>
+
+              <CardSlider
+                title={'You may also like'}
+                products={recommendedProducts}
+              />
+            </>
+          )}
         </>
       )}
     </>
