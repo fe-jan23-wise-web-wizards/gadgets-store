@@ -30,14 +30,24 @@ $product-rosegold: #e6c7c2;
 $product-coral: #ee7762;
 $product-pink: #f1b6ac;
 
-$product-colors: 'black' $product-black, 'green' $product-green,
-  'yellow' $product-yellow, 'white' $product-white, 'purple' $product-purple,
-  'red' $product-red, 'midnight' $product-midnight,
-  'spaceblack' $product-spaceblack, 'spacegray' $product-spacegray,
-  'blue' $product-blue, 'starlight' $product-starlight,
-  'midnightgreen' $product-midnightgreen, 'gold' $product-gold,
-  'silver' $product-silver, 'rosegold' $product-rosegold, 'coral' $product-coral,
-  'pink' $product-pink;
+$product-colors:
+'black' $product-black,
+'green' $product-green,
+'yellow' $product-yellow,
+'white' $product-white,
+'purple' $product-purple,
+'red' $product-red,
+'midnight' $product-midnight,
+'spaceblack' $product-spaceblack,
+'spacegray' $product-spacegray,
+'blue' $product-blue,
+'starlight' $product-starlight,
+'midnightgreen' $product-midnightgreen,
+'gold' $product-gold,
+'silver' $product-silver,
+'rosegold' $product-rosegold,
+'coral' $product-coral,
+'pink' $product-pink;
 
 //* Breakpoints sizes
 $bp-480: 480px;
