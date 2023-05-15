@@ -37,14 +37,30 @@ export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps
     removeFromFavorites,
     isFavorite,
     addToFavorites,
+    isAddedToCart,
+    addToCart,
+    removeFromCart,
   } = useLocalStorageContext();
 
+  const isItemInCart = isAddedToCart(product.id);
   const isItemFavorite = isFavorite(product.id);
 
-  const handleLikeButtonClick = () => {
+  const handleLike = () => {
     isFavorite(product.id)
       ? removeFromFavorites(product.id)
       : addToFavorites(product.id);
+  };
+
+  const handleAddToCart = () => {
+    if (isItemInCart) {
+      removeFromCart(product.id);
+    } else {
+      addToCart({
+        id: product.id,
+        price: product.priceDiscount,
+        quantity: 1,
+      });
+    }
   };
 
   const handleCapacityChange = (newCapacity: string) => {
@@ -88,9 +104,12 @@ export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps
       </div>
 
       <div className={styles.product_buttons}>
-        <AddToCartButton />
+        <AddToCartButton
+          handleAddToCart={handleAddToCart}
+          isAddedToCart={isItemInCart}
+        />
         <LikeButton
-          onLike={handleLikeButtonClick}
+          onLike={handleLike}
           isItemFavorite={isItemFavorite}
         />
       </div>
