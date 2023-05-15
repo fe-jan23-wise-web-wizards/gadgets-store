@@ -65,6 +65,7 @@
 
     color: $color-secondary;
     margin-bottom: 48px;
+
     &:hover {
       color: $color-white;
       border-bottom: 2px solid $color-white;
@@ -77,31 +78,6 @@
     justify-content: space-between;
     bottom: 0;
     width: 100%;
-  }
-
-  &__iconlink {
-    display: flex;
-    justify-content: center;
-    padding-top: 32px;
-    padding-bottom: 32px;
-    flex-grow: 1;
-    border-top: 1px solid $color-elements;
-
-    &:hover {
-      border-bottom: 2px solid $color-white;
-    }
-
-    &:not(:last-child) {
-      border-right: 1px solid $color-elements;
-    }
-  }
-
-  &__icon {
-    display: block;
-    width: 16px;
-    height: 16px;
-    padding: auto;
-    flex-grow: 1;
   }
 
   @include bp-custom-up($bp-640) {

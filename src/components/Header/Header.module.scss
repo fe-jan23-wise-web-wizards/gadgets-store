@@ -140,31 +140,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        &_item {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-        }
-
-        &_link {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 48px;
-          height: 48px;
-          border-left: 1px solid $color-elements;
-
-          &:hover {
-            background-color: $color-icons;
-          }
-
-          @include bp-large-up {
-            width: 64px;
-            height: 64px;
-          }
-        }
       }
     }
   }

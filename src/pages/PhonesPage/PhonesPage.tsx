@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useLocation,useSearchParams } from 'react-router-dom';
 
-import {
-  getProductsCount,
-  getProductsByCategory,
-} from '@api/requests';
-import { SortBy } from '@/types/SortBy';
+import { Breadcrumbs } from '@components/Breadcrumbs';
+import { Pagination } from '@components/Pagination';
+import { ProductsPageOptions } from '@components/ProductsPageOptions';
 import { Category } from '@/types/Category';
+import { SortBy } from '@/types/SortBy';
+import {
+getProductsByCategory,
+getProductsCount,
+} from '@api/requests';
 import { ProductList } from '@components/ProductList';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ProductsPageOptions } from '@/components/ProductsPageOptions';
-import { Pagination } from '@/components/Pagination';
 
+import { Loader } from '@components/Loader';
 import styles from './PhonesPage.module.scss';
 
 export const PhonesPage = () => {
@@ -35,7 +36,6 @@ export const PhonesPage = () => {
   });
 
   const phonesQuantity = phonesQuantityQuery.data?.count || 0;
-
   const pagesQuantity = Math.ceil(phonesQuantity / (limit || 16));
 
   const phonesQuery = useQuery({
@@ -46,19 +46,22 @@ export const PhonesPage = () => {
 
   return (
     <>
-      <Breadcrumbs />
+      {phonesQuery.isFetching || phonesQuery.isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Breadcrumbs />
+          <h1 className={styles.title}>Mobile phones</h1>
 
-      <h1 className={styles.title}>Mobile phones</h1>
+          <p className={styles.models_quantity_info}>{phonesQuantity} models</p>
 
-      <p className={styles.models_quantity_info}>
-        {phonesQuantity} models
-      </p>
+          <ProductsPageOptions />
 
-      <ProductsPageOptions />
+          <ProductList products={phonesQuery?.data || []} />
 
-      <ProductList products={phonesQuery?.data || []} />
-
-      <Pagination quantity={pagesQuantity} />
+          <Pagination quantity={pagesQuantity} />
+        </>
+      )}
     </>
   );
 };

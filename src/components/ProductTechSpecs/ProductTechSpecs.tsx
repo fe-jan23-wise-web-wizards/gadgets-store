@@ -1,9 +1,8 @@
 import { Phone } from "@/types/Phone";
-
-import styles from './ProductTechSpecs.module.scss';
 import { Accessory } from "@/types/Accessory";
 import { Tablet } from "@/types/Tablet";
 import { CommonTechSpecs } from "@/types/CommonTechSpecs";
+import styles from './ProductTechSpecs.module.scss';
 
 interface ProductTechSpecsProps {
   product: Phone | (Accessory & CommonTechSpecs) | Tablet;

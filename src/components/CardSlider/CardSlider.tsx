@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperClass } from 'swiper/types';
 
-import { ProductCard } from '../ProductCard';
+import { ProductCard, ProductCardSkeleton } from '../ProductCard';
 import { CardSliderNav } from './CardSliderNav';
 import { Product } from '../../types/Product';
 
@@ -14,7 +14,7 @@ import styles from './CardSlider.module.scss';
 
 type CardSliderProps = {
   title: string,
-  products: Product[],
+  products: Product[] | [],
 };
 
 export const CardSlider = ({ title, products }: CardSliderProps) => {
@@ -36,7 +36,22 @@ export const CardSlider = ({ title, products }: CardSliderProps) => {
           slidesPerView={'auto'}
           onSwiper={setSwiperRef}
         >
-          {products.map(product => (
+          {products.length === 0
+            ? <>
+                <SwiperSlide>
+                  <ProductCardSkeleton />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <ProductCardSkeleton />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <ProductCardSkeleton />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <ProductCardSkeleton />
+                </SwiperSlide>
+              </>
+          : products.map(product => (
             <SwiperSlide key={product.itemId}>
               <ProductCard product={product} />
             </SwiperSlide>
