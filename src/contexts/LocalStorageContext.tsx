@@ -1,7 +1,22 @@
 import { useCart } from '@/hooks/useCart';
 import { useFavorites } from '@/hooks/useFavorites';
-import { LocalStorageContextValue } from '@/types/LocalStorageContextValue';
+import { CartItem } from '@/types/CartItem';
 import { createContext } from 'react';
+
+interface LocalStorageContextValue {
+  favorites: string[];
+  isFavorite: (productId: string) => boolean;
+  addToFavorites: (productId: string) => void;
+  removeFromFavorites: (productId: string) => void;
+  cartItems: CartItem[];
+  isAddedToCart: (itemId: string) => boolean;
+  addToCart: (product: CartItem) => void;
+  removeFromCart: (itemId: string) => void;
+  increaseQuantity: (itemId: string) => void;
+  decreaseQuantity: (itemId: string) => void;
+  totalQuantity: number;
+  totalPrice: number;
+}
 
 export const LocalStorageContext = createContext<
   LocalStorageContextValue | undefined

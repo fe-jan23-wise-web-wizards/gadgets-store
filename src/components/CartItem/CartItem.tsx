@@ -37,9 +37,7 @@ export const CartItem: FC<CartItemProps> = ({
             src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
             alt={product.itemId}
           />
-          <p className={styles.content}>
-            {product.name} {product.color}
-          </p>
+          <p className={styles.content}>{product.name}</p>
         </div>
 
         <div className={styles.quantity_and_price}>
@@ -75,7 +73,7 @@ export const CartItem: FC<CartItemProps> = ({
             </div>
           </div>
 
-          <p className={styles.phone_price}>{`$${product.price}`}</p>
+          <p className={styles.phone_price}>${product.price}</p>
         </div>
       </div>
     </>
