@@ -6,8 +6,9 @@ import { CartCheckout } from '@components/CartCheckout';
 import { Product } from '@/types/Product';
 import { getProduct } from '@api/requests';
 import { CartItem } from '@components/CartItem';
-import styles from './CartPage.module.scss';
 import { Modal } from '@/components/ModalCheckout';
+
+import styles from './CartPage.module.scss';
 
 export const CartPage: FC = () => {
   const {
@@ -26,7 +27,9 @@ export const CartPage: FC = () => {
 
   const cartQuery = useQuery({
     queryKey: ['cart'],
-    queryFn: () => Promise.all(cartItems.map(({ id }) => getProduct(id))),
+    queryFn: () => Promise.all(
+      cartItems.map(({ id }) => getProduct(id))
+    ),
     onSuccess: data => setCart(data),
   });
 
