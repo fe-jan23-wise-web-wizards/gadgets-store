@@ -1,18 +1,40 @@
 @import '@styles/variables';
 
 .pagination_bullet {
-  box-sizing: border-box;
+  position: relative;
 
-  height: 0;
-  padding-bottom: 100%;
+  width: 100%;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
 
   border: 2px solid $color-elements;
   background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 90%;
 }
 
 .pagination_bullet_active {
   border-color: $color-white;
+}
+
+.pagination_bullet_image_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 80%;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  transform: translate(-50%, -50%);
 }

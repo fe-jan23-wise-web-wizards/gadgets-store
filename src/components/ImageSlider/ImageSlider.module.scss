@@ -1,32 +1,45 @@
 @import '@styles/variables';
 @import '@styles/breakpoints';
 
-:global(.swiper-wrapper) {
-  width: 100%;
-}
-
-:global(.swiper) {
-  width: 100%;
-}
-
 .slider_wrapper {
   display: flex;
   flex-direction: column-reverse;
-  gap: 24px;
+  gap: $main-indent;
 
   @include bp-custom-up(639px) {
-    display: grid;
-
-    grid-template-columns: 0.12fr 0.88fr;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
-  @include bp-large-up {
-    gap: 28px;
-    grid-template-columns: 0.16fr 0.84fr;
+  :global(.swiper-wrapper) {
+    width: 100%;
+  }
+  
+  :global(.swiper) {
+    position: absolute;
+    width: 100%;
   }
 }
 
 .slider {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
+
+  flex-shrink: 0;
+  width: 100%;
+
+  @include bp-custom-up(639px) {
+    flex-basis: 82%;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
+
+.temp {
+  width: 50%;
 }
