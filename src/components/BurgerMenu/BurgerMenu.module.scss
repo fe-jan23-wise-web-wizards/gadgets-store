@@ -45,7 +45,7 @@
   }
 
   &__navlist {
-    margin-top: 24px;
+    margin-top: 64px;
 
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@
     text-transform: uppercase;
 
     color: $color-secondary;
-    margin-bottom: 32px;
+    margin-bottom: 48px;
     &:hover {
       color: $color-white;
       border-bottom: 2px solid $color-white;
@@ -82,8 +82,8 @@
   &__iconlink {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     flex-grow: 1;
     border-top: 1px solid $color-elements;
 
