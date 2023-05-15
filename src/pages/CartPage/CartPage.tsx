@@ -46,11 +46,16 @@ export const CartPage: FC = () => {
 
   const handleCheckoutClick = () => {
     setShowModal(true);
+    clearCartData();
   };
 
   const closeModal = () => {
     setShowModal(false);
     setRedirectToHomePage(true);
+  };
+
+  const clearCartData = () => {
+    localStorage.removeItem('cart');
   };
 
   return (
