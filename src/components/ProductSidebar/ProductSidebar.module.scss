@@ -40,6 +40,10 @@
     font-size: 0.8rem;
     line-height: 150%;
     font-weight: 600;
+    
+    @include bp-custom-up(600px) {
+      max-width: 320px;
+    }
   
     &_name {
       color: $color-secondary;
