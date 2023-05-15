@@ -21,7 +21,7 @@ export const CartPage: FC = () => {
 
   const [cart, setCart] = useState<Product[]>([]);
   const [showModal, setShowModal] = useState(false);
-
+  const [redirectToHomePage, setRedirectToHomePage] = useState(false);
 
 
   const cartQuery = useQuery({
@@ -35,6 +35,12 @@ export const CartPage: FC = () => {
     void cartQuery.refetch();
   }, [cartItems]);
 
+  useEffect(() => {
+    if (redirectToHomePage) {
+      window.location.href = '/';
+    }
+  }, [redirectToHomePage]);
+
   const handleGoBack = () => {
     window.history.back();
   };
@@ -45,6 +51,7 @@ export const CartPage: FC = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    setRedirectToHomePage(true);
   };
 
   return (
