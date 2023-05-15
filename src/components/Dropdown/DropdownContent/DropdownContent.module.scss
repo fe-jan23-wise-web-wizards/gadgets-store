@@ -1,0 +1,19 @@
+@import '@styles/variables';
+
+.dropdown_content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+
+  padding: 8px 0;
+
+  border: 1px solid $color-elements;
+  background-color: $color-dark;
+
+  transform: translateY(100%);
+}
+
+.dropdown_content_hidden {
+  display: none;
+}

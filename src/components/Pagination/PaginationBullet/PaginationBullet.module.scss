@@ -1,0 +1,22 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.pagination_bullet {
+  @include square(32px);
+
+  font-family: inherit;
+  color: $color-white;
+
+  border: none;
+  background-color: $color-surface-1;
+
+  transition: background-color 0.3s linear;
+
+  &:hover {
+    background-color: $color-elements;
+  }
+}
+
+.pagination_bullet_active {
+  background-color: $color-accent;
+}
