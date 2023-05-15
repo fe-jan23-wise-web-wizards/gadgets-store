@@ -1,4 +1,4 @@
-@import '@/styles/variables.scss';
+@import '@styles/variables';
 @import '@styles/extends';
 
 .product_card_button_cart {
@@ -13,7 +13,6 @@
   font-weight: 600;
   line-height: 150%;
   text-decoration: none;
-
   background-color: $color-accent;
 
   @extend %transitionDetails;
