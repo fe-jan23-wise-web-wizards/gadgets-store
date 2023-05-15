@@ -1,0 +1,39 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.pagination_nav_button {
+  @include square(32px);
+
+  border: none;
+  background-color: $color-surface-2;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transition: background-color 0.3s linear;
+
+  &:hover {
+    background-color: $color-icons;
+  }
+}
+
+.pagination_nav_button_disabled {
+  border: 1px solid $color-elements;
+  background-color: $color-dark;
+  pointer-events: none;
+}
+
+.pagination_nav_button_prev_icon {
+  background-image: url('@assets/icons/back-arrow.svg');
+}
+
+.pagination_nav_button_prev_icon_disabled {
+  background-image: url('@assets/icons/back-arrow-disabled.svg');
+}
+
+.pagination_nav_button_next_icon {
+  background-image: url('@assets/icons/forward-arrow.svg');
+}
+
+.pagination_nav_button_next_icon_disabled {
+  background-image: url('@assets/icons/forward-arrow-disabled.svg');
+}
