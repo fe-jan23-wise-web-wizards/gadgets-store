@@ -1,0 +1,64 @@
+@import '@/styles/breakpoints';
+@import '@/styles/variables';
+@import '@/styles/extends';
+
+.product {
+  &_title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 130%;
+    letter-spacing: -0.01em;
+    margin-bottom: $secondary-indent;
+
+    @include bp-custom-up(640px) {
+      font-size: 2rem;
+      margin-bottom: 1.25 * $secondary-indent;
+    }
+  }
+
+  &_details {
+    @extend %flexBetween;
+
+    flex-direction: column;
+
+    @include bp-custom-up(600px) {
+      flex-direction: row;
+      gap: 65px;
+    }
+
+    @extend %homeIndentsSet;
+
+    &_slider {
+      flex: 1.1;
+      margin-bottom: 40px;
+
+      @include bp-custom-up(600px) {
+        margin-bottom: 0px;
+      }
+    }
+
+    &_sidebar {
+      flex: 1;
+    }
+  }
+
+  &_description {
+    @extend %flexBetween;
+
+    flex-direction: column;
+
+    @include bp-custom-up(640px) {
+      flex-direction: row;
+      gap: 65px;
+    }
+
+    &_about {
+      flex: 1.1;
+    }
+
+    &_tech {
+      flex: 1;
+      margin-bottom: 1.75 * $secondary-indent;
+    }
+  }
+}

@@ -17,6 +17,13 @@
     font-size: 0.75rem;
     color: $color-white;
 
+    @extend %transitionDetails;
+    transition-property: color;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+
     &:last-child {
       color: $color-secondary;
       pointer-events: none;
