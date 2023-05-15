@@ -1,4 +1,4 @@
-@import './variables'; 
+@import 'variables';
 
 @mixin bp-small-up {
   @media only screen and (min-width: $bp-480) {

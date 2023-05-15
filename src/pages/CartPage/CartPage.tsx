@@ -26,7 +26,6 @@ export const CartPage = () => {
   });
 
   useEffect(() => {
-    console.log(cart);
     void cartQuery.refetch();
   }, [cartItems]);
 
