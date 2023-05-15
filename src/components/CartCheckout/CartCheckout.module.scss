@@ -24,21 +24,10 @@
     height: 206px;
     padding: $main-indent;
   }
-
-  //@include bp-x-large-up {
-  //  width: 368px;
-  //}
 }
 
 .info {
   width: 100%;
-
-  //@include bp-custom-up(640px) {
-  //  width: 544px;
-  //}
-  //@include bp-x-large-up {
-  //  width: 100%;
-  //}
 }
 
 .total_price {
