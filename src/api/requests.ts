@@ -65,7 +65,7 @@ export const getProduct = (id: string) => {
 };
 
 export const getProductsCount = (category: Category) => {
-  return get(`${BASE_URL}/count?category=${category}`);
+  return get<{ count: number }>(`${BASE_URL}/count?category=${category}`);
 };
 
 export const getRecommendedProducts = (id: string) => {

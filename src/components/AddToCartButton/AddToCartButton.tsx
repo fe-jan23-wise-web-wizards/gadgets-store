@@ -1,29 +1,23 @@
-import { useState } from 'react';
-import styles from './AddToCartButton.module.scss';
 import classNames from 'classnames';
+import styles from './AddToCartButton.module.scss';
 
-export const AddToCartButton: React.FC = () => {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+interface AddToCartButtonProps {
+  isAddedToCart: boolean;
+  handleAddToCart: () => void;
+}
 
-  const handleAddToCart = () => {
-    setIsAddedToCart(!isAddedToCart);
-  };
-
+export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
+  isAddedToCart,
+  handleAddToCart,
+}) => {
   return (
     <button
       onClick={handleAddToCart}
-      className={classNames(
-        styles.product_card_button_cart,
-          {
-            [styles.product_card_button_clicked]: isAddedToCart,
-          },
-      )}
+      className={classNames(styles.product_card_button_cart, {
+        [styles.product_card_button_clicked]: isAddedToCart,
+      })}
     >
-      {
-        !isAddedToCart
-          ? "Add to cart"
-          : "Added to cart"
-      }
+      {!isAddedToCart ? 'Add to cart' : 'Added to cart'}
     </button>
   );
 };
