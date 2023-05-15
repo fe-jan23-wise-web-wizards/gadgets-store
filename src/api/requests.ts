@@ -2,6 +2,7 @@ import { Accessory } from '@/types/Accessory';
 import { Category } from '@/types/Category';
 import { type Phone } from '@/types/Phone';
 import { type Product } from '@/types/Product';
+import { ProductsCount } from '@/types/ProductsCount';
 import { SortBy } from '@/types/SortBy';
 import { Tablet } from '@/types/Tablet';
 import axios from 'axios';
@@ -64,5 +65,5 @@ export const getProduct = (id: string) => {
 };
 
 export const getProductsCount = (category: Category) => {
-  return get<{ count: number }>(`${BASE_URL}/count?category=${category}`);
+  return get<ProductsCount>(`${BASE_URL}/count?category=${category}`);
 };
