@@ -1,7 +1,19 @@
 @import '@styles/variables';
+@import '@styles/mixins';
 
 .title {
+  margin-bottom: 8px;
+
   font-size: 32px;
   font-weight: 800;
+}
+
+.models_quantity_info {
+  margin-bottom: 32px;
+
+  font-size: 14px;
+  line-height: 150%;
+
+  color: $color-secondary;
 }
 

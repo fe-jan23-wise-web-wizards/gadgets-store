@@ -1,0 +1,15 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+.option_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.option_title {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  color: $color-secondary;
+}
