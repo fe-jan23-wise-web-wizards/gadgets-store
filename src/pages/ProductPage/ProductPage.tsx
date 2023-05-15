@@ -1,58 +1,71 @@
+import { useRef, useState } from 'react';
+import { Category } from '@/types/Category';
+import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { getAllProducts, getProductDetails} from '@api/requests';
-
-import { Category } from '@/types/Category';
-
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { BackButton } from '@/components/BackButton';
-import { ProductSidebar } from '@/components/ProductSidebar';
-import { ProductAbout } from '@/components/ProductAbout';
-import { ProductTechSpecs } from '@/components/ProductTechSpecs';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CardSlider } from '@/components/CardSlider';
+import { ProductAbout } from '@/components/ProductAbout';
+import { ProductSidebar } from '@/components/ProductSidebar';
+import { ProductTechSpecs } from '@/components/ProductTechSpecs';
 
-import styles from './ProductPage.module.scss';
 import { ImageSlider } from '@/components/ImageSlider';
+import styles from './ProductPage.module.scss';
 
 export const ProductPage = () => {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
+  const [currentProductPath, setCurrentProductPath] = useState('');
+
   const category = pathname.slice(1).split('/').shift() as Category;
+
+  const currentProductId = useRef(id);
 
   const productDetailsQuery = useQuery({
     queryKey: [`${id}`],
-    queryFn: () => getProductDetails(id),
+    queryFn: () => getProductDetails(currentProductId.current),
+    enabled: !!currentProductId.current,
   });
+
+  const handleProductChange = (newId: string) => {
+    currentProductId.current = newId;
+    const newPathname =  `/${category}/${newId}`;
+    window.history.replaceState(null, '', `${newPathname}`);
+
+    setCurrentProductPath(newPathname);
+    void productDetailsQuery.refetch();
+  };
 
   const recommendedProductsQuery = useQuery({
     queryKey: ['recommendedProducts'],
-    queryFn: () => getAllProducts(),
+    queryFn: () => getRecommendedProducts(id),
   });
 
   const recommendedProducts = recommendedProductsQuery.data || [];
-  
+
   const product = productDetailsQuery?.data;
 
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs
+        newPath={currentProductPath}
+      />
 
       <BackButton category={category} />
 
       {product && (
         <>
-          <h1 className={styles.product_title}>
-            {product.name}
-          </h1>
+          <h1 className={styles.product_title}>{product.name}</h1>
 
           <div className={styles.product_details}>
             <div className={styles.product_details_slider}>
-              <ImageSlider productImages={product.images}/>
+              <ImageSlider productImages={product.images} />
             </div>
-            
+
             <div className={styles.product_details_sidebar}>
-              <ProductSidebar product={product} />
+              <ProductSidebar product={product} onProductChange={handleProductChange} />
             </div>
           </div>
 
@@ -60,7 +73,7 @@ export const ProductPage = () => {
             <div className={styles.product_description_about}>
               <ProductAbout description={product.description} />
             </div>
-            
+
             <div className={styles.product_description_tech}>
               <ProductTechSpecs product={product} />
             </div>

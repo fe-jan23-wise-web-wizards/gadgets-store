@@ -1,5 +1,6 @@
 import { Accessory } from '@/types/Accessory';
 import { Category } from '@/types/Category';
+import { CommonTechSpecs } from '@/types/CommonTechSpecs';
 import { type Phone } from '@/types/Phone';
 import { type Product } from '@/types/Product';
 import { ProductsCount } from '@/types/ProductsCount';
@@ -57,7 +58,7 @@ export const getProductsByCategory = (
 };
 
 export const getProductDetails = (id: string) => {
-  return get<Phone | Accessory | Tablet>(`${BASE_URL}/${id}/details`);
+  return get<Phone | (Accessory & CommonTechSpecs) | Tablet>(`${BASE_URL}/${id}/details`);
 };
 
 export const getProduct = (id: string) => {
@@ -66,4 +67,8 @@ export const getProduct = (id: string) => {
 
 export const getProductsCount = (category: Category) => {
   return get<ProductsCount>(`${BASE_URL}/count?category=${category}`);
+};
+
+export const getRecommendedProducts = (id: string) => {
+  return get<Product[]>(`${BASE_URL}/${id}/recommended`);
 };

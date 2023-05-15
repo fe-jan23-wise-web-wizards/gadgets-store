@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
-
+import { ProductDescription } from "@/types/ProductDescription";
 
 import styles from './ProductAbout.module.scss';
-import { ProductDescription } from '@/types/ProductDescription';
 
 interface ProductAboutProps {
   description: ProductDescription[];
