@@ -23,7 +23,7 @@
       height: 100%;
       background: inherit;
       border-radius: inherit;
-      animation: wave 3s ease-in-out infinite;
+      animation: wave 0.5s ease-in-out infinite;
     }
 
     @for $i from 1 through 5 {
@@ -31,7 +31,7 @@
         background: $color-white;
 
         &::before {
-          animation-delay: $i * 0.3s;
+          animation-delay: $i * 0.1s;
         }
       }
     }
