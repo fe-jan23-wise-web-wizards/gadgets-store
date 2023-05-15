@@ -7,7 +7,7 @@ interface Props {
   classNameLink: string;
   classNameActiveLink: string;
   onClickInteractive?:() => void;
-};
+}
 
 export const NavBarList: FC<Props> = ({
   classNameList,

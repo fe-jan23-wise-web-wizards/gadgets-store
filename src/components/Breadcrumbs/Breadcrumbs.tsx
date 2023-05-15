@@ -1,13 +1,19 @@
-import { Fragment, memo } from 'react';
+import { Fragment } from 'react';
 import styles from './Breadcrumbs.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 
-export const Breadcrumbs = memo(() => {
+interface BreadcrumbsProps {
+  newPath?: string;
+}
+
+export const Breadcrumbs = ({ newPath }: BreadcrumbsProps) => {
   const location = useLocation();
 
   let currentLink = '';
 
-  const crumbs = location.pathname
+  const pathname = newPath || location.pathname;
+
+  const crumbs = pathname 
     .split('/')
     .filter(crumb => crumb !== '')
     .map(crumb => {
@@ -44,4 +50,4 @@ export const Breadcrumbs = memo(() => {
       <>{crumbs}</>
     </div>
   );
-});
+};

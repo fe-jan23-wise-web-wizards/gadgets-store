@@ -1,0 +1,48 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+@import '@styles/extends';
+
+.dropdown_button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 10px 12px;
+
+  font-family: inherit;
+
+  background-color: $color-surface-2;
+  border: 1px solid $color-surface-2;
+
+  transition-property: border-color;
+  @extend %transitionDetails;
+
+  &:hover {
+    border-color: $color-icons;
+  }
+}
+
+.dropdown_button_focused {
+  border-color: $color-accent;
+
+  .dropdown_icon {
+    background-image: url('@assets/icons/dropdown-arrow-up.svg');
+  }
+}
+
+.dropdown_value {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 150%;
+  color: $color-white;
+}
+
+.dropdown_icon {
+  @include square(10px);
+
+  background-image: url('@assets/icons/dropdown-arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
