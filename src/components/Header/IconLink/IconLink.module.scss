@@ -10,7 +10,8 @@
   justify-content: center;
   align-items: center;
   height: 18px;
-  width: 18px;
+  min-width: 18px;
+  width: max-content;
 
   font-weight: 700;
   border-radius: 50%;
@@ -21,8 +22,8 @@
   border: 2px solid $color-dark;
 
   @include bp-large-up {
-    top: 23%;
-    right: 23%;
+    top: 22%;
+    right: 22%;
   }
 }
 
