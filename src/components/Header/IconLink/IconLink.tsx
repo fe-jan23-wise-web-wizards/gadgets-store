@@ -38,7 +38,7 @@ export const IconLink = ({
           isBurger && styles.burger_indicator,
         )}
       >
-        {100}
+        {count}
       </span>
     )}
     <img
