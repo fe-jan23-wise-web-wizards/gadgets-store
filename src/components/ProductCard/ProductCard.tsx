@@ -1,6 +1,5 @@
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
-import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../AddToCartButton';
 import { LikeButton } from '../LikeButton';
 import styles from './ProductCard.module.scss';
@@ -89,7 +88,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className={'grid_item'}>
       <div className={styles.product_card}>
-        <Link to={`/${product.category}/${product.itemId}`}>
+        <a href={`/${product.category}/${product.itemId}`}>
           <figure className={styles.product_card_figure}>
             <img
               src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
@@ -103,7 +102,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <br />
             {titleSecondRow}
           </h2>
-        </Link>
+        </a>
 
         <div className={styles.product_card_price}>
           <span className={styles.product_card_price_actual}>

@@ -29,6 +29,8 @@ $product-silver: #e4e4e2;
 $product-rosegold: #e6c7c2;
 $product-coral: #ee7762;
 $product-pink: #f1b6ac;
+$product-sierrablue: #69abce;
+$product-graphite: #5c5b57;
 
 $product-colors:
 'black' $product-black,
@@ -47,7 +49,9 @@ $product-colors:
 'silver' $product-silver,
 'rosegold' $product-rosegold,
 'coral' $product-coral,
-'pink' $product-pink;
+'pink' $product-pink,
+'sierrablue' $product-sierrablue,
+'graphite' $product-graphite;
 
 //* Breakpoints sizes
 $bp-480: 480px;
