@@ -1,6 +1,9 @@
+import { Accessory } from '@/types/Accessory';
+import { Category } from '@/types/Category';
 import { type Phone } from '@/types/Phone';
 import { type Product } from '@/types/Product';
 import { SortBy } from '@/types/SortBy';
+import { Tablet } from '@/types/Tablet';
 import axios from 'axios';
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}/products`;
@@ -37,12 +40,13 @@ export const getNewProducts = (limit?: number) => {
   return get<Product[]>(`${BASE_URL}/new${limit ? `?limit=${limit}` : ''}`);
 };
 
-export const getPhones = (
+export const getProductsByCategory = (
+  category: Category,
   page?: number,
   limit?: number,
   sort?: SortBy,
 ) => {
-  const queries = ['category=phones'];
+  const queries = [`category=${category}`];
 
   if (page) queries.push(`page=${page}`);
   if (limit) queries.push(`limit=${limit}`);
@@ -52,5 +56,17 @@ export const getPhones = (
 };
 
 export const getProductDetails = (id: string) => {
-  return get<Phone>(`${BASE_URL}/${id}`);
+  return get<Phone | Accessory | Tablet>(`${BASE_URL}/${id}/details`);
+};
+
+export const getProduct = (id: string) => {
+  return get<Product>(`${BASE_URL}/${id}`);
+};
+
+export const getProductsCount = (category: Category) => {
+  return get(`${BASE_URL}/count?category=${category}`);
+};
+
+export const getRecommendedProducts = (id: string) => {
+  return get<Product[]>(`${BASE_URL}/${id}/recommended`);
 };

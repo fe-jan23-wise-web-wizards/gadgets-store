@@ -1,24 +1,46 @@
 import { Phone } from '@/types/Phone';
 
-import { AddToCartButton } from '@/components/AddToCartButton';
-import { LikeButton } from '@/components/LikeButton';
+import { AddToCartButton } from '@components/AddToCartButton';
+import { LikeButton } from '@components/LikeButton';
 import { ProductCapacities } from './ProductCapacities';
 
-import styles from './ProductSidebar.module.scss';
+import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
+import { Accessory } from '@/types/Accessory';
+import { Tablet } from '@/types/Tablet';
 import { ProductColors } from './ProductColors';
+import styles from './ProductSidebar.module.scss';
 
 interface ProductSidebarProps {
-  product: Phone;
+  product: Phone | Accessory | Tablet;
 }
 
 export const ProductSidebar = ({ product }: ProductSidebarProps) => {
-  const { screen, resolution, processor, ram } = product;
+  const {
+    screen,
+    resolution,
+    processor,
+    ram,
+  } = product;
 
   const specs = {
     Screen: screen,
     Resolution: resolution,
     Processor: processor,
     RAM: ram,
+  };
+
+  const {
+    removeFromFavorites,
+    isFavorite,
+    addToFavorites,
+  } = useLocalStorageContext();
+
+  const isItemFavorite = isFavorite(product.id);
+
+  const handleLikeButtonClick = () => {
+    isFavorite(product.id)
+      ? removeFromFavorites(product.id)
+      : addToFavorites(product.id);
   };
 
   return (
@@ -43,18 +65,16 @@ export const ProductSidebar = ({ product }: ProductSidebarProps) => {
 
       <div className={styles.product_buttons}>
         <AddToCartButton />
-        <LikeButton />
+        <LikeButton
+          onLike={handleLikeButtonClick}
+          isItemFavorite={isItemFavorite}
+        />
       </div>
-
 
       {Object.entries(specs).map(([name, value]) => (
         <div key={name} className={styles.product_spec}>
-          <div className={styles.product_spec_name}>
-            {name}
-          </div>
-          <div className={styles.product_spec_value}>
-            {value}
-          </div>
+          <div className={styles.product_spec_name}>{name}</div>
+          <div className={styles.product_spec_value}>{value}</div>
         </div>
       ))}
     </>

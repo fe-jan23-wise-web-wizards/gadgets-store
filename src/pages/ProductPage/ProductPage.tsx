@@ -1,38 +1,41 @@
-import { useQuery } from '@tanstack/react-query';
-import { useLocation, useParams } from 'react-router-dom';
-
-import { getAllProducts, getProductDetails} from '@api/requests';
-
 import { Category } from '@/types/Category';
+import { getProductDetails,getRecommendedProducts } from '@api/requests';
+import { useQuery } from '@tanstack/react-query';
+import { useLocation,useParams } from 'react-router-dom';
 
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { BackButton } from '@/components/BackButton';
-import { ProductSidebar } from '@/components/ProductSidebar';
-import { ProductAbout } from '@/components/ProductAbout';
-import { ProductTechSpecs } from '@/components/ProductTechSpecs';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CardSlider } from '@/components/CardSlider';
+import { ProductAbout } from '@/components/ProductAbout';
+import { ProductSidebar } from '@/components/ProductSidebar';
+import { ProductTechSpecs } from '@/components/ProductTechSpecs';
 
-import styles from './ProductPage.module.scss';
 import { ImageSlider } from '@/components/ImageSlider';
+import styles from './ProductPage.module.scss';
 
 export const ProductPage = () => {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const category = pathname.slice(1).split('/').shift() as Category;
 
-  const productQuery = useQuery({
+  // const productQuery = useQuery({
+  //   queryKey: [`product-${id}`],
+  //   queryFn: () => getProduct(id),
+  // });
+
+  const productDetailsQuery = useQuery({
     queryKey: [`${id}`],
     queryFn: () => getProductDetails(id),
   });
 
   const recommendedProductsQuery = useQuery({
     queryKey: ['recommendedProducts'],
-    queryFn: () => getAllProducts(),
+    queryFn: () => getRecommendedProducts(id),
   });
 
   const recommendedProducts = recommendedProductsQuery.data || [];
-  
-  const product = productQuery?.data;
+
+  const product = productDetailsQuery?.data;
 
   return (
     <>
@@ -42,15 +45,13 @@ export const ProductPage = () => {
 
       {product && (
         <>
-          <h1 className={styles.product_title}>
-            {product.name}
-          </h1>
+          <h1 className={styles.product_title}>{product.name}</h1>
 
           <div className={styles.product_details}>
             <div className={styles.product_details_slider}>
-              <ImageSlider productImages={product.images}/>
+              <ImageSlider productImages={product.images} />
             </div>
-            
+
             <div className={styles.product_details_sidebar}>
               <ProductSidebar product={product} />
             </div>
@@ -60,7 +61,7 @@ export const ProductPage = () => {
             <div className={styles.product_description_about}>
               <ProductAbout description={product.description} />
             </div>
-            
+
             <div className={styles.product_description_tech}>
               <ProductTechSpecs product={product} />
             </div>

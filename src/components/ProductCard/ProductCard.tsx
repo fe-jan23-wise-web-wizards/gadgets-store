@@ -1,5 +1,6 @@
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
+import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../AddToCartButton';
 import { LikeButton } from '../LikeButton';
 import styles from './ProductCard.module.scss';
@@ -9,17 +10,18 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const { removeFromFavorite, isFavorite, addToFavorite } =
-    useLocalStorageContext();
+  const {
+    removeFromFavorites,
+    isFavorite,
+    addToFavorites,
+  } = useLocalStorageContext();
 
   const isItemFavorite = isFavorite(product.itemId);
 
   const handleLikeButtonClick = () => {
-    if (isFavorite(product.itemId)) {
-      removeFromFavorite(product.itemId);
-    } else {
-      addToFavorite(product);
-    }
+    isFavorite(product.itemId)
+      ? removeFromFavorites(product.itemId)
+      : addToFavorites(product.itemId);
   };
 
   const titleSplit = product.name.split(' ');
@@ -29,29 +31,31 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="grid_item">
       <div className={styles.product_card}>
-        <img
-          src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
-          className={styles.product_card_image}
-          alt={product.name}
-        />
+        <Link to={`/${product.category}/${product.itemId}`}>
+          <figure className={styles.product_card_figure}>
+            <img
+              src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
+              className={styles.product_card_image}
+              alt={product.name}
+            />
+          </figure>
 
-        <a href="#">
           <h2 className={styles.product_card_title}>
             {titleFirstRow}
             <br />
             {titleSecondRow}
           </h2>
+        </Link>
 
-          <div className={styles.product_card_price}>
-            <span className={styles.product_card_price_actual}>
-              {'$' + product.price}
-            </span>
+        <div className={styles.product_card_price}>
+          <span className={styles.product_card_price_actual}>
+            {'$' + product.price}
+          </span>
 
-            <span className={styles.product_card_price_default}>
-              {'$' + product.fullPrice}
-            </span>
-          </div>
-        </a>
+          <span className={styles.product_card_price_default}>
+            {'$' + product.fullPrice}
+          </span>
+        </div>
 
         <div className={styles.product_card_separator}></div>
 

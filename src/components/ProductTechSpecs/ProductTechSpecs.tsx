@@ -1,9 +1,11 @@
 import { Phone } from "@/types/Phone";
 
 import styles from './ProductTechSpecs.module.scss';
+import { Accessory } from "@/types/Accessory";
+import { Tablet } from "@/types/Tablet";
 
 interface ProductTechSpecsProps {
-  product: Phone;
+  product: Phone | Accessory | Tablet;
 }
 
 export const ProductTechSpecs = ({ product }: ProductTechSpecsProps) => {
@@ -13,8 +15,6 @@ export const ProductTechSpecs = ({ product }: ProductTechSpecsProps) => {
     processor,
     ram,
     capacity,
-    camera,
-    zoom,
     cell,
   } = product;
 
@@ -26,8 +26,8 @@ export const ProductTechSpecs = ({ product }: ProductTechSpecsProps) => {
     Processor: processor,
     RAM: ram,
     Capacity: capacity,
-    Camera: camera,
-    Zoom: zoom,
+    // Camera: camera,
+    // Zoom: zoom,
     Cell: normalizedCells,
   };
 

@@ -1,31 +1,32 @@
 import { useFavorites } from '@/hooks/useFavorites';
-import { Product } from '@/types/Product';
-import React, { FC } from 'react';
+import { createContext } from 'react';
 
 interface ContextValue {
-  favorites: Product[];
-  isFavorite: (itemId: string) => boolean;
-  addToFavorite: (product: Product) => void;
-  removeFromFavorite: (itemId: string) => void;
+  favorites: string[];
+  isFavorite: (productId: string) => boolean;
+  addToFavorites: (productId: string) => void;
+  removeFromFavorites: (productId: string) => void;
 }
 
-export const LocalStorageContext = React.createContext<
-  ContextValue | undefined
->(undefined);
+export const LocalStorageContext = createContext<ContextValue | undefined>(
+  undefined,
+);
 
-interface Props {
+interface LocalStorageProviderProps {
   children: React.ReactNode;
 }
 
-export const LocalStorageProvider: FC<Props> = ({ children }) => {
-  const { favorites, isFavorite, addToFavorite, removeFromFavorite } =
+export const LocalStorageProvider = ({
+  children,
+}: LocalStorageProviderProps) => {
+  const { favorites, isFavorite, addToFavorites, removeFromFavorites } =
     useFavorites();
 
   const contextValue = {
     favorites,
     isFavorite,
-    addToFavorite,
-    removeFromFavorite,
+    addToFavorites,
+    removeFromFavorites,
   };
 
   return (
