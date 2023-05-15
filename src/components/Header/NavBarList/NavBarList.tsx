@@ -6,6 +6,7 @@ interface Props {
   classNameItem: string;
   classNameLink: string;
   classNameActiveLink: string;
+  onClickInteractive?:() => void;
 };
 
 export const NavBarList: FC<Props> = ({
@@ -13,6 +14,7 @@ export const NavBarList: FC<Props> = ({
   classNameItem,
   classNameLink,
   classNameActiveLink,
+  onClickInteractive,
 }) => (
   <menu className={classNameList}>
     <MenuItem
@@ -21,6 +23,7 @@ export const NavBarList: FC<Props> = ({
       classNameItem={classNameItem}
       classNameLink={classNameLink}
       classNameActiveLink={classNameActiveLink}
+      onClickLink={onClickInteractive}
     />
 
     <MenuItem
@@ -29,6 +32,7 @@ export const NavBarList: FC<Props> = ({
       classNameItem={classNameItem}
       classNameLink={classNameLink}
       classNameActiveLink={classNameActiveLink}
+      onClickLink={onClickInteractive}
     />
 
     <MenuItem
@@ -37,6 +41,7 @@ export const NavBarList: FC<Props> = ({
       classNameItem={classNameItem}
       classNameLink={classNameLink}
       classNameActiveLink={classNameActiveLink}
+      onClickLink={onClickInteractive}
     />
 
     <MenuItem
@@ -45,6 +50,7 @@ export const NavBarList: FC<Props> = ({
       classNameItem={classNameItem}
       classNameLink={classNameLink}
       classNameActiveLink={classNameActiveLink}
+      onClickLink={onClickInteractive}
     />
   </menu>
 );
