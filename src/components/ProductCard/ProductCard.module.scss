@@ -2,6 +2,75 @@
 @import '@styles/breakpoints';
 @import '@styles/extends';
 
+@keyframes shimmer {
+  0% {
+    background-color: #f1f2f9;
+  }
+
+  100% {
+    background-color: #ffffff;
+  }
+}
+
+.image_shimmer,
+.title_shimmer,
+.price_shimmer,
+.property_title_shimmer,
+.property_value_shimmer,
+.add_button_shimmer,
+.like_button_shimmer {
+  animation: shimmer 2s infinite alternate;
+}
+
+.image_shimmer {
+  width: 50%;
+  height: 130px;
+  margin: 0 auto 24px;
+
+  @include bp-custom-up(640px) {
+    width: 65%;
+    height: 196px;
+  }
+
+  @include bp-medium-up {
+    height: 175px;
+  }
+}
+
+.title_shimmer {
+  height: 14px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.price_shimmer,
+.property_title_shimmer {
+  width: 35%;
+}
+
+.property_value_shimmer,
+.like_button_shimmer {
+  width: 20%;
+}
+
+.price_shimmer {
+  height: 22px;
+}
+
+.property_title_shimmer,
+.property_value_shimmer {
+  height: 12px;
+}
+
+.add_button_shimmer,
+.like_button_shimmer {
+  height: 40px;
+}
+
+.add_button_shimmer {
+  width: 80%;
+}
+
 .product_card {
   display: flex;
   flex-direction: column;
@@ -20,7 +89,7 @@
     width: 229px;
   }
 
-  @include bp-custom-up (920px) {
+  @include bp-custom-up(920px) {
     width: 272px;
   }
 

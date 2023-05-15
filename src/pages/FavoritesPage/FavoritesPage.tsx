@@ -6,6 +6,7 @@ import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect,useState } from 'react';
 import styles from './FavoritesPage.module.scss';
+import { Loader } from '@/components/Loader';
 
 export const FavoritesPage = () => {
   const { favorites } = useLocalStorageContext();
@@ -27,17 +28,16 @@ export const FavoritesPage = () => {
         <div className={styles.container}>
           <Breadcrumbs />
 
-          <h1 className={styles.title}>Favourites</h1>
+          {favoritesQuery.isLoading || favoritesQuery.isFetching
+            ? (<Loader />)
+            : (
+              <>
+                <h1 className={styles.title}>Favourites</h1>
+                <p className={styles.description}>{products.length} items</p>
 
-          {favoritesQuery.isLoading || favoritesQuery.isFetching ? (
-            <div>Loading...</div>
-          ) : (
-            <>
-              <p className={styles.description}>{products.length} items</p>
-
-              <ProductList products={products} />
-            </>
-          )}
+                <ProductList products={products} />
+              </>
+            )}
         </div>
       )}
     </>

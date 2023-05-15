@@ -9,26 +9,37 @@ import iconCart from '@assets/icons/icon-cart.svg';
 import iconMenu from '@assets/icons/icon-menu.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
 
+import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import styles from './Header.module.scss';
 
 export const Header: FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const { favorites, cartItems } = useLocalStorageContext();
 
   useEffect(() => {
-    if (isOpen) {
+    if (isBurgerOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [isOpen]);
+  }, [isBurgerOpen]);
 
-  const handleOpenBurgerMenu = () => {
-    setIsOpen(currPosition => !currPosition);
+  const openBurger = () => {
+    setIsBurgerOpen(true);
+  };
+
+  const closeBurger = () => {
+    setIsBurgerOpen(false);
   };
 
   return (
     <>
-      <BurgerMenu isMenuOpen={isOpen} onMenuClose={handleOpenBurgerMenu} />
+      <BurgerMenu
+        isMenuOpen={isBurgerOpen}
+        onMenuClose={closeBurger}
+        favoritesCount={favorites.length}
+        cartCount={cartItems.length}
+      />
       <header className={styles.navbar}>
         <nav className={styles.navbar_container}>
           <div className={styles.navbar_logo}>
@@ -40,7 +51,7 @@ export const Header: FC = () => {
               <button
                 className={styles.navbar_burgerMenu_button}
                 type="button"
-                onClick={handleOpenBurgerMenu}
+                onClick={openBurger}
               >
                 <img src={iconMenu} alt="Burger menu" />
               </button>
@@ -61,18 +72,16 @@ export const Header: FC = () => {
                   to={'favorites'}
                   src={iconFavorites}
                   alt={'IconLink-favorites'}
-                  classNameIconLinkBlock={styles.navbar_menu_desktop_right_item}
-                  classNameIconLink={styles.navbar_menu_desktop_right_link}
-                  classNameIcon={styles.navbar_menu_desktop_right_icon}
+                  count={favorites.length}
+                  clickFunc={closeBurger}
                 />
 
                 <IconLink
                   to={'cart'}
                   src={iconCart}
                   alt={'IconLink-cart'}
-                  classNameIconLinkBlock={styles.navbar_menu_desktop_right_item}
-                  classNameIconLink={styles.navbar_menu_desktop_right_link}
-                  classNameIcon={styles.navbar_menu_desktop_right_icon}
+                  count={cartItems.length}
+                  clickFunc={closeBurger}
                 />
               </div>
             </div>

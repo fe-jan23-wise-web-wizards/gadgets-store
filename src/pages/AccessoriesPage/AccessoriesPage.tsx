@@ -1,22 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
-import {
-  getProductsCount,
-  getProductsByCategory,
-} from '@api/requests';
-import { SortBy } from '@/types/SortBy';
-import { Category } from '@/types/Category';
-import { ProductList } from '@components/ProductList';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ProductsPageOptions } from '@/components/ProductsPageOptions';
 import { Pagination } from '@/components/Pagination';
+import { ProductsPageOptions } from '@/components/ProductsPageOptions';
+import { Category } from '@/types/Category';
+import { SortBy } from '@/types/SortBy';
+import { getProductsByCategory, getProductsCount } from '@api/requests';
+import { ProductList } from '@components/ProductList';
 
+import { Loader } from '@/components/Loader';
 import styles from './AccessoriesPage.module.scss';
 
 export const AccessoriesPage = () => {
-
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
 
@@ -40,30 +37,32 @@ export const AccessoriesPage = () => {
 
   const accessoriesQuery = useQuery({
     queryKey: ['accessories', page, limit, sortBy],
-    queryFn: () => getProductsByCategory(
-      Category.ACCESSORIES,
-      page,
-      limit,
-      sortBy,
-    ),
+    queryFn: () =>
+      getProductsByCategory(Category.ACCESSORIES, page, limit, sortBy),
     keepPreviousData: true,
   });
 
   return (
     <>
-      <Breadcrumbs />
+      {accessoriesQuery.isFetching || accessoriesQuery.isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Breadcrumbs />
 
-      <h1 className={styles.title}>Accessories</h1>
+          <h1 className={styles.title}>Accessories</h1>
 
-      <p className={styles.models_quantity_info}>
-        {accessoriesQuantity} models
-      </p>
+          <p className={styles.models_quantity_info}>
+            {accessoriesQuantity} models
+          </p>
 
-      <ProductsPageOptions />
+          <ProductsPageOptions />
 
-      <ProductList products={accessoriesQuery?.data || []} />
+          <ProductList products={accessoriesQuery?.data || []} />
 
-      <Pagination quantity={pagesQuantity} />
+          <Pagination quantity={pagesQuantity} />
+        </>
+      )}
     </>
   );
 };
