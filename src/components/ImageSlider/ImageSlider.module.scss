@@ -6,7 +6,7 @@
   flex-direction: column-reverse;
   gap: $main-indent;
 
-  @include bp-custom-up(639px) {
+  @include bp-custom-up(939px) {
     flex-direction: row;
     align-items: flex-start;
   }
@@ -28,7 +28,7 @@
   flex-shrink: 0;
   width: 100%;
 
-  @include bp-custom-up(639px) {
+  @include bp-custom-up(939px) {
     flex-basis: 82%;
   }
 

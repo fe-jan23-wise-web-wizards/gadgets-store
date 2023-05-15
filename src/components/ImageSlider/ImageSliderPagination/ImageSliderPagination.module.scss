@@ -5,7 +5,7 @@
   gap: 8px;
   grid-template-columns: repeat(5, 1fr);
 
-  @include bp-custom-up(639px) {
+  @include bp-custom-up(939px) {
     display: flex;
     flex-direction: column;
 
