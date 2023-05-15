@@ -147,7 +147,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           />
           <LikeButton onLike={handleLike} isItemFavorite={isItemFavorite} />
         </div>
-      </div>
+      </div> 
     </div>
   );
 };

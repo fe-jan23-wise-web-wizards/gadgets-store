@@ -3,6 +3,7 @@
 
 .loader {
   @extend %flexCenter;
+  height: 70%;
 
   &_body {
     display: flex;

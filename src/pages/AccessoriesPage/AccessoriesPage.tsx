@@ -1,5 +1,6 @@
 import { getProductsByCategory } from '@/api/requests';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Loader } from '@/components/Loader';
 import { ProductList } from '@/components/ProductList';
 import { Category } from '@/types/Category';
 import { useQuery } from '@tanstack/react-query';
@@ -13,8 +14,15 @@ export const AccessoriesPage = () => {
   return (
     <>
       <Breadcrumbs />
-      <h1>Accessories</h1>
-      <ProductList products={accessoriesQuery?.data || []} />
+
+      {accessoriesQuery.isFetching || accessoriesQuery.isLoading
+        ? (<Loader />)
+        : (
+          <>
+            <h1>Accessories</h1>
+            <ProductList products={accessoriesQuery?.data || []} />
+          </>
+        )}
     </>
   );
 };

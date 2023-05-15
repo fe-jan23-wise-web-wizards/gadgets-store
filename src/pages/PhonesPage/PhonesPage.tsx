@@ -15,11 +15,15 @@ export const PhonesPage = () => {
   return (
     <>
       <Breadcrumbs />
-      <h1 className={styles.title}>Mobile phones</h1>
 
-      {phonesQuery.isLoading
+      {phonesQuery.isFetching || phonesQuery.isLoading
         ? (<Loader />)
-        : (<ProductList products={phonesQuery.data || []} />)}
+        : (
+          <>
+            <h1 className={styles.title}>Mobile phones</h1>
+            <ProductList products={phonesQuery.data || []} />
+          </>
+        )}
     </>
   );
 };
