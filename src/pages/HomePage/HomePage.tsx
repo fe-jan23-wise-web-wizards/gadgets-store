@@ -33,14 +33,14 @@ export const HomePage = () => {
 
       <CardSlider
         title={'Brand new models'}
-        products={newProducts}
+        products={newProducts.length === 0 ? [] : newProducts}
       />
 
       <ShopByCategory />
 
       <CardSlider
         title={'Hot prices'}
-        products={hotProducts}
+        products={hotProducts.length === 0 ? [] : hotProducts}
       />
     </div>
   );

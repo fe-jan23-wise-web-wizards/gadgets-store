@@ -1,22 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
-import {
-  getProductsCount,
-  getProductsByCategory,
-} from '@api/requests';
-import { SortBy } from '@/types/SortBy';
-import { Category } from '@/types/Category';
-import { ProductList } from '@components/ProductList';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ProductsPageOptions } from '@/components/ProductsPageOptions';
 import { Pagination } from '@/components/Pagination';
+import { ProductsPageOptions } from '@/components/ProductsPageOptions';
+import { Category } from '@/types/Category';
+import { SortBy } from '@/types/SortBy';
+import { getProductsByCategory, getProductsCount } from '@api/requests';
+import { ProductList } from '@components/ProductList';
 
+import { Loader } from '@/components/Loader';
 import styles from './TabletsPage.module.scss';
 
 export const TabletsPage = () => {
-
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
 
@@ -46,19 +43,25 @@ export const TabletsPage = () => {
 
   return (
     <>
-      <Breadcrumbs />
+      {tabletsQuery.isFetching || tabletsQuery.isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Breadcrumbs />
 
-      <h1 className={styles.title}>Tablets</h1>
+          <h1 className={styles.title}>Tablets</h1>
 
-      <p className={styles.models_quantity_info}>
-        {tabletsQuantity} models
-      </p>
+          <p className={styles.models_quantity_info}>
+            {tabletsQuantity} models
+          </p>
 
-      <ProductsPageOptions />
+          <ProductsPageOptions />
 
-      <ProductList products={tabletsQuery?.data || []} />
+          <ProductList products={tabletsQuery?.data || []} />
 
-      <Pagination quantity={pagesQuantity} />
+          <Pagination quantity={pagesQuantity} />
+        </>
+      )}
     </>
   );
 };

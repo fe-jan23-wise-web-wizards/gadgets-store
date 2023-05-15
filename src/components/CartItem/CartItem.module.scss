@@ -7,8 +7,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: $secondary-indent;
-  padding: $secondary-indent;
+  border: 1px solid $color-elements;
+  margin-bottom: secondary-indent;
+  padding: secondary-indent;
   gap: $main-indent;
   align-items: center;
   background-color: $color-surface-1;
