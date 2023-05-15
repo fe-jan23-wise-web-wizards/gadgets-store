@@ -29,8 +29,8 @@ export const Header: FC = () => {
   return (
     <>
       <BurgerMenu isMenuOpen={isOpen} onMenuClose={handleOpenBurgerMenu} />
-      <nav className={styles.navbar}>
-        <div className={styles.navbar_container}>
+      <header className={styles.navbar}>
+        <nav className={styles.navbar_container}>
           <div className={styles.navbar_logo}>
             <Logo position={'header'} />
           </div>
@@ -77,8 +77,8 @@ export const Header: FC = () => {
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
     </>
   );
 };
