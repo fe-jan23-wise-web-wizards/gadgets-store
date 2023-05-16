@@ -83,6 +83,10 @@
   background-color: $color-surface-1;
   border: 1px solid $color-dark;
 
+  &:hover {
+    box-shadow: inset 3px 1px 138px 0px rgba(255,255,255,0.25);
+  }
+
   @extend %transitionDetails;
 
   @include bp-medium-up {
