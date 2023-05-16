@@ -1,7 +1,7 @@
 import { Category } from '@/types/Category';
 import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { BackButton } from '@/components/BackButton';
@@ -19,9 +19,7 @@ export const ProductPage = () => {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const [currentProductPath, setCurrentProductPath] = useState('');
-
   const category = pathname.slice(1).split('/').shift() as Category;
-
   const currentProductId = useRef(id);
 
   const productDetailsQuery = useQuery({
@@ -42,10 +40,14 @@ export const ProductPage = () => {
   const recommendedProductsQuery = useQuery({
     queryKey: ['recommendedProducts'],
     queryFn: () => getRecommendedProducts(id),
+    enabled: false,
   });
 
-  const recommendedProducts = recommendedProductsQuery.data || [];
+  useEffect(() => {
+    void recommendedProductsQuery.refetch();
+  }, [currentProductId]);
 
+  const recommendedProducts = recommendedProductsQuery.data || [];
   const product = productDetailsQuery?.data;
 
   return (
