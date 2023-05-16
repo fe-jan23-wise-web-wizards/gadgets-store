@@ -1,58 +1,10 @@
 @import '@styles/reset';
 @import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/extends';
 
 .cart_page {
-  display: flex;
   flex-direction: column;
-  align-items: start;
-
-  padding-top: $main-indent;
-  padding-bottom: calc($secondary-indent * 3.5);
-
-  @include bp-small-up {
-    padding-top: calc($secondary-indent * 2.5);
-    padding-bottom: calc($secondary-indent * 4);
-  }
-
-  @include bp-medium-up {
-    padding-bottom: calc($secondary-indent * 5);
-  }
-
-  &_back_button {
-    font-weight: 700;
-    font-size: 12px;
-
-    color: $color-white;
-    background-color: transparent;
-
-    margin-bottom: $main-indent;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    @include bp-small-up {
-      margin-bottom: $secondary-indent;
-    }
-
-    &_img {
-      width: 16px;
-      height: 16px;
-
-      background-image: url('@/assets/icons/back-arrow.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    &:hover {
-      color: $color-secondary;
-    }
-
-    &:hover &_img {
-      background-image: url('@/assets/icons/back-arrow-disabled.svg');
-    }
-  }
 
   &_title {
     font-weight: 700;
@@ -74,12 +26,74 @@
   }
 
   &_container {
-    width: 100%;
 
     @include bp-x-large-up {
       display: flex;
       flex-direction: row;
       gap: $secondary-indent;
+    }
+  }
+}
+
+.cart_empty {
+  height: 90%;
+  @extend %flexCenter;
+  flex-direction: column;
+
+  &_title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: $margin-primary;
+
+    animation: bubbling 0.5s;
+
+    @include bp-custom-up (480px) {
+      font-size: 1.3rem;
+    }
+
+    @include bp-custom-up (640px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &_image {
+    margin-bottom: 40px;
+    width: 250px;
+
+    animation: bubbling 0.7s;
+
+    @include bp-custom-up (480px) {
+      width: 300px;
+    }
+
+    @include bp-custom-up (640px) {
+      width: 350px;
+    }
+  }
+
+  &_button {
+    @extend %flexCenter;
+    width: 200px;
+
+    padding: 9.5px 0;
+
+    color: $color-white;
+    font-size: 0.9rem;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 150%;
+    text-decoration: none;
+
+    margin-bottom: 3rem;
+    
+    background-color: $color-accent;
+
+    animation: bubbling 1s;
+
+    @extend %transitionDetails;
+
+    &:hover {
+      background-color: $color-accent-hover;
     }
   }
 }
