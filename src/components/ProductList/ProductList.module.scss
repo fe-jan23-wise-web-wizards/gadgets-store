@@ -11,7 +11,7 @@ $column-gap: 16px;
   column-gap: $column-gap;
   row-gap: 40px;
 
-  @include bp-custom-up(640px) {
+  @include bp-custom-up(550px) {
     max-width: $card-width-tablet-mobile * 2 + $column-gap;
     grid-template-columns: 1fr 1fr;
   }
