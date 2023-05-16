@@ -6,6 +6,8 @@ import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect,useState } from 'react';
 import styles from './FavoritesPage.module.scss';
+import { Link } from 'react-router-dom';
+import favImage from '@assets/heart_purple.png';
 
 export const FavoritesPage = () => {
   const { favorites } = useLocalStorageContext();
@@ -19,24 +21,37 @@ export const FavoritesPage = () => {
 
   useEffect(() => {
     void favoritesQuery.refetch();
-  }, [favorites]);
+  }, [favorites, favoritesQuery]);
 
   return (
     <>
+      <Breadcrumbs />
       {!favoritesQuery.isError && (
         <div className={styles.container}>
-          <Breadcrumbs />
-
-          <h1 className={styles.title}>Favourites</h1>
-
-          {favoritesQuery.isLoading || favoritesQuery.isFetching ? (
-            <div>Loading...</div>
-          ) : (
+          {favorites.length > 0 ? (
             <>
+              <h1 className={styles.title}>Favourites</h1>
               <p className={styles.description}>{products.length} items</p>
-
               <ProductList products={products} />
             </>
+          ) : (
+            <div className={styles.fav_empty}>
+              <h3 className={styles.fav_empty_title}>
+                You have no favourites yet...
+              </h3>
+
+              <div className={styles.fav_empty_image_container}>
+                <img
+                  src={favImage}
+                  alt="favourites"
+                  className={styles.fav_empty_image}
+                />
+              </div>
+
+              <Link to="/" className={styles.fav_empty_button}>
+                Go shopping
+              </Link>
+            </div>
           )}
         </div>
       )}

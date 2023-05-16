@@ -1,30 +1,30 @@
-import { Link } from 'react-router-dom';
 import styles from './NotFoundPage.module.scss';
-
-import errorImage from '@assets/error-image.svg';
+import firstImage from '../../assets/404_first.png';
+import secondImage from '../../assets/404_second.png';
+import thirdImage from '../../assets/404_third.png';
+import { Link } from 'react-router-dom';
 
 export const NotFoundPage = () => {
   return (
-    <div className={styles.page}>
-      <div className={styles.page_message}>
-        <p className={styles.page_message_code}>404</p>
+    <div className={styles.notfound_page}>
+      <h3 className={styles.title}>Oops, this page doesn't exist...</h3>
 
-        <p className={styles.page_message_status}>Page not found</p>
-
-        <p className={styles.page_message_description}>
-          You've clicked on a bad link or entered an invalid URL
-        </p>
-
-        <Link className={styles.page_message_homelink} to="/">
-          Go back to home page
-        </Link>
+      <div className={styles.main_images_container}>
+        <div className={styles.images_container}>
+          <div className={styles.images}>
+            <img src={firstImage} alt=""  className={styles.image_first}/>
+            <img src={secondImage} alt="" className={styles.image_second}/>
+            <img src={thirdImage} alt="" className={styles.image_third}/>
+          </div>
+        </div>
       </div>
 
-      <img
-        className={styles.page_image}
-        src={errorImage}
-        alt="Error 404 image"
-      />
+      <Link
+        to="/"
+        className={styles.home_button}
+      >
+        Take me home!
+      </Link>
     </div>
   );
 };

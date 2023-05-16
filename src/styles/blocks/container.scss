@@ -6,7 +6,9 @@
   margin: 0 auto;
   padding: 0 $container-padding;
   max-width: 1135px;
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
 
   @include bp-custom-up(640px) {
     width: 100%;
@@ -14,6 +16,7 @@
   }
 
   @include bp-large-up {
+    width: 100%;
     padding: 0 2 * $container-padding;
   }
 }
