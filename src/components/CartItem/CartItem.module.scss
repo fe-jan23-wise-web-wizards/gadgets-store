@@ -8,8 +8,8 @@
   flex-direction: column;
   width: 100%;
   border: 1px solid $color-elements;
-  margin-bottom: secondary-indent;
-  padding: secondary-indent;
+  margin-bottom: $secondary-indent;
+  padding: $secondary-indent;
   gap: $main-indent;
   align-items: center;
   background-color: $color-surface-1;
@@ -101,6 +101,7 @@
 
 .minus {
   @extend %flexCenter;
+  background-color: $color-elements;
 
   margin-right: 13px;
   border: 1px solid $color-elements;
@@ -110,7 +111,16 @@
   @extend %transitionDetails;
 
   &:hover {
-    background-color: $color-elements;
+    background-color: $color-icons;
+  }
+
+  &_disabled {
+    background-color: $color-surface-1;
+
+    &:hover {
+      cursor: not-allowed;
+      background-color: $color-surface-1;
+    }
   }
 }
 

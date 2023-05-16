@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from 'react';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { useQuery } from '@tanstack/react-query';
+import { FC, useEffect, useState } from 'react';
 
-import { CartCheckout } from '@components/CartCheckout';
+import { Modal } from '@/components/ModalCheckout';
 import { Product } from '@/types/Product';
 import { getProduct } from '@api/requests';
+import { CartCheckout } from '@components/CartCheckout';
 import { CartItem } from '@components/CartItem';
 import styles from './CartPage.module.scss';
-import { Modal } from '@/components/ModalCheckout';
 
 export const CartPage: FC = () => {
   const {
@@ -22,7 +22,6 @@ export const CartPage: FC = () => {
   const [cart, setCart] = useState<Product[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [redirectToHomePage, setRedirectToHomePage] = useState(false);
-
 
   const cartQuery = useQuery({
     queryKey: ['cart'],

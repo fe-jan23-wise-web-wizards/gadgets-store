@@ -42,8 +42,13 @@ export const CartItem: FC<CartItemProps> = ({
 
         <div className={styles.quantity_and_price}>
           <div className={styles.quantity_buttons}>
-            <div className={styles.minus}>
+            <div
+              className={classNames(styles.minus, {
+                [styles.minus_disabled]: quantity === 1,
+              })}
+            >
               <button
+                disabled={quantity === 1}
                 onClick={() => onDecrease(product.itemId)}
                 className={classNames(styles.quantity_buttons_minus, {
                   [styles.is_active]: true,
