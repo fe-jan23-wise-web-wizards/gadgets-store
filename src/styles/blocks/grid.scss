@@ -1,9 +1,10 @@
-@import '../breakpoints';
+@import '@styles/breakpoints';
+@import '@styles/variables';
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 16px;
+  column-gap: calc($secondary-indent / 2);
 
   @include bp-custom-up (640px) {
     grid-template-columns: repeat(12, 1fr);
