@@ -36,7 +36,6 @@ export const router = createBrowserRouter(
 
       <Route path="favorites" element={<FavoritesPage />} />
       <Route path="cart" element={<CartPage />} />
-      <Route path="orders" element={<OrdersPage />} />
 
       <Route
         path="orders"
