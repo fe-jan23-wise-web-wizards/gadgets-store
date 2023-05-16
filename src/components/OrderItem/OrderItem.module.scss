@@ -1,0 +1,30 @@
+@import '@styles/variables';
+@import '@styles/extends';
+
+.item {
+  @extend %flexBetween;
+
+  width: 100%;
+  border: 1px solid $color-elements;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  align-items: center;
+  background-color: $color-surface-1;
+
+  &_title {
+    margin-right: 1rem;
+    color: $color-white;
+
+    &:hover {
+      color: $color-accent;
+
+      transition-property: color;
+      @extend %transitionDetails;
+    }
+  }
+
+  &_price {
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+}
