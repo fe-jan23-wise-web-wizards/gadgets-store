@@ -2,7 +2,7 @@ import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import cartImage from '@assets/cart_empty.webp';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useQuery } from '@tanstack/react-query';
-import { FC, useEffect, useState } from 'react';
+import { FC,useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CartPage.module.scss';
 
@@ -57,9 +57,10 @@ export const CartPage: FC = () => {
 
   return (
     <div className={styles.cart_page}>
+      <Breadcrumbs />
+      
       {cart.length === 0 ? (
         <>
-          <Breadcrumbs />
           <div className={styles.cart_empty}>
             <h3 className={styles.cart_empty_title}>
               Looks like your cart is empty...
