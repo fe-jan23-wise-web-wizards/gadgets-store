@@ -1,15 +1,16 @@
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
-import cartImage from '@assets/cart_empty.webp';
-import { Breadcrumbs } from '@components/Breadcrumbs';
-import { useQuery } from '@tanstack/react-query';
-import { FC, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Loader } from '@/components/Loader';
+import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
 import { getProduct } from '@api/requests';
+import cartImage from '@assets/cart_empty.webp';
+import { Breadcrumbs } from '@components/Breadcrumbs';
 import { CartCheckout } from '@components/CartCheckout';
 import { CartItem } from '@components/CartItem';
 import { Modal } from '@components/ModalCheckout';
+import { useQuery } from '@tanstack/react-query';
+import { FC, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './CartPage.module.scss';
 
 export const CartPage: FC = () => {
   const {
