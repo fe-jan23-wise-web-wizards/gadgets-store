@@ -14,13 +14,17 @@ export const CardSliderNav = ({ sliderRef }: CardSliderNavProps) => {
   const [isSliderEnd, setIsSliderEnd] = useState<boolean>(false);
   const [isSliderStart, setIsSliderStart] = useState<boolean>(true);
 
-  sliderRef?.on('slideChange', () => {
+  sliderRef?.on('fromEdge', () => {
+    setIsSliderStart(false);
     setIsSliderEnd(false);
+  });
+
+  sliderRef?.on('reachBeginning', () => {
     setIsSliderStart(sliderRef.isBeginning);
   });
 
   sliderRef?.on('reachEnd', () => {
-    setIsSliderEnd(true);
+    setIsSliderEnd(sliderRef.isEnd);
   });
 
   return (
