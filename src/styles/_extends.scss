@@ -1,6 +1,6 @@
-@import '@/styles/mixins';
-@import '@/styles/breakpoints';
-@import '@/styles/variables';
+@import '@styles/mixins';
+@import '@styles/breakpoints';
+@import '@styles/variables';
 
 %flexCenter {
   display: flex;
@@ -36,6 +36,22 @@
 
   @include bp-medium-up {
     margin-bottom: 2.5 * $secondary-indent;
+  }
+}
+
+%onLoadAnimation {
+  @keyframes bubbling {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.1);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
   }
 }
 
