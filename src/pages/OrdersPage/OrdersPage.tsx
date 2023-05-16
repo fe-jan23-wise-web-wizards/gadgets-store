@@ -1,78 +1,20 @@
-import { Breadcrumbs } from '@components/Breadcrumbs';
-import styles from './OrdersPage.module.scss';
+import { getOrdersByUserId } from '@/api/requests';
 import { Order } from '@/components/Order';
-import { OrderDetails } from '@/types/OrderDetails';
-import { Link } from 'react-router-dom';
+import { useAuth, useUser } from '@clerk/clerk-react';
+import { Breadcrumbs } from '@components/Breadcrumbs';
+import { useQuery } from '@tanstack/react-query';
+import styles from './OrdersPage.module.scss';
 
 export const OrdersPage = () => {
-  const orders: OrderDetails[] = [
-    {
-      id: '1',
-      userId: '1',
-      products: [
-        {
-          "id": '48',
-          "itemId": "apple-iphone-xs-max-64gb-spacegray",
-          "category": "phones",
-          "name": "Apple iPhone XS Max 64GB Spacegray",
-          "fullPrice": 960,
-          "price": 900,
-          "screen": "6.5' OLED",
-          "capacity": "64GB",
-          "color": "spacegray",
-          "ram": "4GB",
-          "year": 2018,
-          "image": "img/phones/apple-iphone-xs-max/spacegray/00.webp"
-        },
+  const { user } = useUser();
+  const { signOut } = useAuth();
 
-        {
-          "id": '33',
-          "itemId": "apple-iphone-xs-max-64gb-silver",
-          "category": "phones",
-          "name": "Apple iPhone XS Max 64GB Silver",
-          "fullPrice": 960,
-          "price": 900,
-          "screen": "6.5' OLED",
-          "capacity": "64GB",
-          "color": "silver",
-          "ram": "4GB",
-          "year": 2018,
-          "image": "img/phones/apple-iphone-xs-max/silver/00.webp"
-        },
-      ],
-      productIds: [
-        'apple-iphone-xs-max-64gb-spacegray', 'apple-iphone-xs-max-64gb-silver',
-      ],
-      totalPrice: 1800,
-      createdAt: '16.03.2023',
-    },
+  const ordersQuery = useQuery({
+    queryKey: ['orders'],
+    queryFn: () => getOrdersByUserId(user?.id || ''),
+  });
 
-    {
-      id: '2',
-      userId: '1',
-      products: [
-        {
-          "id": '14',
-          "itemId": "apple-iphone-xr-128gb-white",
-          "category": "phones",
-          "name": "Apple iPhone XR 128GB White",
-          "fullPrice": 880,
-          "price": 815,
-          "screen": "6.1' IPS",
-          "capacity": "128GB",
-          "color": "white",
-          "ram": "3GB",
-          "year": 2018,
-          "image": "img/phones/apple-iphone-xr/white/00.webp"
-        },
-      ],
-      productIds: [
-        'apple-iphone-xr-128gb-white'
-      ],
-      totalPrice: 815,
-      createdAt: '17.03.2023',
-    }
-  ];
+  const orders = ordersQuery?.data || [];
 
   return (
     <div className={styles.container}>
@@ -81,37 +23,27 @@ export const OrdersPage = () => {
       <div className={styles.page_top}>
         <div className={styles.page_top_welcome}>
           <h1 className={styles.page_top_welcome_title}>
-            {`Welcome, ${'username'}`}
+            {`Welcome, ${user?.fullName || user?.firstName || user?.username}`}
           </h1>
 
           <p className={styles.orders_page_welcome_email}>
-            {`${'example@example.com'}`}
+            {`${user?.emailAddresses[0]}`}
           </p>
         </div>
 
-        <Link
-          className={styles.page_top_logout}
-          to="#"
-        >
+        <button className={styles.page_top_logout} onClick={() => signOut()}>
           Log out
-        </Link>
+        </button>
       </div>
 
       {orders.length === 0 ? (
-        <p className={styles.subtitle}>
-          You have no orders yet
-        </p>
+        <p className={styles.subtitle}>You have no orders yet</p>
       ) : (
         <>
-          <p className={styles.subtitle}>
-            Your orders
-          </p>
+          <p className={styles.subtitle}>Your orders</p>
 
           {orders.map(order => (
-            <Order
-              key={order.id}
-              order={order}
-            />
+            <Order key={order.id} order={order} />
           ))}
         </>
       )}

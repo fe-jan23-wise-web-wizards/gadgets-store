@@ -6,6 +6,8 @@
   margin-bottom: 3rem;
 
   &_info {
+    font-size: 0.9rem;
+    line-height: 150%;
     @extend %flexBetween;
     flex-direction: column;
   

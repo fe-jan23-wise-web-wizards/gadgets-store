@@ -1,5 +1,6 @@
 @import '@styles/variables';
 @import '@styles/extends';
+@import '@styles/breakpoints';
 
 .item {
   @extend %flexBetween;
@@ -13,7 +14,12 @@
 
   &_title {
     margin-right: 1rem;
+    font-size: 0.8rem;
     color: $color-white;
+
+    @include bp-small-up {
+      font-size: 1rem;
+    }
 
     &:hover {
       color: $color-accent;
@@ -25,6 +31,10 @@
 
   &_price {
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+
+    @include bp-small-up {
+      font-size: 1.4rem;
+    }
   }
 }
