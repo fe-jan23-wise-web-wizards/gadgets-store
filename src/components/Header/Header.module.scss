@@ -4,6 +4,10 @@
 @import '@styles/breakpoints';
 
 .navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
   background-color: $color-dark;
   width: 100%;
   border-bottom: 1px solid $color-elements;
@@ -31,7 +35,7 @@
       justify-content: end;
       align-items: center;
 
-      @include bp-custom-up(640px) {
+      @include bp-custom-up($bp-640) {
         display: none;
       }
 
@@ -55,7 +59,7 @@
     &_desktop {
       display: none;
 
-      @include bp-custom-up(640px) {
+      @include bp-custom-up($bp-640) {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -136,32 +140,22 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        &_item {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-left: 1px solid $color-elements;
-          cursor: pointer;
-        }
-
-        &_link {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 48px;
-          height: 48px;
-
-          &:hover {
-            background-color: $color-icons;
-          }
-
-          @include bp-large-up {
-            width: 64px;
-            height: 64px;
-          }
-        }
       }
+    }
+  }
+
+  &_burgerMenu_button {
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+
+    border-left: 1px solid $color-elements;
+
+    &:hover {
+      background-color: $color-icons;
     }
   }
 }

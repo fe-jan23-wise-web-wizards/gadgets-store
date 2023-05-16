@@ -1,6 +1,6 @@
-@import '@/styles/variables';
-@import '@/styles/extends';
-@import '@/styles/breakpoints';
+@import '@styles/variables';
+@import '@styles/extends';
+@import '@styles/breakpoints';
 
 .breadcrumbs {
   display: flex;
@@ -16,6 +16,13 @@
     font-weight: 700;
     font-size: 0.75rem;
     color: $color-white;
+
+    @extend %transitionDetails;
+    transition-property: color;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
 
     &:last-child {
       color: $color-secondary;

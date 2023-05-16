@@ -11,16 +11,49 @@ $color-accent-hover: #a378ff;
 $color-green: #27ae60;
 $color-red: #eb5757;
 
+//* Product colors
+$product-black: #4c4c4c;
+$product-green: #aee1cd;
+$product-yellow: #ffe681;
+$product-white: #fbf7f4;
+$product-purple: #b8afe6;
+$product-red: #ba0c2e;
+$product-midnight: #171e27;
+$product-spaceblack: #323233;
+$product-spacegray: #535150;
+$product-blue: #667e97;
+$product-starlight: #d8d4d8;
+$product-midnightgreen: #4e5851;
+$product-gold: #dfccb7;
+$product-silver: #e4e4e2;
+$product-rosegold: #e6c7c2;
+$product-coral: #ee7762;
+$product-pink: #f1b6ac;
+
+$product-colors:
+'black' $product-black,
+'green' $product-green,
+'yellow' $product-yellow,
+'white' $product-white,
+'purple' $product-purple,
+'red' $product-red,
+'midnight' $product-midnight,
+'spaceblack' $product-spaceblack,
+'spacegray' $product-spacegray,
+'blue' $product-blue,
+'starlight' $product-starlight,
+'midnightgreen' $product-midnightgreen,
+'gold' $product-gold,
+'silver' $product-silver,
+'rosegold' $product-rosegold,
+'coral' $product-coral,
+'pink' $product-pink;
+
 //* Breakpoints sizes
-//Medium smartphones
 $bp-480: 480px;
-// Small tablets and large smartphones (landscape view)
 $bp-640: 640px;
-// Small tablets (portrait view)
 $bp-768: 768px;
-// Tablets and small desktops
 $bp-1024: 1024px;
-// Large tablets and desktops
 $bp-1200: 1200px;
 
 //* Grid presets
@@ -29,8 +62,7 @@ $desktopColumns: 24;
 
 //* Primary used indentations
 $main-indent: 24px;
-$footer-first-indent: 32px;
-$secondary-indent: 16px;
+$secondary-indent: 32px;
 
 //* Container
 $container-padding: 15px;

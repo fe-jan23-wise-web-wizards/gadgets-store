@@ -1,0 +1,27 @@
+@import '@/styles/variables';
+@import '@/styles/extends';
+
+.back_button {
+  display: flex;
+  width: 80px;
+  margin-bottom: 16px;
+  padding: 0;
+  gap: 10px;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: $color-white;
+
+  @extend %transitionDetails;
+  transition-property: color;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+
+  &_icon {
+    @extend %iconsBaseSet;
+
+    background-image: url('@/assets/icons/arrow-left.svg');
+  }
+}

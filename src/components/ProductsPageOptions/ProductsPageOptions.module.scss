@@ -1,0 +1,16 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+@import '@styles/breakpoints';
+
+.options_wrapper {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+
+  margin-bottom: $main-indent;
+
+  @include bp-custom-up(639px) {
+    grid-template-columns: 60% 40%;
+    width: 320px;
+  }
+}

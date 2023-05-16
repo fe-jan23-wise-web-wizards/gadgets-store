@@ -9,19 +9,77 @@ interface ProductCardProps {
   product: Product;
 }
 
+export const ProductCardSkeleton = () => {
+  return (
+    <div className={styles.product_card}>
+      <div className={styles.image_shimmer}></div>
+
+      <div className={styles.product_card_title}>
+        <div className={styles.title_shimmer}></div>
+        <div className={styles.title_shimmer}></div>
+      </div>
+
+      <div className={styles.product_card_price}>
+        <div className={styles.price_shimmer}></div>
+        <div className={styles.price_shimmer}></div>
+      </div>
+
+      <div className={styles.product_card_separator}></div>
+
+      <div className={styles.product_card_properties}>
+        <div className={styles.product_card_property}>
+          <div className={styles.property_title_shimmer}></div>
+          <div className={styles.property_value_shimmer}></div>
+        </div>
+
+        <div className={styles.product_card_property}>
+          <div className={styles.property_title_shimmer}></div>
+          <div className={styles.property_value_shimmer}></div>
+        </div>
+
+        <div className={styles.product_card_property}>
+          <div className={styles.property_title_shimmer}></div>
+          <div className={styles.property_value_shimmer}></div>
+        </div>
+      </div>
+
+      <div className={styles.product_card_buttons}>
+        <div className={styles.add_button_shimmer}></div>
+        <div className={styles.like_button_shimmer}></div>
+      </div>
+    </div>
+  );
+};
+
 export const ProductCard = ({ product }: ProductCardProps) => {
   const {
     removeFromFavorites,
     isFavorite,
     addToFavorites,
+    isAddedToCart,
+    addToCart,
+    removeFromCart,
   } = useLocalStorageContext();
 
+  const isItemInCart = isAddedToCart(product.itemId);
   const isItemFavorite = isFavorite(product.itemId);
 
-  const handleLikeButtonClick = () => {
+  const handleLike = () => {
     isFavorite(product.itemId)
       ? removeFromFavorites(product.itemId)
       : addToFavorites(product.itemId);
+  };
+
+  const handleAddToCart = () => {
+    if (isItemInCart) {
+      removeFromCart(product.itemId);
+    } else {
+      addToCart({
+        id: product.itemId,
+        price: product.price,
+        quantity: 1,
+      });
+    }
   };
 
   const titleSplit = product.name.split(' ');
@@ -29,7 +87,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const titleSecondRow = titleSplit.slice(titleSplit.length - 2).join(' ');
 
   return (
-    <div className="grid_item">
+    <div className={'grid_item'}>
       <div className={styles.product_card}>
         <Link to={`/${product.category}/${product.itemId}`}>
           <figure className={styles.product_card_figure}>
@@ -83,13 +141,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className={styles.product_card_buttons}>
-          <AddToCartButton />
-          <LikeButton
-            onLike={handleLikeButtonClick}
-            isItemFavorite={isItemFavorite}
+          <AddToCartButton
+            isAddedToCart={isItemInCart}
+            handleAddToCart={handleAddToCart}
           />
+          <LikeButton onLike={handleLike} isItemFavorite={isItemFavorite} />
         </div>
-      </div>
+      </div> 
     </div>
   );
 };

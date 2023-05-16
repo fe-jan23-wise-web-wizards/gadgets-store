@@ -1,33 +1,98 @@
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ImageSlider } from '@/components/ImageSlider';
 import { Category } from '@/types/Category';
-import { getProductDetails } from '@api/requests';
+import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
+import { useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+
+import { BackButton } from '@/components/BackButton';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { CardSlider } from '@/components/CardSlider';
+import { ProductAbout } from '@/components/ProductAbout';
+import { ProductSidebar } from '@/components/ProductSidebar';
+import { ProductTechSpecs } from '@/components/ProductTechSpecs';
+
+import { ImageSlider } from '@/components/ImageSlider';
+import { Loader } from '@/components/Loader';
+import styles from './ProductPage.module.scss';
 
 export const ProductPage = () => {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
+  const [currentProductPath, setCurrentProductPath] = useState('');
+
   const category = pathname.slice(1).split('/').shift() as Category;
+
+  const currentProductId = useRef(id);
 
   const productDetailsQuery = useQuery({
     queryKey: [`${id}`],
-    queryFn: () => getProductDetails(id),
+    queryFn: () => getProductDetails(currentProductId.current),
+    enabled: !!currentProductId.current,
   });
+
+  const handleProductChange = (newId: string) => {
+    currentProductId.current = newId;
+    const newPathname = `/${category}/${newId}`;
+    window.history.replaceState(null, '', `${newPathname}`);
+
+    setCurrentProductPath(newPathname);
+    void productDetailsQuery.refetch();
+  };
+
+  const recommendedProductsQuery = useQuery({
+    queryKey: ['recommendedProducts'],
+    queryFn: () => getRecommendedProducts(id),
+  });
+
+  const recommendedProducts = recommendedProductsQuery.data || [];
+
+  const product = productDetailsQuery?.data;
 
   return (
     <>
-      <Breadcrumbs />
-      <h1>{`category: ${JSON.stringify(category)}`}</h1>
-      <br />
-      <p>{`product details: ${JSON.stringify(productDetailsQuery.data, null, 2)}`}</p>
-      <br />
-      <h1>{`isError: ${JSON.stringify(productDetailsQuery.isError)}`}</h1>
-      <br />
-      <h1>{`isSuccess: ${JSON.stringify(productDetailsQuery.isSuccess)}`}</h1>
-      <br />
-      <h1>{`isLoading: ${JSON.stringify(productDetailsQuery.isLoading)}`}</h1>
-      <ImageSlider productImages={productDetailsQuery.data?.images || []} />
+      {productDetailsQuery.isInitialLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Breadcrumbs newPath={currentProductPath} />
+
+          <BackButton category={category} />
+
+          {product && (
+            <>
+              <h1 className={styles.product_title}>{product.name}</h1>
+
+              <div className={styles.product_details}>
+                <div className={styles.product_details_slider}>
+                  <ImageSlider productImages={product.images} />
+                </div>
+
+                <div className={styles.product_details_sidebar}>
+                  <ProductSidebar
+                    product={product}
+                    onProductChange={handleProductChange}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.product_description}>
+                <div className={styles.product_description_about}>
+                  <ProductAbout description={product.description} />
+                </div>
+
+                <div className={styles.product_description_tech}>
+                  <ProductTechSpecs product={product} />
+                </div>
+              </div>
+
+              <CardSlider
+                title={'You may also like'}
+                products={recommendedProducts}
+              />
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };

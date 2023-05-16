@@ -1,10 +1,16 @@
-@import '@/styles/mixins';
-@import '@/styles/breakpoints';
+@import '@styles/mixins';
+@import '@styles/breakpoints';
+@import '@styles/variables';
 
 %flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+%flexBetween {
+  display: flex;
+  justify-content: space-between;
 }
 
 %transitionDetails {
@@ -47,4 +53,12 @@
       transform: scale(1);
     }
   }
+}
+
+%categorySubtitle {
+  margin-bottom: $secondary-indent;
+  padding-bottom: calc($secondary-indent / 2);
+  font-size: 1.25rem;
+  font-weight: 800;
+  border-bottom: 1px solid $color-secondary;
 }

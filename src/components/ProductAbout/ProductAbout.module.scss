@@ -1,0 +1,29 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+@import '@/styles/extends';
+
+.about {
+  &_header {
+    @extend %categorySubtitle;
+  }
+
+  &_title {
+    font-weight: 700;
+    margin-bottom: calc($secondary-indent / 2);
+
+    @include bp-custom-up(640px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &_content {
+    font-size: 0.8rem;
+    line-height: 150%;
+    color: $color-secondary;
+  }
+
+  &_text {
+    display: inline-block;
+    margin-bottom: $secondary-indent;
+  }
+}

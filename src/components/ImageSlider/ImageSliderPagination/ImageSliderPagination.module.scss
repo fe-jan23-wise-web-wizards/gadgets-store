@@ -5,9 +5,12 @@
   gap: 8px;
   grid-template-columns: repeat(5, 1fr);
 
-  @include bp-custom-up(639px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, max-content);
+  @include bp-custom-up(939px) {
+    display: flex;
+    flex-direction: column;
+
+    flex-basis: 16%;
+    flex-shrink: 1;
   }
 
   @include bp-large-up {

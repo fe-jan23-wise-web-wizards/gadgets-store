@@ -1,28 +1,50 @@
-import { Link } from 'react-router-dom';
-import styles from '../Header.module.scss';
+import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+import styles from './IconLink.module.scss';
 
 interface Props {
   to: string;
   src: string;
   alt: string;
-  classNameIconLinkBlock: string;
-  classNameIconLink: string;
+  isBurger?: boolean;
+  clickFunc?: () => void;
+  count: number;
 }
 
 export const IconLink = ({
   to,
   src,
   alt,
-  classNameIconLinkBlock,
-  classNameIconLink,
+  isBurger,
+  clickFunc,
+  count,
 }: Props) => (
-    <div className={classNameIconLinkBlock}>
-      <Link to={`/${to}`} className={classNameIconLink}>
-        <img
-          src={src}
-          alt={alt}
-          className={styles.navbar_menu_desktop_right_icon}
-        />
-      </Link>
-    </div>
-  );
+  <NavLink
+    to={`/${to}`}
+    className={({ isActive }) =>
+      classNames(
+        styles.link,
+        isBurger && styles.burger_link,
+        isActive && styles.link_active,
+        isActive && isBurger && styles.burger_link_active,
+      )
+    }
+    onClick={clickFunc}
+  >
+    {count > 0 && (
+      <span
+        className={classNames(
+          styles.indicator,
+          isBurger && styles.burger_indicator,
+        )}
+      >
+        {count}
+      </span>
+    )}
+    <img
+      src={src}
+      alt={alt}
+      className={classNames(isBurger && styles.burger_icon)}
+    />
+  </NavLink>
+);

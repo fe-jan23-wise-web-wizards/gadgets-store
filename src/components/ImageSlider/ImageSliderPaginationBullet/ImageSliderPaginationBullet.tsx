@@ -23,8 +23,13 @@ export const ImageSliderPaginationBullet = ({
         styles.pagination_bullet,
         { [styles.pagination_bullet_active]: isActive },
       )}
-      style={backroundStyles}
+      // style={backroundStyles}
       onClick={onClick}
-    />
+    >
+      <div
+        className={styles.pagination_bullet_image_container}
+        style={backroundStyles}
+      ></div>
+    </button>
   );
 };

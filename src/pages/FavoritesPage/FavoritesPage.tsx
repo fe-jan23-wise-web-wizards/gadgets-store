@@ -1,13 +1,14 @@
 import { getProduct } from '@/api/requests';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Loader } from '@/components/Loader';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
+import favImage from '@assets/heart_purple.png';
 import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect,useState } from 'react';
-import styles from './FavoritesPage.module.scss';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import favImage from '@assets/heart_purple.png';
+import styles from './FavoritesPage.module.scss';
 
 export const FavoritesPage = () => {
   const { favorites } = useLocalStorageContext();
@@ -26,8 +27,11 @@ export const FavoritesPage = () => {
   return (
     <>
       <Breadcrumbs />
-      {!favoritesQuery.isError && (
-        <div className={styles.container}>
+
+      {favoritesQuery.isInitialLoading ? (
+        <Loader />
+      ) : (
+        <>
           {favorites.length > 0 ? (
             <>
               <h1 className={styles.title}>Favourites</h1>
@@ -53,7 +57,7 @@ export const FavoritesPage = () => {
               </Link>
             </div>
           )}
-        </div>
+        </>
       )}
     </>
   );
