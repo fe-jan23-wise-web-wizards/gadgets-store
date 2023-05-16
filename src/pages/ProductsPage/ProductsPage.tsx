@@ -86,7 +86,9 @@ export const ProductsPage = () => {
 
           <ProductList products={productsQuery?.data || []} />
 
-          <Pagination quantity={pagesQuantity} />
+          {pagesQuantity > 1 && (
+            <Pagination quantity={pagesQuantity} />
+          )}
         </>
       )}
     </>
