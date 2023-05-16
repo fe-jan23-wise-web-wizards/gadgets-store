@@ -27,7 +27,9 @@ export const CardSlider = ({ title, products }: CardSliderProps) => {
           {title}
         </h2>
 
-        <CardSliderNav sliderRef={swiperRef} />
+        {products.length > 0 && (
+          <CardSliderNav sliderRef={swiperRef} />
+        )}
       </div>
 
       <div className={styles.card_slider_wrapper}>
