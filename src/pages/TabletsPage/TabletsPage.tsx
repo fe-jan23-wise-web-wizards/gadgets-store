@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation,useSearchParams } from 'react-router-dom';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Pagination } from '@/components/Pagination';
 import { ProductsPageOptions } from '@/components/ProductsPageOptions';
 import { Category } from '@/types/Category';
 import { SortBy } from '@/types/SortBy';
-import { getProductsByCategory, getProductsCount } from '@api/requests';
+import { getProductsByCategory,getProductsCount } from '@api/requests';
 import { ProductList } from '@components/ProductList';
 
 import { Loader } from '@/components/Loader';
@@ -43,7 +43,7 @@ export const TabletsPage = () => {
 
   return (
     <>
-      {tabletsQuery.isFetching || tabletsQuery.isLoading ? (
+      {tabletsQuery.isInitialLoading ? (
         <Loader />
       ) : (
         <>

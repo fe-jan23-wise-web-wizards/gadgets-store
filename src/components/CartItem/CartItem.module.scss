@@ -8,8 +8,8 @@
   flex-direction: column;
   width: 100%;
   border: 1px solid $color-elements;
-  margin-bottom: secondary-indent;
-  padding: secondary-indent;
+  margin-bottom: $secondary-indent;
+  padding: $secondary-indent;
   gap: $main-indent;
   align-items: center;
   background-color: $color-surface-1;
@@ -56,6 +56,10 @@
   line-height: 21px;
   padding-right: 10px;
   color: $color-white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  
 
   @include bp-custom-up(640px) {
     padding-right: 34px;
