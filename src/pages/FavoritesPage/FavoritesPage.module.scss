@@ -42,10 +42,9 @@
 }
 
 .fav_empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
   flex-direction: column;
+  height: 90%;
 
   &_title {
     font-size: 1rem;

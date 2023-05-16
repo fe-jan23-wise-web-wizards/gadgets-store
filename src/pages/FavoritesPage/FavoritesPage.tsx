@@ -6,7 +6,7 @@ import { Product } from '@/types/Product';
 import favImage from '@assets/favorites_empty.webp';
 import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './FavoritesPage.module.scss';
 
@@ -22,32 +22,26 @@ export const FavoritesPage = () => {
 
   useEffect(() => {
     void favoritesQuery.refetch();
-  }, [favorites, favoritesQuery]);
+  }, [favorites]);
 
   return (
     <>
       <Breadcrumbs />
 
-      {favoritesQuery.isInitialLoading ? (
+      {favoritesQuery.isLoading && favorites.length !== 0 ? (
         <Loader />
       ) : (
         <>
-          {favorites.length > 0 ? (
-            <>
-              <h1 className={styles.title}>Favourites</h1>
-              <p className={styles.description}>{products.length} items</p>
-              <ProductList products={products} />
-            </>
-          ) : (
+          {favorites.length === 0 ? (
             <div className={styles.fav_empty}>
               <h3 className={styles.fav_empty_title}>
-                You have no favourites yet...
+                You have no favorites yet...
               </h3>
 
               <div className={styles.fav_empty_image_container}>
                 <img
                   src={favImage}
-                  alt="favourites"
+                  alt="favorites"
                   className={styles.fav_empty_image}
                 />
               </div>
@@ -56,6 +50,12 @@ export const FavoritesPage = () => {
                 Go shopping
               </Link>
             </div>
+          ) : (
+            <>
+              <h1 className={styles.title}>Favourites</h1>
+              <p className={styles.description}>{products.length} items</p>
+              <ProductList products={products} />
+            </>
           )}
         </>
       )}

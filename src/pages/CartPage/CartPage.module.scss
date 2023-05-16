@@ -4,56 +4,7 @@
 @import '@styles/extends';
 
 .cart_page {
-  display: flex;
   flex-direction: column;
-  align-items: start;
-
-  padding-top: $main-indent;
-  padding-bottom: calc($secondary-indent * 3.5);
-
-  @include bp-small-up {
-    // padding-top: calc($secondary-indent * 2.5);
-    padding-bottom: calc($secondary-indent * 4);
-  }
-
-  @include bp-medium-up {
-    padding-bottom: calc($secondary-indent * 5);
-  }
-
-  &_back_button {
-    font-weight: 700;
-    font-size: 12px;
-
-    color: $color-white;
-    background-color: transparent;
-
-    margin-bottom: $main-indent;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    @include bp-small-up {
-      margin-bottom: $secondary-indent;
-    }
-
-    &_img {
-      width: 16px;
-      height: 16px;
-
-      background-image: url('@/assets/icons/back-arrow.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    &:hover {
-      color: $color-secondary;
-    }
-
-    &:hover &_img {
-      background-image: url('@/assets/icons/back-arrow-disabled.svg');
-    }
-  }
 
   &_title {
     font-weight: 700;
@@ -75,7 +26,6 @@
   }
 
   &_container {
-    // width: 100%;
 
     @include bp-x-large-up {
       display: flex;
@@ -86,10 +36,8 @@
 }
 
 .cart_empty {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 90%;
+  @extend %flexCenter;
   flex-direction: column;
 
   &_title {

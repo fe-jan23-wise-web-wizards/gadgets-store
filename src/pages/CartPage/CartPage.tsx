@@ -2,10 +2,11 @@ import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import cartImage from '@assets/cart_empty.webp';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useQuery } from '@tanstack/react-query';
-import { FC,useEffect,useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CartPage.module.scss';
 
+import { Loader } from '@/components/Loader';
 import { Product } from '@/types/Product';
 import { getProduct } from '@api/requests';
 import { CartCheckout } from '@components/CartCheckout';
@@ -34,17 +35,13 @@ export const CartPage: FC = () => {
 
   useEffect(() => {
     void cartQuery.refetch();
-  }, [cartItems]);
+  }, [cart]);
 
   useEffect(() => {
     if (redirectToHomePage) {
       window.location.href = '/';
     }
   }, [redirectToHomePage]);
-
-  const handleGoBack = () => {
-    window.history.back();
-  };
 
   const handleCheckoutClick = () => {
     setShowModal(true);
@@ -56,39 +53,30 @@ export const CartPage: FC = () => {
   };
 
   return (
-    <div className={styles.cart_page}>
+    <>
       <Breadcrumbs />
-      
-      {cart.length === 0 ? (
-        <>
-          <div className={styles.cart_empty}>
-            <h3 className={styles.cart_empty_title}>
-              Looks like your cart is empty...
-            </h3>
 
-            <img
-              src={cartImage}
-              alt="cart"
-              className={styles.cart_empty_image}
-            />
-
-            <Link to="/" className={styles.cart_empty_button}>
-              Go shopping
-            </Link>
-          </div>
-        </>
+      {cartQuery.isLoading ? (
+        <Loader />
       ) : (
         <>
-          <button
-            onClick={handleGoBack}
-            className={styles.cart_page_back_button}
-          >
-            <div className={styles.cart_page_back_button_img} />
+          {cart.length === 0 ? (
+            <div className={styles.cart_empty}>
+              <h3 className={styles.cart_empty_title}>
+                Looks like your cart is empty...
+              </h3>
 
-            <span className={styles.cart_page_back_button_text}>Back</span>
-          </button>
+              <img
+                src={cartImage}
+                alt="cart"
+                className={styles.cart_empty_image}
+              />
 
-          {cart.length ? (
+              <Link to="/" className={styles.cart_empty_button}>
+                Go shopping
+              </Link>
+            </div>
+          ) : (
             <>
               <h1 className={styles.cart_page_title}>Cart</h1>
 
@@ -123,11 +111,9 @@ export const CartPage: FC = () => {
                 {showModal && <Modal onClose={closeModal} />}
               </div>
             </>
-          ) : (
-            <h1 className={styles.cart_page_title}>Cart is empty</h1>
           )}
         </>
       )}
-    </div>
+    </>
   );
 };
