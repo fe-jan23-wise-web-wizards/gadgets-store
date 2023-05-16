@@ -56,6 +56,10 @@
   line-height: 21px;
   padding-right: 10px;
   color: $color-white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  
 
   @include bp-custom-up(640px) {
     padding-right: 34px;
