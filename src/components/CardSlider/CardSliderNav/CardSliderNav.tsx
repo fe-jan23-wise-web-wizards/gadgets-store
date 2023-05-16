@@ -20,11 +20,11 @@ export const CardSliderNav = ({ sliderRef }: CardSliderNavProps) => {
   });
 
   sliderRef?.on('reachBeginning', () => {
-    setIsSliderStart(sliderRef.isBeginning);
+    setIsSliderStart(true);
   });
 
   sliderRef?.on('reachEnd', () => {
-    setIsSliderEnd(sliderRef.isEnd);
+    setIsSliderEnd(true);
   });
 
   return (
