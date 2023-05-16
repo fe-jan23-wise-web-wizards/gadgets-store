@@ -6,14 +6,15 @@ import {
 } from 'react-router-dom';
 
 import { MainLayout } from '@layouts/MainLayout';
-import { AccessoriesPage } from '@pages/AccessoriesPage';
+import { ProductsPage } from '@pages/ProductsPage';
 import { CartPage } from '@pages/CartPage';
 import { FavoritesPage } from '@/pages/FavoritesPage';
 import { HomePage } from '@pages/HomePage';
 import { NotFoundPage } from '@pages/NotFoundPage';
-import { PhonesPage } from '@pages/PhonesPage';
 import { ProductPage } from '@pages/ProductPage';
-import { TabletsPage } from '@pages/TabletsPage';
+import { Category } from '@/types/Category';
+
+const categories = Object.values(Category);
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,20 +22,12 @@ export const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="/" replace />} />
 
-      <Route path="phones">
-        <Route index element={<PhonesPage />} />
-        <Route path=":id" element={<ProductPage />} />
-      </Route>
-
-      <Route path="tablets">
-        <Route index element={<TabletsPage />} />
-        <Route path=":id" element={<ProductPage />} />
-      </Route>
-
-      <Route path="accessories">
-        <Route index element={<AccessoriesPage />} />
-        <Route path=":id" element={<ProductPage />} />
-      </Route>
+      {categories.map(category => (
+        <Route key={category} path={category}>
+          <Route index element={<ProductsPage />} />
+          <Route path=":id" element={<ProductPage />} />
+        </Route>
+      ))}
 
       <Route path="favorites" element={<FavoritesPage />} />
       <Route path="cart" element={<CartPage />} />

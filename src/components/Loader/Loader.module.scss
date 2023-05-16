@@ -4,6 +4,7 @@
 .loader {
   @extend %flexCenter;
   height: 70%;
+  width: 100%;
 
   &_body {
     display: flex;
