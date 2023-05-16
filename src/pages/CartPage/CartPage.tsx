@@ -1,12 +1,12 @@
-import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { useQuery } from '@tanstack/react-query';
 import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import cartImage from '../../assets/cart_purple.png';
+import cartImage from '@assets/cart_empty.webp';
 import styles from './CartPage.module.scss';
 
-import { Modal } from '@/components/ModalCheckout';
+import { Modal } from '@components/ModalCheckout';
 import { Product } from '@/types/Product';
 import { getProduct } from '@api/requests';
 import { CartCheckout } from '@components/CartCheckout';

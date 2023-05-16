@@ -1,7 +1,7 @@
 import styles from './NotFoundPage.module.scss';
-import firstImage from '../../assets/404_first.png';
-import secondImage from '../../assets/404_second.png';
-import thirdImage from '../../assets/404_third.png';
+import firstImage from '@assets/404_first.webp';
+import secondImage from '@assets/404_second.webp';
+import thirdImage from '@assets/404_third.webp';
 import { Link } from 'react-router-dom';
 
 export const NotFoundPage = () => {

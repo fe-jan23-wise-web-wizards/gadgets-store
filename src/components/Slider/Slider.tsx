@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore,{ Autoplay } from 'swiper';
+import { Swiper,SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperClass } from 'swiper/types';
-import SwiperCore, { Autoplay } from 'swiper';
 
 SwiperCore.use([Autoplay]);
 
 import { SliderItem } from './components/SliderItem';
+import { SliderNavButton } from './components/SliderNavButton';
 import { SliderPagination } from './components/SliderPagination';
 import { SliderNavButtonType } from './types/SliderNavButtonType';
-import { SliderNavButton } from './components/SliderNavButton';
 
-import phonesBanner from '@assets/banner-phones.png';
-import tabletsBanner from '@assets/banner-tablets.png';
-import accessoriesBanner from '@assets/banner-accessories.png';
+const banner1 = `${import.meta.env.VITE_API_URL}/static/img/banners/banner-1.webp`;
+const banner2 = `${import.meta.env.VITE_API_URL}/static/img/banners/banner-2.webp`;
+const banner3 = `${import.meta.env.VITE_API_URL}/static/img/banners/banner-3.webp`;
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -20,7 +20,7 @@ import 'swiper/scss/pagination';
 import "swiper/swiper-bundle.min.css";
 import styles from './Slider.module.scss';
 
-const bannersPaths = [phonesBanner, tabletsBanner, accessoriesBanner];
+const bannersPaths = [banner1, banner2, banner3];
 
 export const Slider = () => {
   const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);

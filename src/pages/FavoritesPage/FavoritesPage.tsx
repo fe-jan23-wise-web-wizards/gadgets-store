@@ -3,7 +3,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Loader } from '@/components/Loader';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
-import favImage from '@assets/heart_purple.png';
+import favImage from '@assets/favorites_empty.webp';
 import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
