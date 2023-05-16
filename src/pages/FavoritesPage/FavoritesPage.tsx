@@ -1,12 +1,14 @@
 import { getProduct } from '@/api/requests';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Loader } from '@/components/Loader';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
+import favImage from '@assets/favorites_empty.webp';
 import { ProductList } from '@components/ProductList';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './FavoritesPage.module.scss';
-import { Loader } from '@/components/Loader';
 
 export const FavoritesPage = () => {
   const { favorites } = useLocalStorageContext();
@@ -20,25 +22,42 @@ export const FavoritesPage = () => {
 
   useEffect(() => {
     void favoritesQuery.refetch();
-  }, [favorites]);
+  }, [favorites, favoritesQuery]);
 
   return (
     <>
-      {!favoritesQuery.isError && (
-        <div className={styles.container}>
-          <Breadcrumbs />
+      <Breadcrumbs />
 
-          {favoritesQuery.isLoading || favoritesQuery.isFetching
-            ? (<Loader />)
-            : (
-              <>
-                <h1 className={styles.title}>Favourites</h1>
-                <p className={styles.description}>{products.length} items</p>
+      {favoritesQuery.isInitialLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {favorites.length > 0 ? (
+            <>
+              <h1 className={styles.title}>Favourites</h1>
+              <p className={styles.description}>{products.length} items</p>
+              <ProductList products={products} />
+            </>
+          ) : (
+            <div className={styles.fav_empty}>
+              <h3 className={styles.fav_empty_title}>
+                You have no favourites yet...
+              </h3>
 
-                <ProductList products={products} />
-              </>
-            )}
-        </div>
+              <div className={styles.fav_empty_image_container}>
+                <img
+                  src={favImage}
+                  alt="favourites"
+                  className={styles.fav_empty_image}
+                />
+              </div>
+
+              <Link to="/" className={styles.fav_empty_button}>
+                Go shopping
+              </Link>
+            </div>
+          )}
+        </>
       )}
     </>
   );
