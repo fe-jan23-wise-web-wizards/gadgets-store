@@ -19,6 +19,12 @@ const get = async <T>(path: string, body?: any): Promise<T> => {
   return data;
 };
 
+const post = async <T>(path: string, body?: any): Promise<T> => {
+  const { data } = await axios.post<T>(path, { ...body});
+
+  return data;
+};
+
 export const getAllProducts = (
   page?: number,
   limit?: number,
@@ -81,5 +87,11 @@ export const getRecommendedProducts = (id: string) => {
 export const getOrdersByUserId = (id: string) => {
   return get<OrderDetails[]>(`${ORDERS_URL}/${id}`, {
     userId: id,
+  });
+};
+
+export const placeOrder = (order: Omit<OrderDetails, 'createdAt' | 'id'>) => {
+  return post<Omit<OrderDetails, 'createdAt' | 'id'>>(`${ORDERS_URL}/new`, {
+    ...order,
   });
 };
