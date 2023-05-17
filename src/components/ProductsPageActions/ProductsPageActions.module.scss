@@ -1,0 +1,13 @@
+@import '@styles/breakpoints';
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include bp-large-up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+  }
+}

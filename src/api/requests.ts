@@ -47,12 +47,14 @@ export const getProductsByCategory = (
   page?: number,
   limit?: number,
   sort?: SortBy,
+  query?: string,
 ) => {
   const queries = [`category=${category}`];
 
   if (page) queries.push(`page=${page}`);
   if (limit) queries.push(`limit=${limit}`);
   if (sort) queries.push(`sort=${sort}`);
+  if (query) queries.push(`query=${query}`);
 
   return get<Product[]>(`${BASE_URL}?${queries.join('&')}`);
 };
@@ -65,8 +67,15 @@ export const getProduct = (id: string) => {
   return get<Product>(`${BASE_URL}/${id}`);
 };
 
-export const getProductsCount = (category: Category) => {
-  return get<ProductsCount>(`${BASE_URL}/count?category=${category}`);
+export const getProductsCount = (
+  category: Category,
+  query?: string,
+) => {
+  const queries = [`category=${category}`];
+
+  if (query) queries.push(`query=${query}`);
+
+  return get<ProductsCount>(`${BASE_URL}/count?${queries.join('&')}`);
 };
 
 export const getRecommendedProducts = (id: string) => {
