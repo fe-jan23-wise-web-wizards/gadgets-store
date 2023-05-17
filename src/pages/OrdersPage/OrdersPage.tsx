@@ -4,6 +4,7 @@ import { useAuth, useUser } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useQuery } from '@tanstack/react-query';
 import styles from './OrdersPage.module.scss';
+import { Link } from 'react-router-dom';
 
 export const OrdersPage = () => {
   const { user } = useUser();
@@ -31,9 +32,9 @@ export const OrdersPage = () => {
           </p>
         </div>
 
-        <button className={styles.page_top_logout} onClick={() => signOut()}>
+        <Link to="/" className={styles.page_top_logout} onClick={() => signOut()}>
           Log out
-        </button>
+        </Link>
       </div>
 
       {orders.length === 0 ? (
