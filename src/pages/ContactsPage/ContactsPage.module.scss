@@ -1,5 +1,6 @@
-@import '@/styles/variables';
-@import '@/styles/breakpoints';
+@import '@styles/variables';
+@import '@styles/breakpoints';
+@import '@styles/extends';
 
 .page {
   display: flex;
@@ -7,16 +8,14 @@
 }
 
 .cards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
   flex-wrap: wrap;
+  gap: $main-indent;
 
-  margin-bottom: 32px;
-  gap: 24px;
+  margin-bottom: $secondary-indent;
 
   @include bp-custom-up (640px) {
-    gap: 32px;
+    gap: $secondary-indent;
   }
 }
 
