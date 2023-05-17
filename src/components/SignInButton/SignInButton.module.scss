@@ -1,0 +1,21 @@
+@import '@styles/variables';
+@import '@styles/extends';
+
+.button {
+  @extend %flexCenter;
+
+  width: 6.25rem;
+  padding: 0.2rem 0;
+  color: #f1f2f9;
+  font-size: 0.8rem;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 150%;
+  text-decoration: none;
+  background-color: $color-accent;
+
+  @include bp-large-up {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+  }
+}

@@ -10,10 +10,14 @@ export const SignInPage = () => {
         appearance={{
           variables: {
             colorPrimary: '#905BFF',
+            fontFamily: 'Mont',
           },
           layout: {
             socialButtonsVariant: 'blockButton',
           },
+          elements: {
+            footer: styles.footer,
+          }
         }}
       />
     </div>
