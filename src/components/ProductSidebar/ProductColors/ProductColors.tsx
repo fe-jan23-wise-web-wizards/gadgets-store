@@ -1,19 +1,28 @@
-import styles from './ProductColors.module.scss';
 import classNames from 'classnames';
+import styles from './ProductColors.module.scss';
 
 interface ProductColorsProps {
   currentColor: string;
   colors: string[];
   onColorChange: (newColor: string) => void;
+  productId: string;
 }
 
-export const ProductColors = ({ currentColor, colors, onColorChange }: ProductColorsProps) => {
+export const ProductColors = ({
+  currentColor,
+  colors,
+  onColorChange,
+  productId,
+}: ProductColorsProps) => {
   const generateId = () => {
-    const min = 100000;
-    const max = 999999;
-    const id = Math.floor(Math.random() * (max - min + 1)) + min;
+    let sixDigitsId = 0;
 
-    return id;
+    for (let i = 0; i < productId.length; i++) {
+      sixDigitsId = (sixDigitsId + productId.charCodeAt(i)) * 31;
+    }
+    
+    sixDigitsId = sixDigitsId % 1000000;
+    return sixDigitsId;
   };
 
   return (

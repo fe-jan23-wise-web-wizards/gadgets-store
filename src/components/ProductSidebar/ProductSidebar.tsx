@@ -82,6 +82,7 @@ export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps
           currentColor={color}
           colors={product.colorsAvailable}
           onColorChange={handleColorChange}
+          productId={product.id}
         />
       </div>
 
