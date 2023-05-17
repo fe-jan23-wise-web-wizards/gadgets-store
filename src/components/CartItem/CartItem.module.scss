@@ -120,25 +120,27 @@
   }
 }
 
-.button_disabled {
-  background-color: $color-surface-1;
-
-  &:hover {
-    background-color: $color-surface-1;
-  }
-}
-
 .plus {
   @extend %flexCenter;
 
-  margin-right: 13px;
   background-color: $color-elements;
+  border: 1px solid $color-elements;
+  
+  margin-right: 13px;
   @include square(32px);
 
   @extend %transitionDetails;
 
   &:hover {
     background-color: $color-icons;
+  }
+}
+
+.button_disabled {
+  background-color: $color-surface-1;
+
+  &:hover {
+    background-color: $color-surface-1;
   }
 }
 
