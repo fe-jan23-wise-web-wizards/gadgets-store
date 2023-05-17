@@ -36,8 +36,16 @@
 .role {
   position: absolute;
   right: $medium-indent;
-  bottom: $medium-indent;
+  bottom: $medium-indent + 9px;
   color: $color-accent;
+
+  writing-mode: vertical-rl;
+
+  @include bp-custom-up (400px) {
+    bottom: $medium-indent;
+    text-orientation: sideways;
+    writing-mode: horizontal-tb;
+  }
 }
 
 .link img {

@@ -19,7 +19,7 @@ export const ContactsPage = () => {
         <ContactCard
           name="Stanislav Korchevskyi"
           photo={StasPhoto}
-          linkedin="linkedin.com/in/stanislavkorchevskyi"
+          linkedin="https://linkedin.com/in/stanislavkorchevskyi"
           github="https://github.com/stanislavcodes"
           mail="work.stanislav.codes@gmail.com"
           role="Team Lead"
@@ -28,7 +28,7 @@ export const ContactsPage = () => {
         <ContactCard
           name="Vladyslav Mosor"
           photo={VladPhoto}
-          linkedin="linkedin.com/in/vladyslav-mosor"
+          linkedin="https://linkedin.com/in/vladyslav-mosor"
           github="https://github.com/vladyslav-mosor"
           mail="mosorvlad@gmail.com"
         />
@@ -36,7 +36,7 @@ export const ContactsPage = () => {
         <ContactCard
           name="Rashyd Hasratov"
           photo={RashydPhoto}
-          linkedin="linkedin.com/in/rashyd-hasratov"
+          linkedin="https://linkedin.com/in/rashyd-hasratov"
           github="https://github.com/rashyd-hasratov"
           mail="rashyd.hasratov@gmail.com"
         />
@@ -44,7 +44,7 @@ export const ContactsPage = () => {
         <ContactCard
           name="Andrii Bezkorovainyi"
           photo={AndriiPhoto}
-          linkedin="linkedin.com/in/andrii-bezkorovainyi-366166274"
+          linkedin="https://linkedin.com/in/andrii-bezkorovainyi-366166274"
           github="https://github.com/andriibezkorovainyi"
           mail="andrej.b.develop@gmail.com"
         />
@@ -52,7 +52,7 @@ export const ContactsPage = () => {
         <ContactCard
           name="Stanislav Kulakovskyi"
           photo={StasKulPhoto}
-          linkedin="linkedin.com/in/stanislav-kulakovskyi-a02651273"
+          linkedin="https://linkedin.com/in/stanislav-kulakovskyi-a02651273"
           github="https://github.com/stanislavkulakovskyi"
           mail="kulakostas@gmail.com"
         />
@@ -60,7 +60,7 @@ export const ContactsPage = () => {
         <ContactCard
           name="Vadym Kolomiiets"
           photo={VadymPhoto}
-          linkedin="linkedin.com/in/vadym-kolomiiets-ua"
+          linkedin="https://linkedin.com/in/vadym-kolomiiets-ua"
           github="https://github.com/VadKol"
           mail="kolomiietsvad@gmail.com"
         />
