@@ -8,6 +8,7 @@ import { NavBarList } from './NavBarList';
 import iconCart from '@assets/icons/icon-cart.svg';
 import iconMenu from '@assets/icons/icon-menu.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
+import acoountIcon from '@assets/icons/account-icon.svg';
 
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import styles from './Header.module.scss';
@@ -68,6 +69,18 @@ export const Header: FC = () => {
               </div>
 
               <div className={styles.navbar_menu_desktop_right}>
+                <button className={styles.SignInBtn}>
+                  sign in
+                </button>
+
+                <IconLink
+                  to={'favorites'}
+                  src={acoountIcon}
+                  alt={'IconLink-favorites'}
+                  count={favorites.length}
+                  clickFunc={closeBurger}
+                />
+
                 <IconLink
                   to={'favorites'}
                   src={iconFavorites}
