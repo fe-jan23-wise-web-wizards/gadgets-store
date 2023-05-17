@@ -76,16 +76,12 @@
   width: 100%;
 
   @include bp-custom-up(640px) {
-    width: 200px;
+    width: 300px;
   }
 }
 
 .quantity_buttons {
   @extend %flexCenter;
-
-  @include bp-custom-up(640px) {
-    margin-right: 33px;
-  }
 
   &_minus {
     background-color: transparent;
@@ -125,8 +121,7 @@
 
   background-color: $color-elements;
   border: 1px solid $color-elements;
-  
-  margin-right: 13px;
+
   @include square(32px);
 
   @extend %transitionDetails;

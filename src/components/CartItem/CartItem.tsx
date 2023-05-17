@@ -76,9 +76,7 @@ export const CartItem: FC<CartItemProps> = ({
               <button
                 disabled={quantity === 99}
                 onClick={() => onIncrease(product.itemId)}
-                className={classNames(styles.quantity_buttons_plus, {
-                  // [styles.button_disabled]: quantity === 99,
-                })}
+                className={styles.quantity_buttons_plus}
               >
                 <img
                   className={styles.quantity_plus_img}
