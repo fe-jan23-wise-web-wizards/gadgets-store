@@ -72,3 +72,17 @@ export const getProductsCount = (category: Category) => {
 export const getRecommendedProducts = (id: string) => {
   return get<Product[]>(`${BASE_URL}/${id}/recommended`);
 };
+
+export const getProductsByName = (
+  query?: string,
+  category?: Category,
+) => {
+  const queries = [];
+
+  if (query) queries.push(`query=${query}`);
+  if (category) queries.push(`category=${category}`);
+
+  return get<Product[]>(
+    `${BASE_URL}/search${queries.length ? `?${queries.join('&')}` : ''}`,
+  );
+};
