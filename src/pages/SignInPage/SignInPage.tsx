@@ -8,11 +8,6 @@ export const SignInPage = () => {
       <SignIn
         redirectUrl="/"
         appearance={{
-          elements: {
-            button: {
-              backgroundColor: 'red',
-            }
-          },
           variables: {
             colorPrimary: '#905BFF',
           },
