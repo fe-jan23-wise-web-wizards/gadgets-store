@@ -11,10 +11,10 @@ getProductsCount,
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { Pagination } from '@components/Pagination';
 import { ProductList } from '@components/ProductList';
-import { ProductsPageOptions } from '@components/ProductsPageOptions';
 
 import { Loader } from '@components/Loader';
 import styles from './ProductsPage.module.scss';
+import { ProductsPageActions } from '@/components/ProductsPageActions';
 
 const categories = Object.values(Category);
 
@@ -50,40 +50,41 @@ export const ProductsPage = () => {
   const page = Number(searchParams.get('page'));
   const limit = Number(searchParams.get('limit'));
   const sortBy = searchParams.get('sort') as SortBy;
+  const query = searchParams.get('query') || '';
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   });
 
   const productsQuantityQuery = useQuery({
-    queryKey: ['productsQuantity', category],
-    queryFn: () => getProductsCount(category),
+    queryKey: ['productsQuantity', category, query],
+    queryFn: () => getProductsCount(category, query),
   });
 
   const productsQuantity = productsQuantityQuery.data?.count || 0;
   const pagesQuantity = Math.ceil(productsQuantity / (limit || 16));
 
   const productsQuery = useQuery({
-    queryKey: ['products', category, page, limit, sortBy],
-    queryFn: () => getProductsByCategory(category, page, limit, sortBy),
+    queryKey: ['products', category, page, limit, sortBy, query],
+    queryFn: () => getProductsByCategory(category, page, limit, sortBy, query),
   });
 
   return (
     <>
       <Breadcrumbs />
 
+      <h1 className={styles.title}>{productsPagesTitles[category]}</h1>
+
+      <p className={styles.models_quantity_info}>
+        {productsQuantity} models
+      </p>
+
+      <ProductsPageActions />
+
       {productsQuery.isInitialLoading ? (
         <Loader />
       ) : (
         <>
-          <h1 className={styles.title}>{productsPagesTitles[category]}</h1>
-
-          <p className={styles.models_quantity_info}>
-            {productsQuantity} models
-          </p>
-
-          <ProductsPageOptions />
-
           <ProductList products={productsQuery?.data || []} />
 
           {pagesQuantity > 1 && (
