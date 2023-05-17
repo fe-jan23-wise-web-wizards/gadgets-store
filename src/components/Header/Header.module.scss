@@ -159,3 +159,18 @@
     }
   }
 }
+
+.SignInBtn {
+  width: 100px;
+  flex-grow: 1;
+  padding: 9.5px 0;
+  color: #f1f2f9;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 150%;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #905bff;
+  margin-right: 16px;
+}

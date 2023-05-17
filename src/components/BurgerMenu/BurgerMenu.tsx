@@ -8,6 +8,8 @@ import { Logo } from '../Logo';
 import iconCart from '@assets/icons/icon-cart.svg';
 import IconClose from '@assets/icons/icon-close.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
+import acoountIcon from '@assets/icons/account-icon.svg';
+
 import styles from '@components/BurgerMenu/BurgerMenu.module.scss';
 
 interface Props {
@@ -53,6 +55,14 @@ export const BurgerMenu: FC<Props> = ({
       </div>
 
       <div className={styles.BurgerMenu__footer}>
+        <IconLink
+          to={'favorites'}
+          src={acoountIcon}
+          alt={'IconLink-favorites'}
+          isBurger={true}
+          clickFunc={onMenuClose}
+          count={favoritesCount}
+                />
         <IconLink
           to={'favorites'}
           src={iconFavorites}
