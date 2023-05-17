@@ -1,36 +1,40 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 
 import styles from './Search.module.scss';
 
-const formatQuery = (query: string) => {
-  let queryFormatted = query.trim().toLowerCase();
+const formatInput = (input: string) => {
+  let inputFormatted = input.trim().toLowerCase();
 
-  while (queryFormatted.includes(' ')) {
-    queryFormatted = queryFormatted.replace(' ', '-');
+  while (inputFormatted.includes(' ')) {
+    inputFormatted = inputFormatted.replace(' ', '-');
   }
 
-  return queryFormatted;
+  return inputFormatted;
 };
 
 export const Search = () => {
+  const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentQuery = searchParams.get('query') || '';
-  const [query, setQuery] = useState(currentQuery);
+  const [query, setQuery] = useState('');
 
-  const applyQuery = debounce((query: string) => {
-    const queryFormatted = formatQuery(query);
+  useEffect(() => {
+    setQuery('');
+  }, [pathname]);
 
-    if (queryFormatted) {
-      searchParams.set('query', queryFormatted);
+  const applyQuery = useCallback(debounce((input: string) => {
+    const inputFormatted = formatInput(input);
+
+    if (inputFormatted) {
+      searchParams.set('query', inputFormatted);
     } else {
       searchParams.delete('query');
     }
 
     searchParams.delete('page');
     setSearchParams(searchParams);
-  }, 1300);
+  }, 1000), [searchParams]);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.currentTarget.value);

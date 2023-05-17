@@ -73,18 +73,18 @@ export const ProductsPage = () => {
     <>
       <Breadcrumbs />
 
+      <h1 className={styles.title}>{productsPagesTitles[category]}</h1>
+
+      <p className={styles.models_quantity_info}>
+        {productsQuantity} models
+      </p>
+
+      <ProductsPageActions />
+
       {productsQuery.isInitialLoading ? (
         <Loader />
       ) : (
         <>
-          <h1 className={styles.title}>{productsPagesTitles[category]}</h1>
-
-          <p className={styles.models_quantity_info}>
-            {productsQuantity} models
-          </p>
-
-          <ProductsPageActions />
-
           <ProductList products={productsQuery?.data || []} />
 
           {pagesQuantity > 1 && (
