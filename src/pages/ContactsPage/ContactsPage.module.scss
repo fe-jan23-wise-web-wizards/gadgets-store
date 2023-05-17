@@ -1,0 +1,31 @@
+@import '@/styles/variables';
+@import '@/styles/breakpoints';
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin-bottom: 32px;
+  gap: 24px;
+
+  @include bp-custom-up (640px) {
+    gap: 32px;
+  }
+}
+
+.title {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: $main-indent;
+
+  @include bp-custom-up (640px) {
+    font-size: 3em;
+  }
+}
