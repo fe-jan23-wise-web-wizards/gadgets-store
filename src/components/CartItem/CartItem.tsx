@@ -32,11 +32,15 @@ export const CartItem: FC<CartItemProps> = ({
           >
             <img className={styles.delete_button_img} src={crossIcon} alt="x" />
           </button>
-          <img
-            className={styles.phone_image}
-            src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
-            alt={product.itemId}
-          />
+
+          <div className={styles.phone_container}>
+            <img
+              className={styles.phone_image}
+              src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
+              alt={product.itemId}
+            />
+          </div>
+
           <p className={styles.content}>{product.name}</p>
         </div>
 

@@ -1,19 +1,14 @@
-@import '../breakpoints';
-@import '../variables';
+@import '@styles/breakpoints';
+@import '@styles/variables';
 
 .container {
-  box-sizing: content-box;
   margin: 0 auto;
   padding: 0 $container-padding;
-  max-width: 1135px;
+  max-width: 1180px;
   width: 100%;
   min-height: 100%;
 
   @include bp-custom-up(640px) {
     padding: 0 1.5 * $container-padding;
-  }
-
-  @include bp-large-up {
-    padding: 0 2 * $container-padding;
   }
 }

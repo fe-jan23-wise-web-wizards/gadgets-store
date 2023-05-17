@@ -6,17 +6,18 @@
 .cart {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  border: 1px solid $color-elements;
-  margin-bottom: $secondary-indent;
+  justify-content: space-around;
+  margin-bottom: calc($secondary-indent / 2);
   padding: $secondary-indent;
   gap: $main-indent;
   align-items: center;
   background-color: $color-surface-1;
+  height: 160px;
 
   @include bp-custom-up(640px) {
     flex-direction: row;
     padding: $main-indent;
+    height: 128px;
   }
 
   &_info {
@@ -31,7 +32,7 @@
   @extend %flexCenter;
 
   padding: 5px;
-  margin-right: 25px;
+  margin-right: 10px;
 
   @extend %transitionDetails;
 
@@ -43,28 +44,29 @@
 }
 
 .phone_image {
-  width: 66px;
-  height: auto;
-  max-width: 100%;
-  padding: 7px;
-  margin-right: $main-indent;
+  height: 66px;
+}
+
+.phone_container {
+  @extend %flexCenter;
+  height: 66px;
+  min-width: 66px;
+  margin-right: 23px;
 }
 
 .content {
   font-weight: 400;
   font-size: 0.9rem;
   line-height: 21px;
-  padding-right: 10px;
   color: $color-white;
+  width: 100%;
 
   @include bp-custom-up(640px) {
     padding-right: 34px;
-    width: 176px;
   }
 
   @include bp-x-large-up {
     padding-right: 34px;
-    width: 336px;
   }
 }
 
@@ -80,22 +82,26 @@
 
 .quantity_buttons {
   @extend %flexCenter;
-  margin-right: 33px;
+
+  @include bp-custom-up(640px) {
+    margin-right: 33px;
+  }
 
   &_minus {
     background-color: transparent;
     display: flex;
-    padding: 12px;
   }
 
   &_plus {
     background-color: transparent;
     display: flex;
-    padding: 12px;
   }
 
   &_number {
-    margin-right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
   }
 }
 
@@ -103,7 +109,6 @@
   @extend %flexCenter;
   background-color: $color-elements;
 
-  margin-right: 13px;
   border: 1px solid $color-elements;
 
   @include square(32px);

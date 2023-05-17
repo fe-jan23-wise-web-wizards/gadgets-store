@@ -74,8 +74,7 @@
 .product_card {
   display: flex;
   flex-direction: column;
-  width: 288px;
-
+  width: 225px;
   white-space: pre-line;
 
   padding: 32px;
@@ -85,8 +84,12 @@
 
   @extend %transitionDetails;
 
+  &:hover {
+    box-shadow: inset 3px 1px 138px 0px rgba(255,255,255,0.15);
+  }
+
   @include bp-medium-up {
-    width: 229px;
+    width: 230px;
   }
 
   @include bp-custom-up(920px) {
