@@ -118,14 +118,13 @@
   &:hover {
     background-color: $color-icons;
   }
+}
 
-  &_disabled {
+.button_disabled {
+  background-color: $color-surface-1;
+
+  &:hover {
     background-color: $color-surface-1;
-
-    &:hover {
-      cursor: not-allowed;
-      background-color: $color-surface-1;
-    }
   }
 }
 

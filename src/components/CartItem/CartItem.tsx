@@ -48,7 +48,7 @@ export const CartItem: FC<CartItemProps> = ({
           <div className={styles.quantity_buttons}>
             <div
               className={classNames(styles.minus, {
-                [styles.minus_disabled]: quantity === 1,
+                [styles.button_disabled]: quantity === 1,
               })}
             >
               <button
@@ -68,8 +68,13 @@ export const CartItem: FC<CartItemProps> = ({
 
             <p className={styles.quantity_buttons_number}>{quantity}</p>
 
-            <div className={styles.plus}>
+            <div
+              className={classNames(styles.plus, {
+                [styles.button_disabled]: quantity === 99,
+              })}
+            >
               <button
+                disabled={quantity === 99}
                 onClick={() => onIncrease(product.itemId)}
                 className={styles.quantity_buttons_plus}
               >

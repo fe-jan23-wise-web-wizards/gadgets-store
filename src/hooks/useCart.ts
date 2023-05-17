@@ -47,16 +47,15 @@ export function useCart() {
     (itemId: string) => {
       const cartItem = cartItems.find(cartItem => cartItem.id === itemId);
 
-      return (
-        cartItem &&
-        setCartItems(prev =>
-          prev.map(cartItem => {
-            return cartItem.id === itemId
-              ? { ...cartItem, quantity: cartItem.quantity - 1 }
-              : cartItem;
-          }),
-        )
-      );
+      return cartItem && cartItem.quantity === 1
+        ? removeFromCart(itemId)
+        : setCartItems(prev =>
+            prev.map(cartItem => {
+              return cartItem.id === itemId
+                ? { ...cartItem, quantity: cartItem.quantity - 1 }
+                : cartItem;
+            }),
+          );
     },
     [setCartItems, cartItems, removeFromCart],
   );
