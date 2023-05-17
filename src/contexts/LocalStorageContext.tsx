@@ -9,6 +9,7 @@ interface LocalStorageContextValue {
   addToFavorites: (productId: string) => void;
   removeFromFavorites: (productId: string) => void;
   cartItems: CartItem[];
+  clearCart: () => void;
   isAddedToCart: (itemId: string) => boolean;
   addToCart: (product: CartItem) => void;
   removeFromCart: (itemId: string) => void;
@@ -29,8 +30,12 @@ interface LocalStorageProviderProps {
 export const LocalStorageProvider = ({
   children,
 }: LocalStorageProviderProps) => {
-  const { favorites, isFavorite, addToFavorites, removeFromFavorites } =
-    useFavorites();
+  const {
+    favorites,
+    isFavorite,
+    addToFavorites,
+    removeFromFavorites,
+  } = useFavorites();
 
   const {
     cartItems,
@@ -39,6 +44,7 @@ export const LocalStorageProvider = ({
     isAddedToCart,
     increaseQuantity,
     decreaseQuantity,
+    clearCart,
     totalPrice,
     totalQuantity,
   } = useCart();
@@ -49,6 +55,7 @@ export const LocalStorageProvider = ({
     addToFavorites,
     removeFromFavorites,
     cartItems,
+    clearCart,
     isAddedToCart,
     addToCart,
     removeFromCart,
