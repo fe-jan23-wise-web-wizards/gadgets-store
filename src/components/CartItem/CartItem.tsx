@@ -32,18 +32,27 @@ export const CartItem: FC<CartItemProps> = ({
           >
             <img className={styles.delete_button_img} src={crossIcon} alt="x" />
           </button>
-          <img
-            className={styles.phone_image}
-            src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
-            alt={product.itemId}
-          />
+
+          <div className={styles.phone_container}>
+            <img
+              className={styles.phone_image}
+              src={`${import.meta.env.VITE_API_URL}/static/${product.image}`}
+              alt={product.itemId}
+            />
+          </div>
+
           <p className={styles.content}>{product.name}</p>
         </div>
 
         <div className={styles.quantity_and_price}>
           <div className={styles.quantity_buttons}>
-            <div className={styles.minus}>
+            <div
+              className={classNames(styles.minus, {
+                [styles.button_disabled]: quantity === 1,
+              })}
+            >
               <button
+                disabled={quantity === 1}
                 onClick={() => onDecrease(product.itemId)}
                 className={classNames(styles.quantity_buttons_minus, {
                   [styles.is_active]: true,
@@ -59,13 +68,18 @@ export const CartItem: FC<CartItemProps> = ({
 
             <p className={styles.quantity_buttons_number}>{quantity}</p>
 
-            <div className={styles.plus}>
+            <div
+              className={classNames(styles.plus, {
+                [styles.button_disabled]: quantity === 99,
+              })}
+            >
               <button
+                disabled={quantity === 99}
                 onClick={() => onIncrease(product.itemId)}
                 className={styles.quantity_buttons_plus}
               >
                 <img
-                  className={styles.quantity_lus_img}
+                  className={styles.quantity_plus_img}
                   src={plusIcon}
                   alt="x"
                 />
