@@ -8,7 +8,7 @@
   border: none;
   
   position: absolute;
-  @extend %transitionDeatils;
+  // @extend %transitionDeatils;
 
   height: 100%;
   opacity: 0.3;
@@ -35,7 +35,7 @@
 }
 
 .slider_nav_next_button_icon {
-  @include square(0.8rem);
+  @include square(1rem);
 
   background-image: url('@assets/icons/forward-arrow.svg');
   background-size: contain;
@@ -44,7 +44,7 @@
 }
 
 .slider_nav_prev_button_icon {
-  @include square(0.8rem);
+  @include square(1rem);
 
   background-image: url('@assets/icons/back-arrow.svg');
   background-size: contain;

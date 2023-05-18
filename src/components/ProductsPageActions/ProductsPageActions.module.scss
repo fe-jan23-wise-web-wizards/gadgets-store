@@ -1,14 +1,13 @@
-@import '@styles/variables';
 @import '@styles/breakpoints';
-@import '@styles/extends';
 
 .actions {
-  @extend %flexColumn;
-  gap: $medium-indent;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-  @include bp-large-up {
+  @include bp-medium-up {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    justify-content: center;
+    justify-items:self-end;
   }
 }

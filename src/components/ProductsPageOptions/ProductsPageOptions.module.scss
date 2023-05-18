@@ -7,8 +7,10 @@
   gap: $medium-indent;
   grid-template-columns: repeat(2, 1fr);
 
-  @include bp-custom-up(639px) {
+  @include bp-medium-up {
     grid-template-columns: 60% 40%;
     width: 20rem;
+    justify-items: auto;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

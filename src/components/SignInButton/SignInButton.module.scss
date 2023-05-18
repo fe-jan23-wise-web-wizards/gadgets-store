@@ -15,8 +15,14 @@
 
   background-color: $color-accent;
 
+  @extend %transitionDetails;
+
   @include bp-large-up {
     padding: 0.4rem 0;
     font-size: 0.9rem;
+  }
+
+  &:hover {
+    background-color: $color-accent-hover;
   }
 }

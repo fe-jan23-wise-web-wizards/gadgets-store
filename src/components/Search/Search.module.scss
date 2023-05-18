@@ -2,11 +2,7 @@
 @import '@styles/extends';
 
 .search {
-  max-width: 100%;
-
-  @include bp-custom-up(639px) {
-    max-width: 50%;
-  }
+  width: 100%;
 
   @include bp-large-up {
     max-width: 100%;
