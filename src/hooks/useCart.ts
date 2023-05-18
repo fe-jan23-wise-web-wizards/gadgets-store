@@ -1,9 +1,71 @@
+import { getCartByUserId,postCart } from '@/api/requests';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { CartItem } from '@/types/CartItem';
-import { useCallback,useMemo } from 'react';
+import { CartResponse } from '@/types/CartResponse';
+import { useAuth } from '@clerk/clerk-react';
+import { useMutation,useQuery } from '@tanstack/react-query';
+import { useCallback,useEffect,useMemo } from 'react';
 
 export function useCart() {
+  const { isSignedIn, userId } = useAuth();
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('cart', []);
+
+  const cartQuery = useQuery({
+    queryKey: ['cart'],
+    queryFn: () => getCartByUserId(userId || ''),
+    enabled: false,
+    onSuccess: ({ products }) => {
+      if (products) {
+        const received = JSON.parse(products) as CartItem[];
+
+        const receivedProducts = [];
+
+        for (const product of received) {
+          const isInCart = cartItems.some(item => item.id === product.id);
+
+          if (!isInCart) {
+            receivedProducts.push(product);
+          }
+        }
+
+        setCartItems([...cartItems, ...receivedProducts]);
+      }
+    },
+    onError: () => {
+      if (isSignedIn && userId) {
+        cartMutation.mutate({
+          userId,
+          products: JSON.stringify([]),
+        });
+      }
+    },
+  });
+
+  const cartMutation = useMutation({
+    mutationFn: (cartData: CartResponse) => postCart(cartData),
+    mutationKey: ['cart-mutation'],
+  });
+
+  useEffect(() => {
+    if (isSignedIn && userId) {
+      void cartQuery.refetch();
+    }
+  }, [isSignedIn]);
+  
+  const updateCartData = useCallback(() => {
+    if (isSignedIn && userId) {
+      const cartData = {
+        userId,
+        products: JSON.stringify(cartItems),
+      };
+
+      cartMutation.mutate(cartData);
+    }
+  }, []);
+
+  useEffect(() => {
+    updateCartData();
+  }, [cartItems, isSignedIn]);
 
   const clearCart = useCallback(() => setCartItems([]), [setCartItems]);
 

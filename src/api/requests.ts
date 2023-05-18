@@ -1,6 +1,8 @@
+import { get, post } from './fetchers';
 import { Category } from '@/types/Category';
 import { SortBy } from '@/types/SortBy';
 import { type Accessory } from '@/types/Accessory';
+import { type CartResponse } from '@/types/CartResponse';
 import { type CommonTechSpecs } from '@/types/CommonTechSpecs';
 import { type FavoritesResponse } from '@/types/FavoritesResponse';
 import { type OrderDetails } from '@/types/OrderDetails';
@@ -8,24 +10,12 @@ import { type Phone } from '@/types/Phone';
 import { type Product } from '@/types/Product';
 import { type ProductsCount } from '@/types/ProductsCount';
 import { type Tablet } from '@/types/Tablet';
-import axios from 'axios';
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 const PRODUCTS_URL = `${BASE_URL}/products`;
 const ORDERS_URL = `${BASE_URL}/orders`;
 const FAVORITES_URL = `${BASE_URL}/favorites`;
-
-const get = async <T>(path: string, body?: any): Promise<T> => {
-  const { data } = await axios.get<T>(path, { ...body });
-
-  return data;
-};
-
-const post = async <T>(path: string, body?: any): Promise<T> => {
-  const { data } = await axios.post<T>(path, { ...body });
-
-  return data;
-};
+const CART_URL = `${BASE_URL}/cart`;
 
 export const getAllProducts = (
   page?: number,
@@ -122,5 +112,15 @@ export const getFavoritesByUserId = (id: string) => {
 export const postFavorites = (favoritesData: FavoritesResponse) => {
   return post<FavoritesResponse>(`${FAVORITES_URL}`, {
     ...favoritesData,
+  });
+};
+
+export const getCartByUserId = (id: string) => {
+  return get<CartResponse>(`${CART_URL}/${id}`);
+};
+
+export const postCart = (cartData: CartResponse) => {
+  return post<CartResponse>(`${CART_URL}`, {
+    ...cartData,
   });
 };

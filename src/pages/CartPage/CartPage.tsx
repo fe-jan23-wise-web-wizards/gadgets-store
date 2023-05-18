@@ -3,17 +3,17 @@ import cartEmptyImage from '@assets/cart_empty.webp';
 import cartSuccessImage from '@assets/success.webp';
 import { useAuth } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
-import { useMutation,useQuery } from '@tanstack/react-query';
-import { useEffect,useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './CartPage.module.scss';
 
-import { Loader } from '@/components/Loader';
 import { OrderDetails } from '@/types/OrderDetails';
 import { Product } from '@/types/Product';
-import { getProduct,placeOrder } from '@api/requests';
+import { getProduct, placeOrder } from '@api/requests';
 import { CartCheckout } from '@components/CartCheckout';
 import { CartItem } from '@components/CartItem';
+import { Loader } from '@components/Loader';
 
 export const CartPage = () => {
   const {
@@ -31,7 +31,7 @@ export const CartPage = () => {
   const [cart, setCart] = useState<Product[]>([]);
 
   const cartQuery = useQuery({
-    queryKey: ['cart'],
+    queryKey: ['cart-data'],
     queryFn: () => Promise.all(cartItems.map(({ id }) => getProduct(id))),
     onSuccess: data => setCart(data),
   });
