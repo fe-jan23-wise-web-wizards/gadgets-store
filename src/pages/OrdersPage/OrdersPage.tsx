@@ -1,14 +1,16 @@
 import { getOrdersByUserId } from '@/api/requests';
 import { Order } from '@/components/Order';
-import { useAuth, useUser } from '@clerk/clerk-react';
+import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
+import { useAuth,useUser } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useQuery } from '@tanstack/react-query';
-import styles from './OrdersPage.module.scss';
 import { Link } from 'react-router-dom';
+import styles from './OrdersPage.module.scss';
 
 export const OrdersPage = () => {
   const { user } = useUser();
   const { signOut } = useAuth();
+  const { clearCart } = useLocalStorageContext();
 
   const ordersQuery = useQuery({
     queryKey: ['orders'],
@@ -16,6 +18,11 @@ export const OrdersPage = () => {
   });
 
   const orders = ordersQuery?.data || [];
+
+  const handleLogOut = async () => {
+    await signOut();
+    clearCart();
+  };
 
   return (
     <div className={styles.container}>
@@ -32,7 +39,7 @@ export const OrdersPage = () => {
           </p>
         </div>
 
-        <Link to="/" className={styles.page_top_logout} onClick={() => signOut()}>
+        <Link to="/" className={styles.page_top_logout} onClick={handleLogOut}>
           Log out
         </Link>
       </div>
