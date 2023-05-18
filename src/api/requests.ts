@@ -1,29 +1,21 @@
-import { type Accessory } from '@/types/Accessory';
+import { get, post } from './fetchers';
 import { Category } from '@/types/Category';
-import { CommonTechSpecs } from '@/types/CommonTechSpecs';
-import { OrderDetails } from '@/types/OrderDetails';
+import { SortBy } from '@/types/SortBy';
+import { type Accessory } from '@/types/Accessory';
+import { type CartResponse } from '@/types/CartResponse';
+import { type CommonTechSpecs } from '@/types/CommonTechSpecs';
+import { type FavoritesResponse } from '@/types/FavoritesResponse';
+import { type OrderDetails } from '@/types/OrderDetails';
 import { type Phone } from '@/types/Phone';
 import { type Product } from '@/types/Product';
-import { ProductsCount } from '@/types/ProductsCount';
-import { SortBy } from '@/types/SortBy';
+import { type ProductsCount } from '@/types/ProductsCount';
 import { type Tablet } from '@/types/Tablet';
-import axios from 'axios';
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 const PRODUCTS_URL = `${BASE_URL}/products`;
 const ORDERS_URL = `${BASE_URL}/orders`;
-
-const get = async <T>(path: string, body?: any): Promise<T> => {
-  const { data } = await axios.get<T>(path, { ...body});
-
-  return data;
-};
-
-const post = async <T>(path: string, body?: any): Promise<T> => {
-  const { data } = await axios.post<T>(path, { ...body});
-
-  return data;
-};
+const FAVORITES_URL = `${BASE_URL}/favorites`;
+const CART_URL = `${BASE_URL}/cart`;
 
 export const getAllProducts = (
   page?: number,
@@ -78,10 +70,7 @@ export const getProduct = (id: string) => {
   return get<Product>(`${PRODUCTS_URL}/${id}`);
 };
 
-export const getProductsCount = (
-  category: Category,
-  query?: string,
-) => {
+export const getProductsCount = (category: Category, query?: string) => {
   const queries = [`category=${category}`];
 
   if (query) queries.push(`query=${query}`);
@@ -105,10 +94,7 @@ export const placeOrder = (order: Omit<OrderDetails, 'createdAt' | 'id'>) => {
   });
 };
 
-export const getProductsByName = (
-  query?: string,
-  category?: Category,
-) => {
+export const getProductsByName = (query?: string, category?: Category) => {
   const queries = [];
 
   if (query) queries.push(`query=${query}`);
@@ -117,4 +103,25 @@ export const getProductsByName = (
   return get<Product[]>(
     `${PRODUCTS_URL}/search${queries.length ? `?${queries.join('&')}` : ''}`,
   );
+};
+
+export const getFavoritesByUserId = (id: string) => {
+  return get<FavoritesResponse>(`${FAVORITES_URL}/${id}`);
+};
+
+export const postFavorites = (favoritesData: FavoritesResponse) => {
+  return post<FavoritesResponse>(`${FAVORITES_URL}`, {
+    ...favoritesData,
+  });
+};
+
+export const getCartByUserId = (id: string) => {
+  return get<CartResponse>(`${CART_URL}/${id}`);
+};
+
+export const postCart = ({ userId, products}: CartResponse) => {
+  return post<CartResponse>(`${CART_URL}`, {
+    userId,
+    products: JSON.stringify(products),
+  });
 };

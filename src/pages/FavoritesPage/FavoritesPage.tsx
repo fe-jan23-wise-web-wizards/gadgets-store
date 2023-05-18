@@ -1,6 +1,6 @@
 import { getProduct } from '@/api/requests';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { Loader } from '@/components/Loader';
+import { Breadcrumbs } from '@components/Breadcrumbs';
+import { Loader } from '@components/Loader';
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
 import favImage from '@assets/favorites_empty.webp';
@@ -15,7 +15,7 @@ export const FavoritesPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   const favoritesQuery = useQuery({
-    queryKey: ['favorites'],
+    queryKey: ['favorites-data'],
     queryFn: () => Promise.all(favorites.map(id => getProduct(id))),
     onSuccess: data => setProducts(data),
   });

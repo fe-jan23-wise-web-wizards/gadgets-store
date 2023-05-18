@@ -1,9 +1,55 @@
+import { getCartByUserId, postCart } from '@/api/requests';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { CartItem } from '@/types/CartItem';
-import { useCallback,useMemo } from 'react';
+import { CartResponse } from '@/types/CartResponse';
+import { useAuth } from '@clerk/clerk-react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect, useMemo } from 'react';
 
 export function useCart() {
+  const { isSignedIn, userId } = useAuth();
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('cart', []);
+
+  const cartQuery = useQuery({
+    queryKey: ['cart'],
+    queryFn: () => getCartByUserId(userId || ''),
+    enabled: false,
+    onSuccess: ({ products }) => setCartItems(products),
+    onError: () => {
+      if (isSignedIn && userId) {
+        cartMutation.mutate({
+          userId,
+          products: [],
+        });
+      }
+    },
+  });
+
+  const cartMutation = useMutation({
+    mutationFn: (cartData: CartResponse) => postCart(cartData),
+    mutationKey: ['cart-mutation'],
+  });
+
+  useEffect(() => {
+    if (isSignedIn && userId) {
+      void cartQuery.refetch();
+    }
+  }, [isSignedIn]);
+
+  const updateCartData = (data: CartItem[]) => {
+    if (isSignedIn && userId) {
+      const cartData = {
+        userId,
+        products: data,
+      };
+
+      cartMutation.mutate(cartData);
+    }
+  };
+
+  useEffect(() => {
+    updateCartData(cartItems);
+  }, [isSignedIn, cartItems.length, cartItems]);
 
   const clearCart = useCallback(() => setCartItems([]), [setCartItems]);
 
@@ -34,13 +80,18 @@ export function useCart() {
 
   const increaseQuantity = useCallback(
     (itemId: string) => {
-      setCartItems(prev =>
-        prev.map(cartItem => {
+      setCartItems(prev => {
+        const newItems = prev.map(cartItem => {
           return cartItem.id === itemId
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem;
-        }),
-      );
+        });
+
+        console.log('first');
+        updateCartData(newItems);
+
+        return newItems;
+      });
     },
     [setCartItems],
   );
@@ -49,15 +100,19 @@ export function useCart() {
     (itemId: string) => {
       const cartItem = cartItems.find(cartItem => cartItem.id === itemId);
 
-      return cartItem && cartItem.quantity === 1
-        ? removeFromCart(itemId)
-        : setCartItems(prev =>
-            prev.map(cartItem => {
-              return cartItem.id === itemId
-                ? { ...cartItem, quantity: cartItem.quantity - 1 }
-                : cartItem;
-            }),
-          );
+      if (cartItem) {
+        setCartItems(prev => {
+          const newItems = prev.map(cartItem => {
+            return cartItem.id === itemId
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem;
+          });
+
+          updateCartData(newItems);
+
+          return newItems;
+        });
+      }
     },
     [setCartItems, cartItems, removeFromCart],
   );

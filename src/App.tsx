@@ -9,16 +9,22 @@ if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
 }
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
     <ClerkProvider publishableKey={clerkPubKey}>
-      <LocalStorageProvider>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <LocalStorageProvider>
           <RouterProvider router={router} />
-        </QueryClientProvider>
-      </LocalStorageProvider>
+        </LocalStorageProvider>
+      </QueryClientProvider>
     </ClerkProvider>
   );
 }
