@@ -1,36 +1,37 @@
 @import '@styles/variables';
-@import '@styles/typography';
-@import '@styles/mixins';
 @import '@styles/breakpoints';
+@import '@styles/mixins';
+@import '@styles/extends';
 
 :global(.pageWithMenuOpen) {
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
   position: relative;
   height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .navbar {
   position: sticky;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 5;
-  background-color: $color-dark;
   width: 100%;
+
+  background-color: $color-dark;
   border-bottom: 1px solid $color-elements;
 
   &_logo {
-    padding: 14px 16px 13px;
+    padding: 0.9rem $medium-indent 0.75rem;
   }
 
   &_container {
-    display: flex;
-    justify-content: space-between;
+    @extend %flexBetween;
     align-items: center;
-    height: 48px;
+    height: 2 * $main-indent;
 
     @include bp-large-up {
-      height: 64px;
+      height: 2 * $secondary-indent;
     }
   }
 
@@ -47,19 +48,17 @@
       }
 
       &_icon {
-        height: 8.5px;
-        width: 14px;
+        height: 0.5rem;
+        width: 0.9rem;
         fill: $color-white;
       }
 
       &_link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 48px;
-        width: 48px;
-        cursor: pointer;
+        @extend %flexCenter;
+        @include square(2 * $main-indent);
+
         border: 1px solid $color-elements;
+        cursor: pointer;
       }
     }
 
@@ -74,8 +73,7 @@
       }
 
       &_left {
-        display: flex;
-        justify-content: space-between;
+        @extend %flexBetween;
         align-items: center;
         padding-right: 1rem;
         width: 100%;
@@ -85,38 +83,40 @@
         display: flex;
         justify-content: start;
         align-items: center;
+        margin-left: $medium-indent;
+        gap: $secondary-indent;
+
         list-style: none;
-        gap: 32px;
-        margin-left: 16px;
 
         @include bp-large-up {
-          gap: 64px;
-          margin-left: 24px;
+          margin-left: $main-indent;
+          gap: 2 * $secondary-indent;
         }
       }
 
       &_item {
-        cursor: pointer;
         position: relative;
+        cursor: pointer;
       }
 
       &_link {
-        color: $color-secondary;
+        padding: $medium-indent 0;
         font-weight: 700;
-        padding: 16px 0;
-        line-height: 48px;
+        color: $color-secondary;
+        line-height: 3rem;
         text-decoration: none;
 
         &_active {
           color: $color-white;
 
           &::after {
+            content: '';
             position: absolute;
             bottom: -1px;
-            content: '';
             display: block;
-            height: 2px;
             width: 100%;
+            height: 2px;
+
             background-color: $color-white;
 
             @include bp-large-up {
@@ -129,12 +129,13 @@
           color: $color-white;
 
           &::after {
+            content: '';
             position: absolute;
             bottom: -1px;
-            content: '';
             display: block;
-            height: 2px;
             width: 100%;
+            height: 2px;
+            
             background-color: $color-white;
 
             @include bp-large-up {
@@ -145,21 +146,17 @@
       }
 
       &_right {
-        display: flex;
-        justify-content: space-between;
+        @extend %flexBetween;
         align-items: center;
       }
     }
   }
 
   &_burgerMenu_button {
-    background: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
+    @extend %flexCenter;
+    @include square(2 * $main-indent);
 
+    background: none;
     border-left: 1px solid $color-elements;
 
     &:hover {

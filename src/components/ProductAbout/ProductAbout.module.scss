@@ -1,6 +1,6 @@
-@import '@/styles/variables';
-@import '@/styles/breakpoints';
-@import '@/styles/extends';
+@import '@styles/variables';
+@import '@styles/breakpoints';
+@import '@styles/extends';
 
 .about {
   &_header {
@@ -8,17 +8,16 @@
   }
 
   &_title {
+    margin-bottom: $medium-indent;
     font-weight: 700;
-    margin-bottom: calc($secondary-indent / 2);
 
-    @include bp-custom-up(640px) {
+    @include bp-custom-up($bp-640) {
       font-size: 1.25rem;
     }
   }
 
   &_content {
-    font-size: 0.8rem;
-    line-height: 150%;
+    @extend %font14;
     color: $color-secondary;
   }
 

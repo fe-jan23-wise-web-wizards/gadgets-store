@@ -4,13 +4,14 @@
 
 .card {
   &_title {
-    margin-bottom: calc($main-indent / 6);
+    margin-bottom: 4px;
+
+    @extend %font20;
     font-weight: 700;
-    font-size: 1.25rem;
     color: $color-white;
     text-decoration: none;
-    transition-property: color;
 
+    transition-property: color;
     @extend %transitionDetails;
 
     &:hover {
@@ -19,12 +20,13 @@
   }
 
   &_numberOfModels {
-    margin-bottom: calc(main-indent / 1.5);
+    margin-bottom: $medium-indent;
+
+    @extend %font14;
     font-weight: 600;
-    font-size: 0.85rem;
     color: $color-secondary;
 
-    @include bp-custom-up(640px) {
+    @include bp-custom-up($bp-640) {
       margin-bottom: 0;
     }
   }
@@ -35,10 +37,10 @@
   }
 
   &_img {
-    max-width: 100%;
-    transition-property: transform;
     display: block;
+    max-width: 100%;
 
+    transition-property: transform;
     @extend %transitionDetails;
 
     @include bp-medium-up {

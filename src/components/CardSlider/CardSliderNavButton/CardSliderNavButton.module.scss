@@ -1,11 +1,10 @@
-@import '@styles/mixins';
 @import '@styles/variables';
+@import '@styles/mixins';
 @import '@styles/extends';
 
 .card_slider_nav_button {
   @extend %flexCenter;
-
-  @include square(32px);
+  @include square($secondary-indent);
 
   border: 1px solid transparent;
   background-color: $color-surface-2;

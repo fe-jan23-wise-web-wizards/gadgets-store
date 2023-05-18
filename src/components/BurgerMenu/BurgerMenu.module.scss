@@ -1,18 +1,20 @@
 @import '@styles/variables';
-@import '@styles/typography';
-@import '@styles/reset';
 @import '@styles/breakpoints';
+@import '@styles/mixins';
+@import '@styles/extends';
 
 .BurgerMenu {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
+
   width: 100vw;
   min-height: fill-available;
   min-height: -webkit-fill-available;
   min-height: -moz-available; ;
   max-height: 100vh;
-  z-index: 100;
+
   transform: translateX(100%);
   transition: transform 400ms;
 
@@ -26,21 +28,17 @@
   }
 
   &__header {
-    display: flex;
-    justify-content: space-between;
+    @extend %flexBetween;
     align-items: center;
-    margin-left: 16px;
+    margin-left: $medium-indent;
     border-bottom: 1px solid $color-elements;
   }
 
   &__closeButton {
-    background: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
+    @extend %flexCenter;
+    @include square(2 * $main-indent);
 
+    background: none;
     border-left: 1px solid $color-elements;
 
     &:hover {
@@ -49,33 +47,26 @@
   }
 
   &__main {
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     align-items: center;
   }
 
   &__navlist {
-    margin-top: 64px;
-
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     align-items: center;
-
+    margin-top: 2 * $secondary-indent;
     list-style: none;
   }
 
   &__navlink {
     display: block;
+    margin-bottom: 2 * $main-indent;
+
+    @extend %font12;
     font-weight: 800;
-    font-size: 12px;
-    line-height: 92%;
-
-    letter-spacing: 0.04em;
     text-transform: uppercase;
-
     color: $color-secondary;
-    margin-bottom: 48px;
-
+    
     &:hover {
       color: $color-white;
       border-bottom: 2px solid $color-white;
@@ -84,9 +75,8 @@
 
   &__footer {
     position: absolute;
-    display: flex;
-    justify-content: space-between;
     bottom: 0;
+    @extend %flexBetween;
     width: 100%;
   }
 

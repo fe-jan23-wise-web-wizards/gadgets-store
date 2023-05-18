@@ -1,5 +1,7 @@
 @import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/mixins';
+@import '@styles/extends';
 
 .slider_nav_button {
   display: none;
@@ -7,13 +9,11 @@
 
   @include bp-custom-up(639px) {
     display: flex;
-    justify-content: center;
     align-items: center;
-
-    width: 32px;
+    justify-content: center;
+    width: $secondary-indent;
 
     background-color: $color-surface-2;
-
     transition: background-color 0.3s linear;
 
     &:hover {
@@ -24,8 +24,7 @@
 }
 
 .slider_nav_next_button_icon {
-  width: 10px;
-  height: 10px;
+  @include square(0.62rem);
 
   background-image: url('@assets/icons/forward-arrow.svg');
   background-size: contain;
@@ -34,8 +33,7 @@
 }
 
 .slider_nav_prev_button_icon {
-  width: 10px;
-  height: 10px;
+  @include square(0.62rem);
 
   background-image: url('@assets/icons/back-arrow.svg');
   background-size: contain;

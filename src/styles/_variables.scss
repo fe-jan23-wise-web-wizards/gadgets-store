@@ -29,6 +29,9 @@ $product-silver: #e4e4e2;
 $product-rosegold: #e6c7c2;
 $product-coral: #ee7762;
 $product-pink: #f1b6ac;
+$product-sierrablue: #69abce;
+$product-graphite: #5c5b57;
+$product-skyblue: #6ba1c4;
 
 $product-colors:
 'black' $product-black,
@@ -47,7 +50,10 @@ $product-colors:
 'silver' $product-silver,
 'rosegold' $product-rosegold,
 'coral' $product-coral,
-'pink' $product-pink;
+'pink' $product-pink,
+'sierrablue' $product-sierrablue,
+'graphite' $product-graphite,
+'skyblue' $product-skyblue;
 
 //* Breakpoints sizes
 $bp-480: 480px;
@@ -61,13 +67,10 @@ $tabletColumns: 12;
 $desktopColumns: 24;
 
 //* Primary used indentations
-$main-indent: 24px;
-$secondary-indent: 32px;
-$medium-indent: 16px;
+$main-indent: 1.5rem;
+$secondary-indent: 2rem;
+$medium-indent: 1rem;
+$small-indent: 0.5rem;
 
 //* Container
 $container-padding: 15px;
-
-// * NotFoundPage
-$margin-primary: 30px;
-$error-image-size: 200px;

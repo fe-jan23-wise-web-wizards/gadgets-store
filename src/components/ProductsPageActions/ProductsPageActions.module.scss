@@ -1,9 +1,10 @@
+@import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/extends';
 
 .actions {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @extend %flexColumn;
+  gap: $medium-indent;
 
   @include bp-large-up {
     display: grid;

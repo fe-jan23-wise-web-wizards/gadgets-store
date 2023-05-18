@@ -1,19 +1,20 @@
-@import '@/styles/variables';
-@import '@/styles/extends';
+@import '@styles/variables';
+@import '@styles/extends';
 
 .back_button {
   display: flex;
-  width: 80px;
-  margin-bottom: 16px;
+  width: 5rem;
+  margin-bottom: $medium-indent;
   padding: 0;
-  gap: 10px;
-  background-color: transparent;
+  gap: 0.6rem;
+
+  @extend %font12;
   font-weight: 700;
-  font-size: 0.75rem;
   color: $color-white;
 
-  @extend %transitionDetails;
+  background-color: transparent;
   transition-property: color;
+  @extend %transitionDetails;
 
   &:hover {
     color: $color-accent-hover;

@@ -42,7 +42,7 @@ export const Order = ({ order }: OrderProps) => {
 
         <p>
           <span className={styles.order_info_title}>Total price:</span>{' '}
-          {order.totalPrice}
+          <span className={styles.order_info_totalPrice}>{`$${order.totalPrice}`}</span>
         </p>
       </div>
 

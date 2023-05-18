@@ -4,37 +4,25 @@
 
 .item {
   @extend %flexBetween;
-
-  width: 100%;
-  border: 1px solid $color-elements;
+  align-items: center;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
-  align-items: center;
-  background-color: $color-surface-1;
+  width: 100%;
+
+  @extend %cardHover;
 
   &_title {
     margin-right: 1rem;
-    font-size: 0.8rem;
+
+    @extend %font14;
     color: $color-white;
 
     @include bp-small-up {
       font-size: 1rem;
     }
-
-    &:hover {
-      color: $color-accent;
-
-      transition-property: color;
-      @extend %transitionDetails;
-    }
   }
 
   &_price {
     font-weight: 800;
-    font-size: 1.2rem;
-
-    @include bp-small-up {
-      font-size: 1.4rem;
-    }
   }
 }

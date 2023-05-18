@@ -1,41 +1,39 @@
 @import '@styles/variables';
 @import '@styles/breakpoints';
-@import '@styles/extends';
 @import '@styles/mixins';
+@import '@styles/extends';
 
 .cart {
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
+  align-items: center;
   justify-content: space-around;
-  margin-bottom: calc($secondary-indent / 2);
+  height: 10rem;
+  margin-bottom: $main-indent;
   padding: $secondary-indent;
   gap: $main-indent;
-  align-items: center;
-  background-color: $color-surface-1;
-  height: 160px;
-
-  @include bp-custom-up(640px) {
+  
+  @extend %cardHover;
+ 
+  @include bp-custom-up($bp-640) {
     flex-direction: row;
+    height: 8rem;
     padding: $main-indent;
-    height: 128px;
   }
 
   &_info {
-    display: flex;
+    @extend %flexBetween;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
   }
 }
 
 .delete_button_link {
   @extend %flexCenter;
-
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 0.6rem;
 
+  transition-property: transform;
   @extend %transitionDetails;
-
   background-color: transparent;
 
   &:hover {
@@ -44,39 +42,34 @@
 }
 
 .phone_image {
-  height: 66px;
+  height: 4.1rem;
 }
 
 .phone_container {
   @extend %flexCenter;
-  height: 66px;
-  min-width: 66px;
-  margin-right: 23px;
+  height: 4.1rem;
+  min-width: 4.2rem;
+  margin-right: 1.5rem;
 }
 
 .content {
-  font-weight: 400;
-  font-size: 0.9rem;
-  line-height: 21px;
-  color: $color-white;
   width: 100%;
 
-  @include bp-custom-up(640px) {
-    padding-right: 34px;
-  }
+  @extend %font14;
+  font-weight: 400;
+  color: $color-white;
 
-  @include bp-x-large-up {
-    padding-right: 34px;
+  @include bp-custom-up($bp-640) {
+    padding-right: 2.1rem;
   }
 }
 
 .quantity_and_price {
-  display: flex;
-  justify-content: space-between;
+  @extend %flexBetween;
   width: 100%;
 
-  @include bp-custom-up(640px) {
-    width: 300px;
+  @include bp-custom-up($bp-640) {
+    width: 19rem;
   }
 }
 
@@ -84,31 +77,28 @@
   @extend %flexCenter;
 
   &_minus {
-    background-color: transparent;
     display: flex;
+    background-color: transparent;
   }
 
   &_plus {
-    background-color: transparent;
     display: flex;
+    background-color: transparent;
   }
 
   &_number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
+    @extend %flexCenter;
+    width: 2.8rem;
   }
 }
 
 .minus {
   @extend %flexCenter;
+  @include square($secondary-indent);
+
   background-color: $color-elements;
-
   border: 1px solid $color-elements;
-
-  @include square(32px);
-
+  transition-property: background-color;
   @extend %transitionDetails;
 
   &:hover {
@@ -118,12 +108,11 @@
 
 .plus {
   @extend %flexCenter;
+  @include square($secondary-indent);
 
   background-color: $color-elements;
   border: 1px solid $color-elements;
-
-  @include square(32px);
-
+  transition-property: background-color;
   @extend %transitionDetails;
 
   &:hover {
@@ -133,15 +122,11 @@
 
 .button_disabled {
   background-color: $color-surface-1;
-
-  &:hover {
-    background-color: $color-surface-1;
-  }
+  pointer-events: none;
 }
 
 .phone_price {
+  @extend %font22;
   font-weight: 800;
-  font-size: 1.375rem;
-  line-height: 140%;
   color: $color-white;
 }

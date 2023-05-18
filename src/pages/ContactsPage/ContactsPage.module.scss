@@ -3,28 +3,27 @@
 @import '@styles/extends';
 
 .page {
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
 }
 
 .cards {
   @extend %flexCenter;
   flex-wrap: wrap;
+  margin-bottom: $secondary-indent;
   gap: $main-indent;
 
-  margin-bottom: $secondary-indent;
-
-  @include bp-custom-up (640px) {
+  @include bp-custom-up ($bp-640) {
     gap: $secondary-indent;
   }
 }
 
 .title {
-  font-size: 2em;
-  font-weight: 700;
   margin-bottom: $main-indent;
 
-  @include bp-custom-up (640px) {
-    font-size: 3em;
+  @extend %font32;
+  font-weight: 700;
+
+  @include bp-custom-up ($bp-640) {
+    font-size: 3rem;
   }
 }

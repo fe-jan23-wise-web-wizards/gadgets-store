@@ -1,34 +1,34 @@
-@import '@/styles/variables';
-@import '@/styles/extends';
-@import '@/styles/mixins';
+@import '@styles/variables';
+@import '@styles/extends';
+@import '@styles/mixins';
 
 .colors {
   &_header {
+    margin-bottom: $small-indent;
     @extend %flexBetween;
-    font-size: 0.75rem;
+
+    @extend %font12;
     font-weight: 700;
     color: $color-secondary;
-    margin-bottom: calc($secondary-indent / 4);
   }
 
   &_options {
     display: flex;
     flex-wrap: wrap;
-    gap: calc($secondary-indent / 4);
-    padding-bottom: $main-indent;
     margin-bottom: $secondary-indent;
+    padding-bottom: $main-indent;
+    gap: $small-indent;
+    
     border-bottom: 1px solid $color-secondary;
-    font-size: 0.9rem;
-    font-weight: 600;
 
     @include bp-custom-up(600px) {
-      max-width: 320px;
+      max-width: 20rem;
     }
   }
 
   &_circle {
     @extend %flexCenter;
-    @include square(32px);
+    @include square($secondary-indent);
 
     border: 3px solid $color-elements;
     border-radius: 50%;

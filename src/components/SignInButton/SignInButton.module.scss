@@ -6,12 +6,13 @@
 
   width: 6.25rem;
   padding: 0.2rem 0;
-  color: #f1f2f9;
-  font-size: 0.8rem;
+
   font-family: inherit;
+  @extend %font14;
   font-weight: 600;
-  line-height: 150%;
+  color: $color-white;
   text-decoration: none;
+
   background-color: $color-accent;
 
   @include bp-large-up {

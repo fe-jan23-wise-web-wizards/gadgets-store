@@ -3,18 +3,15 @@
 @import '@styles/extends';
 
 .dropdown_button {
-  display: flex;
-  justify-content: space-between;
+  @extend %flexBetween;
   align-items: center;
-
   width: 100%;
-  padding: 10px 12px;
+  padding: 0.6rem 0.75rem;
 
   font-family: inherit;
 
   background-color: $color-surface-2;
   border: 1px solid $color-surface-2;
-
   transition-property: border-color;
   @extend %transitionDetails;
 
@@ -32,14 +29,13 @@
 }
 
 .dropdown_value {
-  font-size: 14px;
+  @extend %font14;
   font-weight: 700;
-  line-height: 150%;
   color: $color-white;
 }
 
 .dropdown_icon {
-  @include square(10px);
+  @include square(0.6rem);
 
   background-image: url('@assets/icons/dropdown-arrow-down.svg');
   background-repeat: no-repeat;

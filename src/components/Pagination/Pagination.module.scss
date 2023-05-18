@@ -1,12 +1,11 @@
-@import '@styles/mixins';
 @import '@styles/variables';
+@import '@styles/mixins';
+@import '@styles/extends';
 
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+  @extend %flexCenter;
+  gap: $medium-indent;
 
   width: max-content;
-  margin: 0 auto 64px;
+  margin: 0 auto 2 * $secondary-indent;
 }

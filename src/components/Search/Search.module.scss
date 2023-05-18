@@ -16,9 +16,8 @@
 .search_title {
   margin-bottom: 4px;
 
-  font-size: 12px;
+  @extend %font12;
   font-weight: 700;
-  line-height: 15px;
   color: $color-secondary;
 }
 
@@ -39,12 +38,11 @@
 
 .search_field {
   width: 100%;
-  padding: 10px 0 10px 12px;
+  padding: 0.6rem 0 0.6rem 0.75rem;
 
   font-family: inherit;
-  font-size: 14px;
+  @extend %font14;
   font-weight: 700;
-  line-height: 150%;
   color: $color-white;
 
   background-color: $color-surface-2;
@@ -56,5 +54,5 @@
   background-image: url('../../assets/icons/search.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px;
+  background-size: $medium-indent;
 }

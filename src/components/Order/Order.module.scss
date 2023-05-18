@@ -6,20 +6,24 @@
   margin-bottom: 3rem;
 
   &_info {
-    font-size: 0.9rem;
-    line-height: 150%;
     @extend %flexBetween;
+    align-items: baseline;
     flex-direction: column;
-  
-    font-weight: 600;
     margin-bottom: 1rem;
 
-    @include bp-custom-up(640px) {
+    @extend %font14;
+    font-weight: 600;
+    
+    @include bp-custom-up($bp-640) {
       flex-direction: row;
     }
 
     &_title {
       color: $color-secondary;
+    }
+
+    &_totalPrice {
+      @extend %font22;
     }
   }
 }
