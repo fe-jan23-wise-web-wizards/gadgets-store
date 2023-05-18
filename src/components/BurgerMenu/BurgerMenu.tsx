@@ -56,7 +56,7 @@ export const BurgerMenu = ({
           onClickInteractive={onMenuClose}
         />
 
-        {!isSignedIn && <SignInButton />}
+        {!isSignedIn && <SignInButton onClick={onMenuClose} />}
       </div>
 
       <div className={styles.BurgerMenu__footer}>
@@ -65,6 +65,7 @@ export const BurgerMenu = ({
             to={'orders'}
             src={accountIcon}
             alt={'IconLink-orders'}
+            isBurger={true}
             count={0}
             clickFunc={onMenuClose}
           />
