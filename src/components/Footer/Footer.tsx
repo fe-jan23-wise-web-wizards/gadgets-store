@@ -3,7 +3,7 @@ import '@styles/blocks/container.scss';
 import { BackToTopButton } from './BackToTopButton';
 import styles from './Footer.module.scss';
 import { FooterLink } from './FooterLink';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -21,12 +21,12 @@ export const Footer = () => {
             />
 
             <li className={styles.footer_links_item}>
-              <NavLink
+              <Link
                 to={'contacts'}
                 className={styles.footer_links_list_link}
               >
                 Contacts
-              </ NavLink>
+              </ Link>
             </li>
 
             <FooterLink
