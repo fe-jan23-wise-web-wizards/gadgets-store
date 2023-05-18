@@ -31,16 +31,20 @@
 
   &_link {
     margin-bottom: $main-indent;
+    overflow: hidden;
   }
 
   &_img {
     max-width: 100%;
     transition-property: transform;
+    display: block;
 
     @extend %transitionDetails;
 
-    &:hover {
-      transform: scale(1.05);
+    @include bp-medium-up {
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 }
