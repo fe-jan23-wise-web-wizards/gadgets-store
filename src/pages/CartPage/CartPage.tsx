@@ -1,10 +1,11 @@
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
-import cartImage from '@assets/cart_empty.webp';
+import cartEmptyImage from '@assets/cart_empty.webp';
+import cartSuccessImage from '@assets/success.webp';
 import { useAuth } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useMutation,useQuery } from '@tanstack/react-query';
 import { useEffect,useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import styles from './CartPage.module.scss';
 
 import { Loader } from '@/components/Loader';
@@ -13,24 +14,6 @@ import { Product } from '@/types/Product';
 import { getProduct,placeOrder } from '@api/requests';
 import { CartCheckout } from '@components/CartCheckout';
 import { CartItem } from '@components/CartItem';
-import toast from 'react-hot-toast';
-
-const notify = (message: string) => {
-  toast.remove();
-
-  toast.error(message, {
-    duration: 3000,
-    position: 'top-right',
-    style: {
-      borderRadius: 0,
-    },
-    className: '',
-    iconTheme: {
-      primary: '#905bff',
-      secondary: '#ffffff'
-    },
-  });
-};
 
 export const CartPage = () => {
   const {
@@ -44,7 +27,7 @@ export const CartPage = () => {
   } = useLocalStorageContext();
 
   const { userId, isSignedIn } = useAuth();
-
+  const navigate = useNavigate();
   const [cart, setCart] = useState<Product[]>([]);
 
   const cartQuery = useQuery({
@@ -79,7 +62,7 @@ export const CartPage = () => {
 
       orderMutation.mutate(orderDetails);
     } else {
-      notify('Sign in to checkout!');
+      navigate('/sign-in');
     }
   };
 
@@ -95,12 +78,14 @@ export const CartPage = () => {
             <div className={styles.cart_empty}>
               <h3 className={styles.cart_empty_title}>
                 {orderMutation.isSuccess
-                  ? 'Thank you for your purchase'
+                  ? 'Thank you for your purchase!'
                   : 'Looks like your cart is empty...'}
               </h3>
 
               <img
-                src={cartImage}
+                src={
+                  orderMutation.isSuccess ? cartSuccessImage : cartEmptyImage
+                }
                 alt="cart"
                 className={styles.cart_empty_image}
               />
