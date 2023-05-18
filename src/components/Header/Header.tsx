@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect,useState } from 'react';
 
 import { BurgerMenu } from '@components/BurgerMenu';
 import { Logo } from '@components/Logo';
@@ -22,9 +22,9 @@ export const Header = () => {
 
   useEffect(() => {
     if (isBurgerOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('pageWithMenuOpen');
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('pageWithMenuOpen');
     }
   }, [isBurgerOpen]);
 

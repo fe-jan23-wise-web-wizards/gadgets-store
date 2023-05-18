@@ -10,6 +10,7 @@
   width: 100vw;
   min-height: fill-available;
   min-height: -webkit-fill-available;
+  max-height: 100vh;
   z-index: 100;
   transform: translateX(100%);
   transition: transform 400ms;
@@ -20,6 +21,7 @@
     transform: translateX(0%);
     transition: transform 400ms;
     overflow: hidden;
+    overflow-y: auto;
   }
 
   &__header {

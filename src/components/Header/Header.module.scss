@@ -3,6 +3,10 @@
 @import '@styles/mixins';
 @import '@styles/breakpoints';
 
+:global(.pageWithMenuOpen) {
+  overflow: hidden;
+}
+
 .navbar {
   position: sticky;
   top: 0;
