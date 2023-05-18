@@ -2,11 +2,10 @@
 
 .pagination_bullet {
   position: relative;
-
   width: 100%;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
   }
@@ -23,11 +22,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-
   width: 80%;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     padding-bottom: 100%;
   }

@@ -1,31 +1,23 @@
 @import '@styles/variables';
 @import '@styles/breakpoints';
-@import '@styles/extends';
 @import '@styles/mixins';
+@import '@styles/extends';
 
 .card {
+  position: relative;
   display: flex;
   align-items: center;
   flex-grow: 2;
-  flex-basis: 360px;
-  background-color: $color-surface-1;
+  flex-basis: 22.5rem;
 
-  position: relative;
-
+  @extend %cardHover;
   @extend %transitionDetails;
   animation: bubbling 0.7s;
   -webkit-animation: bubbling 0.7s;
 
-  border: 1px solid transparent;
-
   &_content {
     @extend %flexCenter;
     padding: $medium-indent;
-  }
-
-  &:hover {
-    border: 1px solid $color-secondary;
-    background: $color-dark;
   }
 
   &:hover .photo {
@@ -36,10 +28,10 @@
 .role {
   position: absolute;
   right: $medium-indent;
-  bottom: $medium-indent + 9px;
+  bottom: 1.5rem;
+
   color: $color-accent;
   pointer-events: none;
-
   writing-mode: vertical-rl;
 
   @include bp-custom-up(400px) {
@@ -59,23 +51,21 @@
 }
 
 .link:not(:last-child) {
-  margin-right: 8px;
+  margin-right: $small-indent;
 }
 
 .name {
-  font-weight: 600;
-  letter-spacing: 3.5%;
-  font-size: 1.4rem;
   margin-bottom: $medium-indent;
+  @extend %font22;
+  font-weight: 600;
 }
 
 .photo {
-  @include square(95px);
-  border-radius: 50%;
   margin-right: $medium-indent;
+  @include square(6rem);
+  border-radius: 50%;
 
   @extend %transitionDetails;
-
   filter: brightness(0.8);
 }
 
@@ -84,22 +74,23 @@
 }
 
 .tooltip {
-  @extend %flexCenter;
-  width: max-content;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid $color-white;
-  background-color: $color-surface-1;
-  color: $color-white;
   position: absolute;
   top: -220%;
   left: 120%;
+  z-index: 2;
+  @extend %flexCenter;
+  padding: 0.6rem;
+  width: max-content;
+  
+  color: $color-white;
+  
+  border-radius: 0.6rem;
+  border: 1px solid $color-white;
+  background-color: $color-surface-1;
   opacity: 1;
   animation: bubbling 0.3s;
   @extend %transitionDetails;
   pointer-events: none;
-
-  z-index: 2;
 }
 
 .hide {

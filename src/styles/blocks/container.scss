@@ -8,7 +8,7 @@
   width: 100%;
   min-height: 100%;
 
-  @include bp-custom-up(640px) {
+  @include bp-custom-up($bp-640) {
     padding: 0 1.5 * $container-padding;
   }
 }

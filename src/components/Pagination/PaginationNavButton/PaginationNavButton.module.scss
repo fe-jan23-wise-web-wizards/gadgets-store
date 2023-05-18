@@ -2,7 +2,7 @@
 @import '@styles/variables';
 
 .pagination_nav_button {
-  @include square(32px);
+  @include square($secondary-indent);
 
   border: none;
   background-color: $color-surface-2;

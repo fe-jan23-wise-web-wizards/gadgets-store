@@ -1,34 +1,37 @@
-@import '@/styles/variables';
-@import '@/styles/extends';
+@import '@styles/variables';
+@import '@styles/extends';
 
 .capacities {
   &_header {
-    font-size: 0.75rem;
+    margin-bottom: $small-indent;
+
+    @extend %font12;
     font-weight: 700;
     color: $color-secondary;
-    margin-bottom: calc($secondary-indent / 4);
   }
 
   &_options {
     display: flex;
-    gap: calc($secondary-indent / 4);
-    padding-bottom: $main-indent;
     margin-bottom: $secondary-indent;
-    border-bottom: 1px solid $color-secondary;
-    font-size: 0.9rem;
+    padding-bottom: $main-indent;
+    gap: $small-indent;
+    
+    @extend %font14;
     font-weight: 600;
+    border-bottom: 1px solid $color-secondary;
 
     @include bp-custom-up(600px) {
-      max-width: 320px;
+      max-width: 20rem;
     }
   }
 
   &_button {
     @extend %flexCenter;
-
     padding: calc($secondary-indent / 4);
     height: $secondary-indent;
+
     color: $color-white;
+
     background-color: transparent;
     border: 1px solid $color-secondary;
 

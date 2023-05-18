@@ -1,17 +1,17 @@
 @import '@styles/variables';
-@import '@/styles/breakpoints';
+@import '@styles/breakpoints';
+@import '@styles/extends';
 
 .homepage {
   max-width: 100%;
 
   &_title {
     padding: $main-indent 0;
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 115%;
-    letter-spacing: -0.01em;
 
-    @include bp-custom-up(640px) {
+    @extend %font32;
+    font-weight: 800;
+
+    @include bp-custom-up($bp-640) {
       font-size: 3rem;
       padding: $secondary-indent 0;
     }

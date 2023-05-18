@@ -4,17 +4,16 @@
 .product_card_button_cart {
   @extend %flexCenter;
   flex-grow: 1;
+  padding: 0.6rem 0;
 
-  padding: 9.5px 0;
-
-  color: $color-white;
-  font-size: 0.9rem;
+  @extend %font14;
   font-family: inherit;
   font-weight: 600;
-  line-height: 150%;
+  color: $color-white;
   text-decoration: none;
+  
   background-color: $color-accent;
-
+  transition-property: background-color;
   @extend %transitionDetails;
 
   &:hover {

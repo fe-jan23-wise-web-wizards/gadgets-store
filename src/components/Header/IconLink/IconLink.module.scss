@@ -1,25 +1,25 @@
 @import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/mixins';
+@import '@styles/extends';
 
 .indicator {
   position: absolute;
   top: 15%;
   right: 15%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 18px;
-  min-width: 18px;
+  @extend %flexCenter;
+  min-width: 1.1rem;
   width: max-content;
+  height: 1.1rem;
 
+  @extend %font12;
   font-weight: 700;
-  border-radius: 50%;
-  font-size: 12px;
-
   color: $color-white;
+
   background-color: $color-red;
   border: 2px solid $color-dark;
+  border-radius: 50%;
 
   @include bp-large-up {
     top: 22%;
@@ -45,30 +45,27 @@
 }
 
 .item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
   cursor: pointer;
 }
 
 .link {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
+  @extend %flexCenter;
+  @include square(2 * $main-indent);
   border-left: 1px solid $color-elements;
 
   &_active {
     &::after {
-      color: $color-white;
+      content: '';
       position: absolute;
       bottom: -1px;
-      content: '';
       display: block;
       height: 2px;
       width: 100%;
+
+      color: $color-white;
+
       background-color: $color-white;
     }
   }
@@ -82,15 +79,14 @@
   }
 
   @include bp-large-up {
-    width: 64px;
-    height: 64px;
+    @include square(2 * $secondary-indent);
   }
 }
 
 .burger_link {
-  padding-top: 32px;
-  padding-bottom: 32px;
   flex-grow: 1;
+  padding-top: $secondary-indent;
+  padding-bottom: $secondary-indent;
   border-top: 1px solid $color-elements;
 
   &_active {
@@ -105,8 +101,7 @@
 }
 
 .burger_icon {
-  display: block;
-  width: 16px;
-  height: 16px;
   flex-grow: 1;
+  display: block;
+  @include square($medium-indent);
 }

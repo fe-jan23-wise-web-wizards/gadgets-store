@@ -1,6 +1,7 @@
+@import '@styles/variables';
+@import '@styles/extends';
+
 .pagination_bullets {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  @extend %flexCenter;
+  gap: $small-indent;
 }

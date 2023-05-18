@@ -2,14 +2,13 @@
 @import '@styles/variables';
 
 .pagination_bullet {
-  @include square(32px);
+  @include square($secondary-indent);
 
   font-family: inherit;
   color: $color-white;
 
   border: none;
   background-color: $color-surface-1;
-
   transition: background-color 0.3s linear;
 
   &:hover {

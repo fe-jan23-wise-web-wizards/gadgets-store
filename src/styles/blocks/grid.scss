@@ -4,9 +4,9 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: calc($secondary-indent / 2);
+  column-gap: $medium-indent;
 
-  @include bp-custom-up (640px) {
+  @include bp-custom-up ($bp-640) {
     grid-template-columns: repeat(12, 1fr);
   }
 
@@ -18,7 +18,7 @@
     @for $start from 1 through 12 {
       @for $end from $start through 12 {
         &-tablet--#{$start}-#{$end} {
-          @include bp-custom-up (640px) {
+          @include bp-custom-up ($bp-640) {
             grid-column: #{$start} / #{$end + 1};
           }
         }

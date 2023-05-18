@@ -17,24 +17,24 @@
 }
 
 .title {
-  font-size: 2em;
-  font-weight: 800;
-  line-height: 41px;
   margin-bottom: 0.5rem;
 
+  @extend %font32;
+  font-weight: 800;
+
   @include bp-small-up {
-    font-size: 3em;
-    line-height: 56px;
+    font-size: 3rem;
+    line-height: 115%;
   }
 }
 
 .description {
-  color: $color-secondary;
-
-  font-size: 0.9em;
-  font-weight: 600;
-  line-height: 21px;
   margin-bottom: 2rem;
+
+  @extend %font14;
+  font-weight: 600;
+  color: $color-secondary;
+  
 
   @include bp-small-up {
     margin-bottom: 2.5rem;
@@ -47,55 +47,51 @@
   height: 90%;
 
   &_title {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: $margin-primary;
+    margin-bottom: 1.9rem;
 
+    font-weight: 700;
+    
     animation: bubbling 0.5s;
 
     @include bp-custom-up (480px) {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
     }
 
-    @include bp-custom-up (640px) {
+    @include bp-custom-up ($bp-640) {
       font-size: 1.6rem;
     }
   }
 
   &_image {
     margin-bottom: 40px;
-    width: 250px;
+    width: 15.6rem;
 
     animation: bubbling 0.7s;
 
     @include bp-custom-up (480px) {
-      width: 300px;
+      width: 18.75rem;
     }
 
-    @include bp-custom-up (640px) {
-      width: 350px;
+    @include bp-custom-up ($bp-640) {
+      width: 21.9rem;
     }
   }
 
   &_button {
     @extend %flexCenter;
-    width: 200px;
-
+    margin-bottom: 3rem;
     padding: 9.5px 0;
+    width: 12.5rem;  
 
-    color: $color-white;
-    font-size: 0.9rem;
+    
+    @extend %font14;
     font-family: inherit;
     font-weight: 600;
-    line-height: 150%;
+    color: $color-white;
     text-decoration: none;
 
-    margin-bottom: 3rem;
-    
     background-color: $color-accent;
-
     animation: bubbling 1s;
-
     @extend %transitionDetails;
 
     &:hover {

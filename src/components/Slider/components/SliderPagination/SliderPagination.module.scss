@@ -1,4 +1,6 @@
+@import '@styles/variables';
+
 .slider_pagination {
   display: flex;
-  gap: 16px;
+  gap: $medium-indent;
 }

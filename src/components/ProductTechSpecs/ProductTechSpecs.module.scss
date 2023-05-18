@@ -1,5 +1,5 @@
-@import '@/styles/variables';
-@import '@/styles/extends';
+@import '@styles/variables';
+@import '@styles/extends';
 
 .header {
   @extend %categorySubtitle;
@@ -8,8 +8,7 @@
 .spec {
   @extend %flexBetween;
 
-  font-size: 0.8rem;
-  line-height: 150%;
+  @extend %font14;
   font-weight: 600;
 
   &_name {
@@ -17,7 +16,7 @@
   }
 
   &_value {
-    padding-left: calc($secondary-indent / 2);
+    padding-left: $medium-indent;
     text-align: right;
   }
 }

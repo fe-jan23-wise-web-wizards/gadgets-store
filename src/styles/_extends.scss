@@ -2,6 +2,7 @@
 @import '@styles/breakpoints';
 @import '@styles/variables';
 
+//* Flex containers sets
 %flexCenter {
   display: flex;
   justify-content: center;
@@ -11,6 +12,11 @@
 %flexBetween {
   display: flex;
   justify-content: space-between;
+}
+
+%flexColumn {
+  display: flex;
+  flex-direction: column;
 }
 
 %transitionDetails {
@@ -24,7 +30,7 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  @include square(16px);
+  @include square($medium-indent);
 }
 
 %homeIndentsSet {
@@ -57,8 +63,50 @@
 
 %categorySubtitle {
   margin-bottom: $secondary-indent;
-  padding-bottom: calc($secondary-indent / 2);
+  padding-bottom: $medium-indent;
   font-size: 1.25rem;
   font-weight: 800;
   border-bottom: 1px solid $color-secondary;
+}
+
+%cardHover {
+  border: 1px solid transparent;
+  background-color: $color-surface-1;
+  transition-property: all;
+  @extend %transitionDetails;
+
+  @include bp-medium-up {
+    &:hover {
+      border: 1px solid $color-secondary;
+      background: transparent;
+    }
+  }
+}
+
+//* Fonts sets
+%font32 {
+  font-size: 2rem;
+  line-height: 130%;
+  letter-spacing: -0.01em;
+}
+
+%font22 {
+  font-size: 1.4rem;
+  line-height: 140%;
+}
+
+%font20 {
+  font-size: 1.25rem;
+  line-height: 130%;
+}
+
+%font14 {
+  font-size: 0.9rem;
+  line-height: 150%;
+}
+
+%font12 {
+  font-size: 0.75rem;
+  line-height: 125%;
+  letter-spacing: 0.04em;
 }

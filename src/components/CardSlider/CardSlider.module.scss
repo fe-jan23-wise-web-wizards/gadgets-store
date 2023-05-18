@@ -1,28 +1,25 @@
-@import '@styles/mixins';
 @import '@styles/variables';
 @import '@styles/breakpoints';
+@import '@styles/mixins';
 @import '@styles/extends';
 
 .card_slider {
   @extend %homeIndentsSet;
 
   &_header {
-    display: flex;
-    justify-content: space-between;
+    @extend %flexBetween;
     align-items: center;
-
-    max-width: 100%;
     margin-bottom: $main-indent;
+    max-width: 100%;
 
     @include bp-medium-up {
-      margin-bottom: 28px;
+      margin-bottom: 1.75rem;
     }
   }
 
   &_title {
+    @extend %font22;
     font-weight: 800;
-    font-size: 1.4rem;
-    line-height: 140%;
 
     @include bp-medium-up {
       font-size: 2rem;

@@ -11,24 +11,22 @@
 }
 
 .images_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flexCenter;
+  height: 18.75rem;
+
   animation: bubbling 1s;
-  height: 300px;
 }
 
 .images {
-  transform: scale(0.4);
   position: relative;
+  margin: 3.2rem 0;
 
-  margin: 50px 0;
-
-  @include bp-custom-up (400px) {
+  transform: scale(0.4);
+  @include bp-custom-up(400px) {
     transform: scale(0.5);
   }
 
-  @include bp-custom-up (640px) {
+  @include bp-custom-up($bp-640) {
     transform: scale(0.6);
   }
 
@@ -41,12 +39,10 @@
   position: absolute;
   left: -400px;
   top: -250px;
+  z-index: 1;
 
   filter: drop-shadow(1px 1px 20px black);
-
   animation: waving 3s infinite;
-
-  z-index: 1;
 
   @include bp-x-large-up {
     top: -220px;
@@ -54,11 +50,11 @@
 }
 
 .image_second {
-  animation: waving 3s 0.6s infinite;
   position: absolute;
-
   left: -400px;
   top: -250px;
+
+  animation: waving 3s 0.6s infinite;
 
   @include bp-x-large-up {
     top: -220px;
@@ -71,7 +67,6 @@
   top: -250px;
 
   filter: drop-shadow(1px 1px 20px black);
-
   animation: waving 3s 1s infinite;
 
   @include bp-x-large-up {
@@ -80,18 +75,18 @@
 }
 
 .title {
-  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+
   font-weight: 700;
-  margin-bottom: 50px;
-  margin-top: 3rem;
 
   animation: bubbling 0.5s;
 
-  @include bp-custom-up (480px) {
+  @include bp-custom-up(480px) {
     font-size: 1.2rem;
   }
 
-  @include bp-custom-up (640px) {
+  @include bp-custom-up($bp-640) {
     font-size: 1.5rem;
   }
 
@@ -116,22 +111,18 @@
 
 .home_button {
   @extend %flexCenter;
-  width: 200px;
-
+  margin-bottom: 1.9rem;
   padding: 9.5px 0;
-  margin-bottom: $margin-primary;
-
-  color: $color-white;
-  font-size: 0.9rem;
+  width: 12.5rem;
+  
+  @extend %font14;
   font-family: inherit;
   font-weight: 600;
-  line-height: 150%;
+  color: $color-white;
   text-decoration: none;
   
   background-color: $color-accent;
-
   animation: bubbling 1.5s;
-
   @extend %transitionDetails;
 
   @include bp-x-large-up {

@@ -4,12 +4,11 @@
 
 .like_button {
   @extend %flexCenter;
-
   @include square(40px);
 
   background-color: $color-surface-2;
-
-  transition: all 0.3s;
+  transition-property: background-color;
+  @extend %transitionDetails;
 
   &:hover {
     background-color: $color-icons;
