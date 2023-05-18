@@ -58,6 +58,7 @@ export const CardSlider = ({ title, products }: CardSliderProps) => {
               <ProductCard product={product} />
             </SwiperSlide>
           ))}
+          <div className={styles.fade}></div>
         </Swiper>
       </div>
     </section>

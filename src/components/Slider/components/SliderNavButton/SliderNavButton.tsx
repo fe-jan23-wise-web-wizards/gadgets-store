@@ -7,8 +7,8 @@ import { SliderNavButtonType } from '../../types/SliderNavButtonType';
 import styles from './SliderNavButton.module.scss';
 
 type SliderNavButtonProps = {
-  sliderRef: SwiperClass | null,
-  type: SliderNavButtonType,
+  sliderRef: SwiperClass | null;
+  type: SliderNavButtonType;
 };
 
 export const SliderNavButton = ({ sliderRef, type }: SliderNavButtonProps) => {
@@ -24,16 +24,19 @@ export const SliderNavButton = ({ sliderRef, type }: SliderNavButtonProps) => {
   }, [sliderRef, isNextButton]);
 
   return (
-    <button
-      className={styles.slider_nav_button}
-      onClick={handleClick}
-    >
-      <div
-        className={classNames(
-          { [styles.slider_nav_next_button_icon]: isNextButton },
-          { [styles.slider_nav_prev_button_icon]: isPrevButton },
-        )}
-      ></div>
-    </button>
-  );
+        <button
+          className={classNames(styles.slider_nav_button, {
+            [styles.slider_nav_next_button]: isNextButton,
+            [styles.slider_nav_prev_button]: isPrevButton,
+          })}
+          onClick={handleClick}
+        >
+          <div
+            className={classNames(
+              { [styles.slider_nav_next_button_icon]: isNextButton },
+              { [styles.slider_nav_prev_button_icon]: isPrevButton },
+            )}
+          ></div>
+        </button>
+      );
 };

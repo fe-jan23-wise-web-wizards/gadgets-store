@@ -79,11 +79,15 @@
   &_minus {
     display: flex;
     background-color: transparent;
+    display: flex;
+    padding: 8px;
   }
 
   &_plus {
     display: flex;
     background-color: transparent;
+    display: flex;
+    padding: 8px;
   }
 
   &_number {

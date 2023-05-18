@@ -27,9 +27,10 @@
   }
 
   &_wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
-
+    
     :global(.swiper-slide) {
       max-width: min-content !important;
     }
@@ -37,5 +38,23 @@
     :global(.swiper) {
       max-width: 100% !important;
     }
+
+    
+  }
+}
+
+.fade {
+  z-index: 2;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 80%, rgba(15,17,33,1) 100%);
+  opacity: 1;
+
+  @include bp-x-large-up {
+    opacity: 0;
   }
 }

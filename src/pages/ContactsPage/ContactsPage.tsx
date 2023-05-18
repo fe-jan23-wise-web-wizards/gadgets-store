@@ -9,8 +9,16 @@ import VadymPhoto from '@assets/team_photos/Vadym.webp';
 
 import styles from './ContactsPage.module.scss';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { useEffect } from 'react';
 
 export const ContactsPage = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <div className={styles.page}>
       <Breadcrumbs />

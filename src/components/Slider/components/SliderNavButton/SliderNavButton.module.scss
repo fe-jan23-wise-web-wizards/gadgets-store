@@ -6,14 +6,27 @@
 .slider_nav_button {
   display: none;
   border: none;
+  
+
+  position: absolute;
+  transition: all 0.5s;
+
+  // bottom: 0;
+  height: 100%;
+  opacity: 0.3;
+  
+  z-index: 2;
 
   @include bp-custom-up(639px) {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $secondary-indent;
+    align-items: center;
+
+    width: 10%;
 
     background-color: $color-surface-2;
+
     transition: background-color 0.3s linear;
 
     &:hover {
@@ -24,7 +37,7 @@
 }
 
 .slider_nav_next_button_icon {
-  @include square(0.62rem);
+  @include square(0.8rem);
 
   background-image: url('@assets/icons/forward-arrow.svg');
   background-size: contain;
@@ -33,10 +46,38 @@
 }
 
 .slider_nav_prev_button_icon {
-  @include square(0.62rem);
+  @include square(0.8rem);
 
   background-image: url('@assets/icons/back-arrow.svg');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.slider_nav_next_button {
+  right: 0;
+  top: 0;
+  transition: all 0.5s;
+  background-color: rgba(15, 17, 33, 0);
+  
+  opacity: 0.5;
+
+  &:hover {
+    background-color: rgba(15, 17, 33, 0.4);
+    opacity: 1;
+  }
+}
+
+.slider_nav_prev_button {
+  top: 0;
+  left: 0;
+  transition: all 0.5s;
+  background-color: rgba(15, 17, 33, 0);
+
+  opacity: 0.5;
+
+  &:hover {
+    background-color: rgba(15, 17, 33, 0.4);
+    opacity: 1;
+  }
 }

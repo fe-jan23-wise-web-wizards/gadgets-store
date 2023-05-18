@@ -27,6 +27,7 @@ import 'swiper/swiper-bundle.min.css';
 import styles from './Slider.module.scss';
 
 const bannersPaths = [banner1, banner2, banner3];
+const targetPaths = ['/phones', '/tablets', '/accessories'];
 
 export const Slider = () => {
   const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
@@ -52,9 +53,9 @@ export const Slider = () => {
               loop={true}
               autoplay={{ delay: 5000, disableOnInteraction: false }}
             >
-              {bannersPaths.map(bannerPath => (
+              {bannersPaths.map((bannerPath, index) => (
                 <SwiperSlide key={bannerPath}>
-                  <SliderItem bannerPath={bannerPath} />
+                  <SliderItem bannerPath={bannerPath} targetPath={targetPaths[index]} />
                 </SwiperSlide>
               ))}
             </Swiper>
