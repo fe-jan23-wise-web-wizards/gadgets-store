@@ -14,21 +14,7 @@ export function useCart() {
     queryKey: ['cart'],
     queryFn: () => getCartByUserId(userId || ''),
     enabled: false,
-    onSuccess: ({ products }) => {
-      if (products) {
-        const receivedProducts = [];
-
-        for (const product of products) {
-          const isInCart = cartItems.some(item => item.id === product.id);
-
-          if (!isInCart) {
-            receivedProducts.push(product);
-          }
-        }
-
-        setCartItems([...cartItems, ...receivedProducts]);
-      }
-    },
+    onSuccess: ({ products }) => setCartItems(products),
     onError: () => {
       if (isSignedIn && userId) {
         cartMutation.mutate({
