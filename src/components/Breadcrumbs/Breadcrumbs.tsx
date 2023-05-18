@@ -1,22 +1,22 @@
 import { Fragment } from 'react';
+import { Link,useLocation } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
-import { Link, useLocation } from 'react-router-dom';
 
 interface BreadcrumbsProps {
-  newPath?: string;
+  lastCrumb: string;
 }
 
-export const Breadcrumbs = ({ newPath }: BreadcrumbsProps) => {
+export const Breadcrumbs = ({ lastCrumb }: BreadcrumbsProps) => {
   const location = useLocation();
 
   let currentLink = '';
 
-  const pathname = newPath || location.pathname;
+  const pathname = location.pathname;
 
-  const crumbs = pathname 
+  const crumbs = pathname
     .split('/')
     .filter(crumb => crumb !== '')
-    .map(crumb => {
+    .map((crumb, idx, arr) => {
       const preparedCrumb = crumb
         .split('-')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -28,11 +28,8 @@ export const Breadcrumbs = ({ newPath }: BreadcrumbsProps) => {
         <Fragment key={crumb}>
           <div className={styles.breadcrumbs_arrow_icon}></div>
 
-          <Link
-            className={styles.breadcrumbs_link}
-            to={currentLink}
-          >
-            {preparedCrumb}
+          <Link className={styles.breadcrumbs_link} to={currentLink}>
+            {idx === arr.length - 1 ? lastCrumb : preparedCrumb}
           </Link>
         </Fragment>
       );
@@ -40,10 +37,7 @@ export const Breadcrumbs = ({ newPath }: BreadcrumbsProps) => {
 
   return (
     <div className={styles.breadcrumbs}>
-      <Link
-        to="/"
-        className={styles.breadcrumbs_link}
-      >
+      <Link to="/" className={styles.breadcrumbs_link}>
         <div className={styles.breadcrumbs_home_icon}></div>
       </Link>
 
