@@ -19,6 +19,8 @@ import { SignInPage } from '@pages/SignInPage/SignInPage';
 
 const categories = Object.values(Category);
 
+import { ContactsPage } from '@pages/ContactsPage';
+
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
@@ -35,7 +37,10 @@ export const router = createBrowserRouter(
       ))}
 
       <Route path="favorites" element={<FavoritesPage />} />
+      
       <Route path="cart" element={<CartPage />} />
+      
+      <Route path="contacts" element={<ContactsPage />} />
 
       <Route
         path="orders"
