@@ -3,7 +3,7 @@ import { Link,useLocation } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
 
 interface BreadcrumbsProps {
-  lastCrumb: string;
+  lastCrumb?: string;
 }
 
 export const Breadcrumbs = ({ lastCrumb }: BreadcrumbsProps) => {
@@ -29,7 +29,7 @@ export const Breadcrumbs = ({ lastCrumb }: BreadcrumbsProps) => {
           <div className={styles.breadcrumbs_arrow_icon}></div>
 
           <Link className={styles.breadcrumbs_link} to={currentLink}>
-            {idx === arr.length - 1 ? lastCrumb : preparedCrumb}
+            {idx === arr.length - 1 && lastCrumb ? lastCrumb : preparedCrumb}
           </Link>
         </Fragment>
       );
