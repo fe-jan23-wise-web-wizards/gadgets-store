@@ -56,12 +56,14 @@ export const getProductsByCategory = (
   page?: number,
   limit?: number,
   sort?: SortBy,
+  query?: string,
 ) => {
   const queries = [`category=${category}`];
 
   if (page) queries.push(`page=${page}`);
   if (limit) queries.push(`limit=${limit}`);
   if (sort) queries.push(`sort=${sort}`);
+  if (query) queries.push(`query=${query}`);
 
   return get<Product[]>(`${PRODUCTS_URL}?${queries.join('&')}`);
 };
@@ -76,8 +78,15 @@ export const getProduct = (id: string) => {
   return get<Product>(`${PRODUCTS_URL}/${id}`);
 };
 
-export const getProductsCount = (category: Category) => {
-  return get<ProductsCount>(`${PRODUCTS_URL}/count?category=${category}`);
+export const getProductsCount = (
+  category: Category,
+  query?: string,
+) => {
+  const queries = [`category=${category}`];
+
+  if (query) queries.push(`query=${query}`);
+
+  return get<ProductsCount>(`${PRODUCTS_URL}/count?${queries.join('&')}`);
 };
 
 export const getRecommendedProducts = (id: string) => {
@@ -94,4 +103,18 @@ export const placeOrder = (order: Omit<OrderDetails, 'createdAt' | 'id'>) => {
   return post<Omit<OrderDetails, 'createdAt' | 'id'>>(`${ORDERS_URL}/new`, {
     ...order,
   });
+};
+
+export const getProductsByName = (
+  query?: string,
+  category?: Category,
+) => {
+  const queries = [];
+
+  if (query) queries.push(`query=${query}`);
+  if (category) queries.push(`category=${category}`);
+
+  return get<Product[]>(
+    `${PRODUCTS_URL}/search${queries.length ? `?${queries.join('&')}` : ''}`,
+  );
 };
