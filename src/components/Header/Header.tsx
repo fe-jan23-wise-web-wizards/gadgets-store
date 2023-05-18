@@ -81,7 +81,7 @@ export const Header = () => {
                     to={'orders'}
                     src={accountIcon}
                     alt={'IconLink-orders'}
-                    count={favorites.length}
+                    count={0}
                     clickFunc={closeBurger}
                   />
                 )}
