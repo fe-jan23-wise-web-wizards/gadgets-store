@@ -33,8 +33,6 @@ export const useFavorites = () => {
     if (isSignedIn && userId) {
       void favoritesQuery.refetch();
     }
-
-    console.log('isSignedIn changed');
   }, [isSignedIn]);
 
   useEffect(() => {
