@@ -3,22 +3,28 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { FavoritesResponse } from '@/types/FavoritesResponse';
 import { useAuth } from '@clerk/clerk-react';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export const useFavorites = () => {
   const { isSignedIn, userId } = useAuth();
   const [favorites, setFavorites] = useLocalStorage<string[]>('favorites', []);
-  const hasDataInDB = useRef(false);
 
   const favoritesQuery = useQuery({
     queryKey: ['favorites'],
     queryFn: () => getFavoritesByUserId(userId || ''),
     enabled: false,
     onSuccess: ({ products }) => {
-      hasDataInDB.current = true;
       const productsSet = new Set([...products, ...favorites]);
 
       setFavorites([...productsSet]);
+    },
+    onError: () => {
+      if (isSignedIn && userId) {
+        favoritesMutation.mutate({
+          userId,
+          products: [],
+        });
+      }
     },
   });
 
