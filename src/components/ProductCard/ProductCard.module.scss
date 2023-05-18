@@ -97,6 +97,7 @@
 
   &_image {
     height: 8.2rem;
+    transition: all 0.7s cubic-bezier(0,1.15,1,.96);
 
     @include bp-custom-up($bp-640) {
       height: 12.25rem;

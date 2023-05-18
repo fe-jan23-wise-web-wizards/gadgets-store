@@ -79,6 +79,10 @@
     &:hover {
       border: 1px solid $color-secondary;
       background: transparent;
+
+      & img {
+        transform: scale(0.95);
+      }
     }
   }
 }

@@ -7,11 +7,9 @@
   display: none;
   border: none;
   
-
   position: absolute;
-  transition: all 0.5s;
+  @extend %transitionDeatils;
 
-  // bottom: 0;
   height: 100%;
   opacity: 0.3;
   
