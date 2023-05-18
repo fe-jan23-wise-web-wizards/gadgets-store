@@ -1,65 +1,79 @@
-import { Category } from '@/types/Category';
 import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { BackButton } from '@/components/BackButton';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { CardSlider } from '@/components/CardSlider';
-import { ProductAbout } from '@/components/ProductAbout';
-import { ProductSidebar } from '@/components/ProductSidebar';
-import { ProductTechSpecs } from '@/components/ProductTechSpecs';
+import { BackButton } from '@components/BackButton';
+import { Breadcrumbs } from '@components/Breadcrumbs';
+import { CardSlider } from '@components/CardSlider';
+import { ProductAbout } from '@components/ProductAbout';
+import { ProductSidebar } from '@components/ProductSidebar';
+import { ProductTechSpecs } from '@components/ProductTechSpecs';
 
-import { ImageSlider } from '@/components/ImageSlider';
-import { Loader } from '@/components/Loader';
+import { Category } from '@/types/Category';
+import { ImageSlider } from '@components/ImageSlider';
+import { Loader } from '@components/Loader';
+import { useRef } from 'react';
 import styles from './ProductPage.module.scss';
+
+const getNamespace = (productId: string) => {
+  const split = productId.split('-');
+
+  return split.slice(0, split.length - 2).join('-');
+};
 
 export const ProductPage = () => {
   const { id = '' } = useParams();
   const { pathname } = useLocation();
-  const [currentProductPath, setCurrentProductPath] = useState('');
   const category = pathname.slice(1).split('/').shift() as Category;
   const currentProductId = useRef(id);
+  const isVariant = useRef(false);
 
   const productDetailsQuery = useQuery({
-    queryKey: [`${id}`],
-    queryFn: () => getProductDetails(currentProductId.current),
-    enabled: !!currentProductId.current,
+    queryKey: [`${getNamespace(id)}`],
+    queryFn: () =>
+      getProductDetails(isVariant.current ? currentProductId.current : id),
+    refetchOnWindowFocus: false,
+    onSuccess: () => {
+      isVariant.current = false;
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
+      void recommendedProductsQuery.refetch();
+    },
   });
-
-  const handleProductChange = (newId: string) => {
-    currentProductId.current = newId;
-    const newPathname = `/${category}/${newId}`;
-    window.history.replaceState(null, '', `${newPathname}`);
-
-    setCurrentProductPath(newPathname);
-    void productDetailsQuery.refetch();
-  };
 
   const recommendedProductsQuery = useQuery({
     queryKey: ['recommendedProducts'],
-    queryFn: () => getRecommendedProducts(id),
+    queryFn: () => getRecommendedProducts(currentProductId.current),
+    refetchOnWindowFocus: false,
     enabled: false,
   });
 
-  useEffect(() => {
-    void recommendedProductsQuery.refetch();
-  }, [currentProductId]);
-
-  const recommendedProducts = recommendedProductsQuery.data || [];
   const product = productDetailsQuery?.data;
+  const recommendedProducts = recommendedProductsQuery.data || [];
+
+  const handleProductChange = (newId: string) => {
+    const newPathname = `/${category}/${newId}`;
+
+    isVariant.current = true;
+    window.history.replaceState(null, '', `${newPathname}`);
+    currentProductId.current = newId;
+
+    void productDetailsQuery.refetch();
+  };
 
   return (
     <>
+      <Breadcrumbs lastCrumb={product?.name || ''} />
+
+      <BackButton category={category} />
+
       {productDetailsQuery.isInitialLoading ? (
         <Loader />
       ) : (
         <>
-          <Breadcrumbs newPath={currentProductPath} />
-
-          <BackButton category={category} />
-
           {product && (
             <>
               <h1 className={styles.product_title}>{product.name}</h1>
