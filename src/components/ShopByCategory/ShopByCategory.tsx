@@ -5,9 +5,9 @@ import { Category } from '@/types/Category';
 import { SectionTop } from '../SectionTop';
 import { CategoryCard } from './CategoryCard';
 
-import accessoriesImage from '@assets/category-accessories.png';
-import phonesImage from '@assets/category-phones.png';
-import tabletsImage from '@assets/category-tablets.png';
+import accessoriesImage from '@assets/category-accessories.webp';
+import phonesImage from '@assets/category-phones.webp';
+import tabletsImage from '@assets/category-tablets.webp';
 
 import styles from './ShopByCategory.module.scss';
 
