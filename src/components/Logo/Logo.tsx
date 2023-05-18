@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-import logo from '@assets/icons/logo.svg';
+import logo from '@assets/logo.webp';
 
 import styles from './Logo.module.scss';
 

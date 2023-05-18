@@ -3,17 +3,17 @@
 
 .logo {
   &_header {
-    width: 2 * $secondary-indent;
-    height: 1.3rem;
+    width: 4rem;
+    height: auto;
     
     @include bp-large-up {
       width: 5rem;
-      height: 2.3rem;
+      height: auto;
     }
   }
 
   &_footer {
-    width: 5.5rem;
     height: 2rem;
+    width: auto;
   }
 }
