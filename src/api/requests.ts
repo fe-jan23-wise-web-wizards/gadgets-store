@@ -119,8 +119,9 @@ export const getCartByUserId = (id: string) => {
   return get<CartResponse>(`${CART_URL}/${id}`);
 };
 
-export const postCart = (cartData: CartResponse) => {
+export const postCart = ({ userId, products}: CartResponse) => {
   return post<CartResponse>(`${CART_URL}`, {
-    ...cartData,
+    userId,
+    products: JSON.stringify(products),
   });
 };

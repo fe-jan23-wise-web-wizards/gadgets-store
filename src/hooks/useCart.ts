@@ -1,10 +1,10 @@
-import { getCartByUserId,postCart } from '@/api/requests';
+import { getCartByUserId, postCart } from '@/api/requests';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { CartItem } from '@/types/CartItem';
 import { CartResponse } from '@/types/CartResponse';
 import { useAuth } from '@clerk/clerk-react';
-import { useMutation,useQuery } from '@tanstack/react-query';
-import { useCallback,useEffect,useMemo } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect, useMemo } from 'react';
 
 export function useCart() {
   const { isSignedIn, userId } = useAuth();
@@ -16,11 +16,9 @@ export function useCart() {
     enabled: false,
     onSuccess: ({ products }) => {
       if (products) {
-        const received = JSON.parse(products) as CartItem[];
-
         const receivedProducts = [];
 
-        for (const product of received) {
+        for (const product of products) {
           const isInCart = cartItems.some(item => item.id === product.id);
 
           if (!isInCart) {
@@ -35,7 +33,7 @@ export function useCart() {
       if (isSignedIn && userId) {
         cartMutation.mutate({
           userId,
-          products: JSON.stringify([]),
+          products: [],
         });
       }
     },
@@ -51,21 +49,21 @@ export function useCart() {
       void cartQuery.refetch();
     }
   }, [isSignedIn]);
-  
-  const updateCartData = useCallback(() => {
+
+  const updateCartData = (data: CartItem[]) => {
     if (isSignedIn && userId) {
       const cartData = {
         userId,
-        products: JSON.stringify(cartItems),
+        products: data,
       };
 
       cartMutation.mutate(cartData);
     }
-  }, []);
+  };
 
   useEffect(() => {
-    updateCartData();
-  }, [cartItems, isSignedIn]);
+    updateCartData(cartItems);
+  }, [isSignedIn, cartItems.length, cartItems]);
 
   const clearCart = useCallback(() => setCartItems([]), [setCartItems]);
 
@@ -96,13 +94,18 @@ export function useCart() {
 
   const increaseQuantity = useCallback(
     (itemId: string) => {
-      setCartItems(prev =>
-        prev.map(cartItem => {
+      setCartItems(prev => {
+        const newItems = prev.map(cartItem => {
           return cartItem.id === itemId
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem;
-        }),
-      );
+        });
+
+        console.log('first');
+        updateCartData(newItems);
+
+        return newItems;
+      });
     },
     [setCartItems],
   );
@@ -111,15 +114,19 @@ export function useCart() {
     (itemId: string) => {
       const cartItem = cartItems.find(cartItem => cartItem.id === itemId);
 
-      return cartItem && cartItem.quantity === 1
-        ? removeFromCart(itemId)
-        : setCartItems(prev =>
-            prev.map(cartItem => {
-              return cartItem.id === itemId
-                ? { ...cartItem, quantity: cartItem.quantity - 1 }
-                : cartItem;
-            }),
-          );
+      if (cartItem) {
+        setCartItems(prev => {
+          const newItems = prev.map(cartItem => {
+            return cartItem.id === itemId
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem;
+          });
+
+          updateCartData(newItems);
+
+          return newItems;
+        });
+      }
     },
     [setCartItems, cartItems, removeFromCart],
   );

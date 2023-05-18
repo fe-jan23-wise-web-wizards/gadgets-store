@@ -34,6 +34,7 @@ export const CartPage = () => {
     queryKey: ['cart-data'],
     queryFn: () => Promise.all(cartItems.map(({ id }) => getProduct(id))),
     onSuccess: data => setCart(data),
+    enabled: false,
   });
 
   const orderMutation = useMutation({
