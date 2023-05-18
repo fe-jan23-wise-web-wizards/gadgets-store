@@ -23,7 +23,9 @@ export const Header = () => {
   useEffect(() => {
     if (isBurgerOpen) {
       document.body.classList.add('pageWithMenuOpen');
+      document.querySelector('html')?.classList.add('pageWithMenuOpen');
     } else {
+      document.querySelector('html')?.classList.remove('pageWithMenuOpen');
       document.body.classList.remove('pageWithMenuOpen');
     }
   }, [isBurgerOpen]);
