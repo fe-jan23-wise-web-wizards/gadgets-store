@@ -1,0 +1,25 @@
+@import '@styles/variables';
+@import '@styles/breakpoints';
+@import '@styles/extends';
+
+.order {
+  margin-bottom: 3rem;
+
+  &_info {
+    font-size: 0.9rem;
+    line-height: 150%;
+    @extend %flexBetween;
+    flex-direction: column;
+  
+    font-weight: 600;
+    margin-bottom: 1rem;
+
+    @include bp-custom-up(640px) {
+      flex-direction: row;
+    }
+
+    &_title {
+      color: $color-secondary;
+    }
+  }
+}

@@ -1,14 +1,17 @@
 import classNames from 'classnames';
-import { FC } from 'react';
 
-import { IconLink } from '../Header/IconLink';
-import { NavBarList } from '../Header/NavBarList';
-import { Logo } from '../Logo';
+import { IconLink } from '@components/Header/IconLink';
+import { NavBarList } from '@components/Header/NavBarList';
+import { Logo } from '@components/Logo';
 
+import accountIcon from '@assets/icons/account-icon.svg';
 import iconCart from '@assets/icons/icon-cart.svg';
 import IconClose from '@assets/icons/icon-close.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
+
+import { useAuth } from '@clerk/clerk-react';
 import styles from '@components/BurgerMenu/BurgerMenu.module.scss';
+import { SignInButton } from '@components/SignInButton';
 
 interface Props {
   isMenuOpen: boolean;
@@ -17,12 +20,14 @@ interface Props {
   cartCount: number;
 }
 
-export const BurgerMenu: FC<Props> = ({
+export const BurgerMenu = ({
   isMenuOpen,
   onMenuClose,
   favoritesCount,
   cartCount,
-}) => {
+}: Props) => {
+  const { isSignedIn } = useAuth();
+
   return (
     <nav
       className={classNames([styles.BurgerMenu], {
@@ -50,9 +55,22 @@ export const BurgerMenu: FC<Props> = ({
           classNameActiveLink={styles.BurgerMenu__navlink__active}
           onClickInteractive={onMenuClose}
         />
+
+        {!isSignedIn && <SignInButton onClick={onMenuClose} />}
       </div>
 
       <div className={styles.BurgerMenu__footer}>
+        {isSignedIn && (
+          <IconLink
+            to={'orders'}
+            src={accountIcon}
+            alt={'IconLink-orders'}
+            isBurger={true}
+            count={0}
+            clickFunc={onMenuClose}
+          />
+        )}
+
         <IconLink
           to={'favorites'}
           src={iconFavorites}

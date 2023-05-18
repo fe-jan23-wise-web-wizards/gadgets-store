@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
 import { Product } from '@/types/Product';
-import { FC } from 'react';
-import crossIcon from '../../assets/icons/icon-cross.svg';
-import minusIcon from '../../assets/icons/icon-minus.svg';
-import plusIcon from '../../assets/icons/icon-plus.svg';
+import crossIcon from '@assets/icons/icon-cross.svg';
+import minusIcon from '@assets/icons/icon-minus.svg';
+import plusIcon from '@assets/icons/icon-plus.svg';
+import { Link } from 'react-router-dom';
 import styles from './CartItem.module.scss';
 
 interface CartItemProps {
@@ -15,13 +15,13 @@ interface CartItemProps {
   onRemove: (itemId: string) => void;
 }
 
-export const CartItem: FC<CartItemProps> = ({
+export const CartItem = ({
   product,
   quantity,
   onIncrease,
   onDecrease,
   onRemove,
-}) => {
+}: CartItemProps) => {
   return (
     <>
       <div className={styles.cart}>
@@ -41,7 +41,12 @@ export const CartItem: FC<CartItemProps> = ({
             />
           </div>
 
-          <p className={styles.content}>{product.name}</p>
+          <Link
+            to={`/${product.category}/${product.itemId}`}
+            className={styles.content}
+          >
+            {product.name}
+          </Link>
         </div>
 
         <div className={styles.quantity_and_price}>

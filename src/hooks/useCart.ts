@@ -1,9 +1,11 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { CartItem } from '@/types/CartItem';
-import { useCallback, useMemo } from 'react';
+import { useCallback,useMemo } from 'react';
 
 export function useCart() {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('cart', []);
+
+  const clearCart = useCallback(() => setCartItems([]), [setCartItems]);
 
   const isAddedToCart = useCallback(
     (itemId: string) => {
@@ -79,6 +81,7 @@ export function useCart() {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    clearCart,
     totalPrice,
     totalQuantity,
   } as const;

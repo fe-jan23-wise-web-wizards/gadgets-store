@@ -1,31 +1,34 @@
 import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
-import cartImage from '@assets/cart_empty.webp';
+import cartEmptyImage from '@assets/cart_empty.webp';
+import cartSuccessImage from '@assets/success.webp';
+import { useAuth } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
-import { useQuery } from '@tanstack/react-query';
-import { FC, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useMutation,useQuery } from '@tanstack/react-query';
+import { useEffect,useState } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
 import styles from './CartPage.module.scss';
 
 import { Loader } from '@/components/Loader';
+import { OrderDetails } from '@/types/OrderDetails';
 import { Product } from '@/types/Product';
-import { getProduct } from '@api/requests';
+import { getProduct,placeOrder } from '@api/requests';
 import { CartCheckout } from '@components/CartCheckout';
 import { CartItem } from '@components/CartItem';
-import { Modal } from '@components/ModalCheckout';
 
-export const CartPage: FC = () => {
+export const CartPage = () => {
   const {
     cartItems,
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    clearCart,
     totalPrice,
     totalQuantity,
   } = useLocalStorageContext();
 
+  const { userId, isSignedIn } = useAuth();
+  const navigate = useNavigate();
   const [cart, setCart] = useState<Product[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [redirectToHomePage, setRedirectToHomePage] = useState(false);
 
   const cartQuery = useQuery({
     queryKey: ['cart'],
@@ -33,41 +36,56 @@ export const CartPage: FC = () => {
     onSuccess: data => setCart(data),
   });
 
+  const orderMutation = useMutation({
+    mutationFn: (newOrder: Omit<OrderDetails, 'createdAt' | 'id'>) => {
+      return placeOrder(newOrder);
+    },
+    onSuccess: () => {
+      clearCart();
+      setCart([]);
+    },
+  });
+
   useEffect(() => {
     void cartQuery.refetch();
-  }, [cart]);
+  }, [cartItems]);
 
-  useEffect(() => {
-    if (redirectToHomePage) {
-      window.location.href = '/';
+  const handleCheckoutClick = async () => {
+    if (isSignedIn && userId) {
+      const orderDetails = {
+        userId,
+        totalPrice,
+        products: cartItems.map(({ id, quantity }) => {
+          return { productId: id, quantity };
+        }),
+      };
+
+      orderMutation.mutate(orderDetails);
+    } else {
+      navigate('/sign-in');
     }
-  }, [redirectToHomePage]);
-
-  const handleCheckoutClick = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setRedirectToHomePage(true);
   };
 
   return (
     <>
       <Breadcrumbs />
 
-      {cartQuery.isLoading ? (
+      {cartQuery.isLoading || orderMutation.isLoading ? (
         <Loader />
       ) : (
         <>
-          {cart.length === 0 ? (
+          {cartItems.length === 0 ? (
             <div className={styles.cart_empty}>
               <h3 className={styles.cart_empty_title}>
-                Looks like your cart is empty...
+                {orderMutation.isSuccess
+                  ? 'Thank you for your purchase!'
+                  : 'Looks like your cart is empty...'}
               </h3>
 
               <img
-                src={cartImage}
+                src={
+                  orderMutation.isSuccess ? cartSuccessImage : cartEmptyImage
+                }
                 alt="cart"
                 className={styles.cart_empty_image}
               />
@@ -107,8 +125,6 @@ export const CartPage: FC = () => {
                     onCheckout={handleCheckoutClick}
                   />
                 </div>
-
-                {showModal && <Modal onClose={closeModal} />}
               </div>
             </>
           )}

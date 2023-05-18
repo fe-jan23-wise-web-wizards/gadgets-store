@@ -21,14 +21,13 @@ export const CartCheckout: FC<CartCheckoutProps> = ({
             Total for {totalQuantity} items
           </p>
           <div className={styles.line}></div>
-          <a
+          <button
             className={styles.button_checkout}
-            href="#button"
             data-qa="hover"
             onClick={onCheckout}
           >
             Checkout
-          </a>
+          </button>
         </div>
       </div>
     </>
