@@ -1,7 +1,6 @@
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header';
 import '@styles/blocks/container.scss';
-import { Toaster } from 'react-hot-toast';
 import { Outlet } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
 
@@ -18,14 +17,6 @@ export const MainLayout = () => {
       </main>
 
       <Footer />
-      <Toaster
-        containerStyle={{
-          top: 80,
-          left: 20,
-          bottom: 20,
-          right: 20,
-        }}
-      />
     </div>
   );
 };
