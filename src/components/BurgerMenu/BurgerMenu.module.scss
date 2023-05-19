@@ -61,6 +61,7 @@
   &__navlink {
     display: block;
     margin-bottom: 2 * $main-indent;
+    border-bottom: 2px solid transparent;
 
     @extend %font12;
     font-weight: 800;

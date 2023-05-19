@@ -11,6 +11,9 @@
 .slider_content {
   width: 100%;
   margin-bottom: 1.1rem;
+  overflow: hidden;
+
+  position: relative;
 
   @include bp-custom-up(639px) {
     display: flex;
@@ -30,6 +33,6 @@
   }
 
   @include bp-custom-up(639px) {
-    width: calc(100% - 96px);
+    width: calc(100%);
   }
 }

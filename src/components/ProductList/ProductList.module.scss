@@ -13,6 +13,8 @@ $column-gap: $medium-indent;
   column-gap: $column-gap;
   row-gap: 2.5rem;
 
+  overflow: hidden;
+
   @include bp-custom-up(550px) {
     max-width: calc($card-width-tablet-mobile * 2 + $column-gap);
     grid-template-columns: 1fr 1fr;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { SortBy } from '@/types/SortBy';
@@ -35,6 +35,7 @@ export const Dropdown = ({
 }: DropdownProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const defaultValue = searchParamsKey === 'sort'
     ? SORT_BY_DEFAULT : ITEM_ON_PAGE_DEFAULT;
@@ -61,10 +62,24 @@ export const Dropdown = ({
     setIsFocused(false);
   };
 
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsFocused(false);
+      }
+    };
+  
+    document.addEventListener('click', handleOutsideClick);
+  
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   const selectedOptionItem = formatValue(String(currentOptionItem));
 
   return (
-    <div className={styles.dropdown} onBlur={handleDropdownBlur}>
+    <div className={styles.dropdown} onBlur={handleDropdownBlur} ref={dropdownRef}>
       <DropdownButton
         isFocused={isFocused}
         handleDropdownClick={handleDropdownClick}
