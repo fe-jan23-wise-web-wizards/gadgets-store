@@ -8,8 +8,7 @@
   grid-template-columns: repeat(2, 1fr);
 
   @include bp-medium-up {
-    grid-template-columns: 60% 40%;
-    width: 16.85rem;
+    width: 19rem;
     justify-items: auto;
     grid-template-columns: repeat(2, 1fr);
   }

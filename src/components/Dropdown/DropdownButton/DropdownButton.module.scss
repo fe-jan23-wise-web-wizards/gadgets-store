@@ -13,6 +13,8 @@
   background-color: $color-surface-2;
   border: 1px solid $color-surface-2;
   transition-property: border-color;
+
+  min-width: max-content;
   @extend %transitionDetails;
 
   &:hover {
