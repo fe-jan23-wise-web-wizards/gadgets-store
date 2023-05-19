@@ -64,7 +64,6 @@ export const ContactCard = ({
             </a>
 
             <a 
-              href={mail}
               onMouseEnter={showMessage}
               onClick={handleMailClick}
               className={`${styles.link} ${styles.mail}`}
