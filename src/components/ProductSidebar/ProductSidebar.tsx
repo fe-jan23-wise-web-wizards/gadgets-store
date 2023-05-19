@@ -4,9 +4,9 @@ import { AddToCartButton } from '@components/AddToCartButton';
 import { LikeButton } from '@components/LikeButton';
 import { ProductCapacities } from './ProductCapacities';
 
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Accessory } from '@/types/Accessory';
 import { Tablet } from '@/types/Tablet';
+import { useLocalStorageContext } from '@hooks/useLocalStorageContext';
 import { ProductColors } from './ProductColors';
 import styles from './ProductSidebar.module.scss';
 
@@ -15,16 +15,12 @@ interface ProductSidebarProps {
   onProductChange: (newId: string) => void;
 }
 
-export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps) => {
-  const {
-    namespaceId,
-    capacity,
-    screen,
-    resolution,
-    processor,
-    ram,
-    color,
-  } = product;
+export const ProductSidebar = ({
+  product,
+  onProductChange,
+}: ProductSidebarProps) => {
+  const { namespaceId, capacity, screen, resolution, processor, ram, color } =
+    product;
 
   const specs = {
     Screen: screen,
@@ -64,13 +60,17 @@ export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps
   };
 
   const handleCapacityChange = (newCapacity: string) => {
-    const newProductId = `${namespaceId}-${newCapacity.toLocaleLowerCase()}-${color.split(' ').join('-')}`;
+    const newProductId = `${namespaceId}-${newCapacity.toLocaleLowerCase()}-${color
+      .split(' ')
+      .join('-')}`;
 
     onProductChange(newProductId);
   };
 
   const handleColorChange = (newColor: string) => {
-    const newProductId = `${namespaceId}-${capacity.toLocaleLowerCase()}-${newColor.split(' ').join('-')}`;
+    const newProductId = `${namespaceId}-${capacity.toLocaleLowerCase()}-${newColor
+      .split(' ')
+      .join('-')}`;
 
     onProductChange(newProductId);
   };
@@ -109,10 +109,7 @@ export const ProductSidebar = ({ product, onProductChange }: ProductSidebarProps
           handleAddToCart={handleAddToCart}
           isAddedToCart={isItemInCart}
         />
-        <LikeButton
-          onLike={handleLike}
-          isItemFavorite={isItemFavorite}
-        />
+        <LikeButton onLike={handleLike} isItemFavorite={isItemFavorite} />
       </div>
 
       {Object.entries(specs).map(([name, value]) => (

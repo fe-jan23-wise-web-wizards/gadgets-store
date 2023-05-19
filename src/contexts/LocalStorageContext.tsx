@@ -1,5 +1,5 @@
-import { useCart } from '@/hooks/useCart';
-import { useFavorites } from '@/hooks/useFavorites';
+import { useCart } from '@hooks/useCart';
+import { useFavorites } from '@hooks/useFavorites';
 import { CartItem } from '@/types/CartItem';
 import { createContext } from 'react';
 

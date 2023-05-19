@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MenuItem } from '../MenuItem/MenuItem';
+import { MenuItem } from '../MenuItem';
 
 interface Props {
   classNameList: string;

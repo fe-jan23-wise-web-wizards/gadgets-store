@@ -1,8 +1,8 @@
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import cartEmptyImage from '@assets/cart_empty.webp';
 import cartSuccessImage from '@assets/success.webp';
 import { useAuth } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
+import { useLocalStorageContext } from '@hooks/useLocalStorageContext';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';

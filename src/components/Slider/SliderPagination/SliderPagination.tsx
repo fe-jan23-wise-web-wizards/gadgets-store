@@ -4,9 +4,9 @@ import { SliderPaginationBullet } from '../SliderPaginationBullet';
 import styles from './SliderPagination.module.scss';
 
 type SliderPaginationProps = {
-  bannerPaths: string[],
-  sliderRef: SwiperClass | null,
-  activeSlideIndex: number,
+  bannerPaths: string[];
+  sliderRef: SwiperClass | null;
+  activeSlideIndex: number;
 };
 
 export const SliderPagination = ({

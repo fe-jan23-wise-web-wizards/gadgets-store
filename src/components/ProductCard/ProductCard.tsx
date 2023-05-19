@@ -1,8 +1,8 @@
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { Product } from '@/types/Product';
+import { useLocalStorageContext } from '@hooks/useLocalStorageContext';
 import { Link } from 'react-router-dom';
-import { AddToCartButton } from '../AddToCartButton';
-import { LikeButton } from '../LikeButton';
+import { AddToCartButton } from '@components/AddToCartButton';
+import { LikeButton } from '@components/LikeButton';
 import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {
@@ -147,7 +147,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           />
           <LikeButton onLike={handleLike} isItemFavorite={isItemFavorite} />
         </div>
-      </div> 
+      </div>
     </div>
   );
 };

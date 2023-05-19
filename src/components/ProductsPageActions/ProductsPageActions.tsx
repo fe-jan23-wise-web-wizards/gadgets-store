@@ -1,5 +1,5 @@
 import { ProductsPageOptions } from '../ProductsPageOptions';
-import { Search } from '../Search';
+import { Search } from '@components/Search';
 import styles from './ProductsPageActions.module.scss';
 
 export const ProductsPageActions = () => {

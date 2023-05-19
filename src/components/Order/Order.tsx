@@ -1,5 +1,5 @@
-import { getProduct } from '@/api/requests';
 import { OrderDetails } from '@/types/OrderDetails';
+import { getProduct } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
 import { OrderItem } from '../OrderItem';
 import styles from './Order.module.scss';
@@ -14,11 +14,13 @@ export const Order = ({ order }: OrderProps) => {
   const productsQuery = useQuery({
     queryKey: [`order-${id}`],
     queryFn: () =>
-      Promise.all(products.map(async ({ productId, quantity }) => {
-        const productDetails = await getProduct(productId);
+      Promise.all(
+        products.map(async ({ productId, quantity }) => {
+          const productDetails = await getProduct(productId);
 
-        return { ...productDetails, quantity };
-      })),
+          return { ...productDetails, quantity };
+        }),
+      ),
   });
 
   const productsData = productsQuery?.data || [];
@@ -46,7 +48,9 @@ export const Order = ({ order }: OrderProps) => {
 
         <p>
           <span className={styles.order_info_title}>Total price:</span>{' '}
-          <span className={styles.order_info_totalPrice}>{`$${order.totalPrice}`}</span>
+          <span
+            className={styles.order_info_totalPrice}
+          >{`$${order.totalPrice}`}</span>
         </p>
       </div>
 

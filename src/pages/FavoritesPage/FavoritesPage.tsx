@@ -1,12 +1,12 @@
-import { getProduct } from '@/api/requests';
+import { Product } from '@/types/Product';
+import { getProduct } from '@api/requests';
+import favImage from '@assets/favorites_empty.webp';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { Loader } from '@components/Loader';
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
-import { Product } from '@/types/Product';
-import favImage from '@assets/favorites_empty.webp';
 import { ProductList } from '@components/ProductList';
+import { useLocalStorageContext } from '@hooks/useLocalStorageContext';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './FavoritesPage.module.scss';
 

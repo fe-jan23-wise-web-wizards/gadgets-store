@@ -5,10 +5,10 @@ import { Swiper as SwiperClass } from 'swiper/types';
 
 SwiperCore.use([Autoplay]);
 
-import { SliderItem } from './components/SliderItem';
-import { SliderNavButton } from './components/SliderNavButton';
-import { SliderPagination } from './components/SliderPagination';
-import { SliderNavButtonType } from './types/SliderNavButtonType';
+import { SliderItem } from './SliderItem';
+import { SliderNavButton } from './SliderNavButton';
+import { SliderNavButtonType } from './SliderNavButtonType';
+import { SliderPagination } from './SliderPagination';
 
 const banner1 = `${
   import.meta.env.VITE_API_URL
@@ -55,7 +55,10 @@ export const Slider = () => {
             >
               {bannersPaths.map((bannerPath, index) => (
                 <SwiperSlide key={bannerPath}>
-                  <SliderItem bannerPath={bannerPath} targetPath={targetPaths[index]} />
+                  <SliderItem
+                    bannerPath={bannerPath}
+                    targetPath={targetPaths[index]}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>

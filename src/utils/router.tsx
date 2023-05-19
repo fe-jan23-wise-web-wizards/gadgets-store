@@ -5,14 +5,14 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { FavoritesPage } from '@/pages/FavoritesPage';
-import { OrdersPage } from '@pages/OrdersPage';
 import { Category } from '@/types/Category';
-import { SignedIn,SignedOut } from '@clerk/clerk-react';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { MainLayout } from '@layouts/MainLayout';
 import { CartPage } from '@pages/CartPage';
+import { FavoritesPage } from '@pages/FavoritesPage';
 import { HomePage } from '@pages/HomePage';
 import { NotFoundPage } from '@pages/NotFoundPage';
+import { OrdersPage } from '@pages/OrdersPage';
 import { ProductPage } from '@pages/ProductPage';
 import { ProductsPage } from '@pages/ProductsPage';
 import { SignInPage } from '@pages/SignInPage/SignInPage';
@@ -37,9 +37,9 @@ export const router = createBrowserRouter(
       ))}
 
       <Route path="favorites" element={<FavoritesPage />} />
-      
+
       <Route path="cart" element={<CartPage />} />
-      
+
       <Route path="contacts" element={<ContactsPage />} />
 
       <Route

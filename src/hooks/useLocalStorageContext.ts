@@ -1,4 +1,4 @@
-import { LocalStorageContext } from '@/contexts/LocalStorageContext';
+import { LocalStorageContext } from '@contexts/LocalStorageContext';
 import { useContext } from 'react';
 
 export const useLocalStorageContext = () => {

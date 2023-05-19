@@ -1,7 +1,7 @@
-import { getCartByUserId, postCart } from '@/api/requests';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { CartItem } from '@/types/CartItem';
-import { CartResponse } from '@/types/CartResponse';
+import { getCartByUserId, postCart } from '@api/requests';
+import { useLocalStorage } from '@hooks/useLocalStorage';
+import { type CartItem } from '@/types/CartItem';
+import { type CartResponse } from '@/types/CartResponse';
 import { useAuth } from '@clerk/clerk-react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo } from 'react';

@@ -1,5 +1,5 @@
 import styles from './ProductsPageOption.module.scss';
-import { Dropdown } from '../Dropdown';
+import { Dropdown } from '@components/Dropdown';
 
 type ProductsPageOptionProps = {
   title: string,

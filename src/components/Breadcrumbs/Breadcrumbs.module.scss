@@ -19,7 +19,7 @@
 
     transition-property: color;
     @extend %transitionDetails;
-    
+
     &:hover {
       color: $color-accent-hover;
     }
@@ -33,12 +33,12 @@
   &_home_icon {
     @extend %iconsBaseSet;
 
-    background-image: url('@/assets/icons/icon-home.svg');
+    background-image: url('@assets/icons/icon-home.svg');
   }
 
   &_arrow_icon {
     @extend %iconsBaseSet;
 
-    background-image: url('@/assets/icons/arrow-right.svg');
+    background-image: url('@assets/icons/arrow-right.svg');
   }
 }
