@@ -70,7 +70,7 @@ export const ProductsPage = () => {
   });
 
   return (
-    <>
+    <div className={styles.page}>
       <Breadcrumbs />
 
       <h1 className={styles.title}>{productsPagesTitles[category]}</h1>
@@ -92,6 +92,6 @@ export const ProductsPage = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
