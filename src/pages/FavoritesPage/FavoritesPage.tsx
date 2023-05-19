@@ -52,7 +52,7 @@ export const FavoritesPage = () => {
             </div>
           ) : (
             <>
-              <h1 className={styles.title}>Favourites</h1>
+              <h1 className={styles.title}>Favorites</h1>
               <p className={styles.description}>{products.length} items</p>
               <ProductList products={products} />
             </>
