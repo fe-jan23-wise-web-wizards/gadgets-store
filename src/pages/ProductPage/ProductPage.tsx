@@ -1,6 +1,6 @@
 import { getProductDetails, getRecommendedProducts } from '@api/requests';
 import { useQuery } from '@tanstack/react-query';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { BackButton } from '@components/BackButton';
 import { Breadcrumbs } from '@components/Breadcrumbs';
@@ -22,6 +22,7 @@ const getNamespace = (productId: string) => {
 };
 
 export const ProductPage = () => {
+  const navigate = useNavigate();
   const { id = '' } = useParams();
   const { pathname } = useLocation();
   const category = pathname.slice(1).split('/').shift() as Category;
@@ -39,9 +40,12 @@ export const ProductPage = () => {
         top: 0,
         behavior: 'smooth',
       });
-
+    },
+    onSettled: () => {
       void recommendedProductsQuery.refetch();
     },
+    onError: () => navigate('/404'),
+    retry: false,
   });
 
   const recommendedProductsQuery = useQuery({
@@ -49,6 +53,8 @@ export const ProductPage = () => {
     queryFn: () => getRecommendedProducts(currentProductId.current),
     refetchOnWindowFocus: false,
     enabled: false,
+    retry: false,
+    onError: () => navigate('/404'),
   });
 
   const product = productDetailsQuery?.data;
