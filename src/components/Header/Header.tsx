@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { BurgerMenu } from '@components/BurgerMenu';
 import { Logo } from '@components/Logo';
@@ -10,9 +10,9 @@ import iconCart from '@assets/icons/icon-cart.svg';
 import iconMenu from '@assets/icons/icon-menu.svg';
 import iconFavorites from '@assets/icons/like-icon.svg';
 
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
 import { useAuth } from '@clerk/clerk-react';
 import { SignInButton } from '@components/SignInButton';
+import { useLocalStorageContext } from '@hooks/useLocalStorageContext';
 import styles from './Header.module.scss';
 
 export const Header = () => {

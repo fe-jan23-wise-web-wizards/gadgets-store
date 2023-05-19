@@ -14,6 +14,8 @@ export default defineConfig({
       '@layouts': path.resolve(__dirname, './src/layouts'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@fonts': path.resolve(__dirname, './src/fonts'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@contexts': path.resolve(__dirname, './src/contexts'),
     },
   },
   plugins: [react()],

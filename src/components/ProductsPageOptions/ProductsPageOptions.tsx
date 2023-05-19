@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { SortBy } from '@/types/SortBy';
-import { ProductsPageOption } from '../ProductsPageOption';
+import { ProductsPageOption } from '@components/ProductsPageOption';
 
 import styles from './ProductsPageOptions.module.scss';
 

@@ -1,8 +1,8 @@
-import { getOrdersByUserId } from '@/api/requests';
-import { Order } from '@/components/Order';
-import { useLocalStorageContext } from '@/hooks/useLocalStorageContext';
-import { useAuth,useUser } from '@clerk/clerk-react';
+import { getOrdersByUserId } from '@api/requests';
+import { useAuth, useUser } from '@clerk/clerk-react';
 import { Breadcrumbs } from '@components/Breadcrumbs';
+import { Order } from '@components/Order';
+import { useLocalStorageContext } from '@hooks/useLocalStorageContext';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import styles from './OrdersPage.module.scss';

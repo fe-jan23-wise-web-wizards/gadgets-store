@@ -1,8 +1,8 @@
+import classNames from 'classnames';
 import { useCallback } from 'react';
 import { Swiper as SwiperClass } from 'swiper/types';
-import classNames from 'classnames';
 
-import { SliderNavButtonType } from '../../types/SliderNavButtonType';
+import { SliderNavButtonType } from '../SliderNavButtonType';
 
 import styles from './SliderNavButton.module.scss';
 
@@ -24,19 +24,19 @@ export const SliderNavButton = ({ sliderRef, type }: SliderNavButtonProps) => {
   }, [sliderRef, isNextButton]);
 
   return (
-        <button
-          className={classNames(styles.slider_nav_button, {
-            [styles.slider_nav_next_button]: isNextButton,
-            [styles.slider_nav_prev_button]: isPrevButton,
-          })}
-          onClick={handleClick}
-        >
-          <div
-            className={classNames(
-              { [styles.slider_nav_next_button_icon]: isNextButton },
-              { [styles.slider_nav_prev_button_icon]: isPrevButton },
-            )}
-          ></div>
-        </button>
-      );
+    <button
+      className={classNames(styles.slider_nav_button, {
+        [styles.slider_nav_next_button]: isNextButton,
+        [styles.slider_nav_prev_button]: isPrevButton,
+      })}
+      onClick={handleClick}
+    >
+      <div
+        className={classNames(
+          { [styles.slider_nav_next_button_icon]: isNextButton },
+          { [styles.slider_nav_prev_button_icon]: isPrevButton },
+        )}
+      ></div>
+    </button>
+  );
 };

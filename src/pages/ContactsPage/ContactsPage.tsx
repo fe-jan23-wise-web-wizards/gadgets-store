@@ -1,15 +1,15 @@
 import { ContactCard } from '@components/ContactCard';
 
-import StasPhoto from '@assets/team_photos/Stas.webp';
-import VladPhoto from '@assets/team_photos/Vlad.webp';
-import RashydPhoto from '@assets/team_photos/Rashyd.webp';
 import AndriiPhoto from '@assets/team_photos/Andrii.webp';
+import RashydPhoto from '@assets/team_photos/Rashyd.webp';
+import StasPhoto from '@assets/team_photos/Stas.webp';
 import StasKulPhoto from '@assets/team_photos/StasKul.webp';
 import VadymPhoto from '@assets/team_photos/Vadym.webp';
+import VladPhoto from '@assets/team_photos/Vlad.webp';
 
-import styles from './ContactsPage.module.scss';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Breadcrumbs } from '@components/Breadcrumbs';
 import { useEffect } from 'react';
+import styles from './ContactsPage.module.scss';
 
 export const ContactsPage = () => {
   useEffect(() => {

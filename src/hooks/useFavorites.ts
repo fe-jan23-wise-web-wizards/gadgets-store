@@ -1,6 +1,6 @@
-import { getFavoritesByUserId, postFavorites } from '@/api/requests';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { FavoritesResponse } from '@/types/FavoritesResponse';
+import { getFavoritesByUserId, postFavorites } from '@api/requests';
+import { useLocalStorage } from '@hooks/useLocalStorage';
+import { type FavoritesResponse } from '@/types/FavoritesResponse';
 import { useAuth } from '@clerk/clerk-react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect } from 'react';

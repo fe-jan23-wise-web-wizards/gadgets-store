@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getProductsCount } from '@/api/requests';
 import { Category } from '@/types/Category';
-import { SectionTop } from '../SectionTop';
+import { getProductsCount } from '@api/requests';
+import { SectionTop } from '@components/SectionTop';
 import { CategoryCard } from './CategoryCard';
 
 import accessoriesImage from '@assets/category-accessories.webp';

@@ -1,25 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useLocation,useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Category } from '@/types/Category';
 import { SortBy } from '@/types/SortBy';
-import {
-getProductsByCategory,
-getProductsCount,
-} from '@api/requests';
+import { getProductsByCategory, getProductsCount } from '@api/requests';
 import { Breadcrumbs } from '@components/Breadcrumbs';
 import { Pagination } from '@components/Pagination';
 import { ProductList } from '@components/ProductList';
 
 import { Loader } from '@components/Loader';
+import { ProductsPageActions } from '@components/ProductsPageActions';
 import styles from './ProductsPage.module.scss';
-import { ProductsPageActions } from '@/components/ProductsPageActions';
 
 const categories = Object.values(Category);
 
 type ProductsPagesTitles = {
-  [key: string]: string,
+  [key: string]: string;
 };
 
 const productsPagesTitles = categories.reduce((titles, category) => {
@@ -31,18 +28,16 @@ const productsPagesTitles = categories.reduce((titles, category) => {
       break;
 
     default:
-      title = category.toUpperCase().slice(0, 1)
-        + category.slice(1);
+      title = category.toUpperCase().slice(0, 1) + category.slice(1);
       break;
   }
 
   titles[category] = title;
 
-  return {...titles};
+  return { ...titles };
 }, {} as ProductsPagesTitles);
 
 export const ProductsPage = () => {
-
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
 
@@ -75,9 +70,7 @@ export const ProductsPage = () => {
 
       <h1 className={styles.title}>{productsPagesTitles[category]}</h1>
 
-      <p className={styles.models_quantity_info}>
-        {productsQuantity} models
-      </p>
+      <p className={styles.models_quantity_info}>{productsQuantity} models</p>
 
       <ProductsPageActions />
 
@@ -87,9 +80,7 @@ export const ProductsPage = () => {
         <>
           <ProductList products={productsQuery?.data || []} />
 
-          {pagesQuantity > 1 && (
-            <Pagination quantity={pagesQuantity} />
-          )}
+          {pagesQuantity > 1 && <Pagination quantity={pagesQuantity} />}
         </>
       )}
     </>
