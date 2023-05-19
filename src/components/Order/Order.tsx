@@ -14,7 +14,11 @@ export const Order = ({ order }: OrderProps) => {
   const productsQuery = useQuery({
     queryKey: [`order-${id}`],
     queryFn: () =>
-      Promise.all(products.map(({ productId }) => getProduct(productId))),
+      Promise.all(products.map(async ({ productId, quantity }) => {
+        const productDetails = await getProduct(productId);
+
+        return { ...productDetails, quantity };
+      })),
   });
 
   const productsData = productsQuery?.data || [];
@@ -46,11 +50,11 @@ export const Order = ({ order }: OrderProps) => {
         </p>
       </div>
 
-      <div className={styles.order_products}>
+      <>
         {productsData.map(product => (
           <OrderItem key={product.id} item={product} />
         ))}
-      </div>
+      </>
     </div>
   );
 };
