@@ -2,6 +2,12 @@
 @import '@styles/mixins';
 @import '@styles/extends';
 
+.page {
+  &:last-child {
+    @extend %homeIndentsSet;
+  }
+}
+
 .title {
   margin-bottom: $small-indent;
 
