@@ -4,6 +4,7 @@
 
 .item {
   @extend %flexBetween;
+  gap: 0.8rem;
   align-items: center;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
@@ -12,8 +13,6 @@
   @extend %cardHover;
 
   &_title {
-    margin-right: 1rem;
-
     @extend %font14;
     color: $color-white;
 
@@ -24,5 +23,12 @@
 
   &_price {
     font-weight: 800;
+  }
+
+  &_box {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 }
