@@ -25,7 +25,7 @@ export const OrdersPage = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <Breadcrumbs />
 
       <div className={styles.page_top}>
@@ -55,6 +55,6 @@ export const OrdersPage = () => {
           ))}
         </>
       )}
-    </div>
+    </>
   );
 };
