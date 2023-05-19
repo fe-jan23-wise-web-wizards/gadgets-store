@@ -63,8 +63,7 @@ export const ContactCard = ({
               <img src={githubIcon} alt="" />
             </a>
 
-            <a 
-              href={mail}
+            <a
               onMouseEnter={showMessage}
               onClick={handleMailClick}
               className={`${styles.link} ${styles.mail}`}
